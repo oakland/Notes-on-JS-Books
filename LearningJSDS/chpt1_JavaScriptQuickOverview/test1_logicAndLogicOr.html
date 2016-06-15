@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test1_logicAndLogicOr</title>
+    <script type="text/javascript">
+    // && 符号用作 if 条件句
+    var a = 3,
+        b1,
+        b2;
+    (a == 3) && (b1 = "b1"); //如果 a==3 成立，则继续执行后面的语句，否则就不执行后面的语句
+    (a != 3) && (b2 = "b2");
+    console.log(b1); //"b1"
+    console.log(b2); //undefined
+
+    // ||符号用作 if 条件句
+    var c = 3,
+        d1,
+        d2;
+    (c == 3) || (d1 = "d1"); //如果 c==3 成立，则不再执行后面的语句，否则就继续执行后面的语句
+    (c != 3) || (d2 = "d2");
+    console.log(d1); //undefined
+    console.log(d2); //"d2"
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
