@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2.3_addAndRemoveElements</title>
+	<script type="text/javascript">
+		//在 JS 中，数组是可变对象。我们可以很容易的给它添加元素。当我们添加元素的时候，数组会进行动态的增长。在很多其他的语言中，比如 C 或者 Java 中，我们需要明确数组的长度，如果我们想添加元素给数组，我们必须创建一个新的数组；我们不能根据自己的需要简单的添加元素。
+		//假设我们拥有一个从 0 到 9 的数组。我们想给它添加一个元素 10，我们所要做的仅仅是索引到数组的最后一个位置，并且给这个位置赋一个值：
+		var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+		numbers[numbers.length] = 10;
+		//我们也可以使用 push 方法，向数组的末尾添加元素。push 方法的参数就是要添加的元素
+		numbers.push(11);
+		numbers.push(12, 13);
+		//现在 numbers 数组的结果就是 0到13。
+		//现在假设，我们想在数组的第一个位置添加一个元素，而不是最后一个位置，我们该怎么处理呢？为了实现这个目的，我们需要让所有的元素向右切换(shift)一个位置来释放第一个位置。
+		for (var i = numbers.length; i >= 0; i--) {
+			numbers[i] = numbers[i-1];
+		}
+		numbers[0] = -1;
+		//我们可以使用下面的图标来展示上面的动作：
+		// JS 也拥有一个 unshift 方法，可以向数组的前面位置添加元素：
+		numbers.unshift(-2);
+		numbers.unshift(-3, -4);
+		//想要移除数组最后一个元素，我们可以使用 pop 方法
+		//push() 和 pop() 方法允许数组模拟一个基本的 stack 数据结构，这是我们下一个章节要讨论的内容。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

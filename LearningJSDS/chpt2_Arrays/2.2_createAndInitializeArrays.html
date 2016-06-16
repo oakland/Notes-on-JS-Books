@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2.2_createAndInitializeArrays</title>
+	<script type="text/javascript">
+		//使用 new 关键词声明数组并不是最佳的实践，最佳的实践是直接使用 方括号 来进行赋值声明。
+		//我们来看另外一个例子。假设我们想要找到 Fibonacci 序列的前 20 个数字。斐波那契序列的前两个数字是 1 和 2，然后每一个数字都是前两个数字之和：
+		var fibonacci = [];
+		fibonacci[1] = 1;
+		fibonacci[2] = 2;
+		for (var i = 3; i < 20; i++) {
+			fibonacci[i] = fibonacci[i-1] + fibonacci[i-2];
+		}
+		for (var i = 0; i < fibonacci.length; i++) {
+			console.log(fibonacci[i]);
+		}
+		//代码第一行，我们声明并创建了一个数组。第二行和第三行，我们指定了斐波那契数列这个数组的第 2 个和第 3 个位置的数字。（斐波那契序列中没有 0 ，所以我们跳过了0）
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
