@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2.7_iteratorFunctions</title>
+    <script type="text/javascript">
+    //有时候我们需要遍历数组元素。我们学习了，我们可以使用回路构造(loop construct)来实现，例如使用 for 语句，如前例所示。
+    //但是，同时 JS 也拥有一些数组的内置遍历方法。这一部分的例子中，我们需要一个数组和一个函数。我们将使用一个 1-15 的数组，以及一个函数，如果数字是 2 的倍数（复数），则返回真，否则则返回假。
+    var isEven = function(x) {
+        //return true if x is a multiple of 2.
+        console.log(x);
+        return (x % 2 == 0) ? true : false;
+    };
+    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    //return (x % 2 == 0) ? true : false 其实也可以直接写为 return (x % 2 == 0)
+    //我们首先要查看的是 every 方法。every() 方法会遍历数组的每一个元素，直到函数的返回值是 false 为止：
+    numbers.every(isEven);
+    //本例中，numbers 数组的第一个元素是1，1 不是 2 的倍数，所以 isEven 函数会返回 false，这也是函数唯一被运行的一次。
+    //接着，我们来看下 some() 方法，some 方法和 every 方法拥有相同的行为，不过，some() 方法会遍历函数中的每一个元素，直到函数的返回值为 true：
+    numbers.some(isEven);
+    //本例中，numbers 数组第一个偶数是 2。第一个被遍历的元素是 1，函数返回值是 false；接着，第二个被遍历的元素是 2，函数返回 true —— 遍历就会终止。
+    //如果我们希望数组不论在什么情况下都遍历一遍，我们可以使用 forEach() 方法。forEach() 方法和在 for 回路中使用函数的效果是一样的：
+    numbers.forEach(function(x) {
+        console.log(x % 2 == 0);
+    });
+    //JS 还拥有另外两个遍历方法，这两个方法都会返回一个数组。第一个是 map() 方法：
+    var myMap = numbers.map(isEven);
+    //myMap 将会拥有如下的值 [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]。存储了传入到 map 方法中的 isEven 函数的结果。通过这个方法，我们可以很容易的直到，一个数字是不是复数。例如，myMap[0] 返回 false，因为 1 是单数，而 myMap[1] 返回 true，因为 2 是复数。
+    //我们还可以使用 filter 方法，filter 方法返回一个函数返回值为 true 的元素组成的新数组。
+    var evenNumbers = numbers.filter(isEven);
+    //本例中，evenNumbers 这个数组将会包含 2 的倍数的元素，[2, 4, 6, 8, 10, 12, 14]。
+    //最后，我们还拥有 reduce 方法。reduce 方法接受一个函数，函数的参数为：previousValue, currentValue, index, array。我们可以使用 reduce 方法来返回一个值，这个值将会被添加到一个计算器中，这个值当 reduce 方法停止执行的时候会被返回。如果我们想把数组中的值都加起来的话，这个方法会非常有用，例如：
+    numbers.reduce(function(previous, current, index) {
+        return previous + current;
+    });
+    //输出的结果是 120
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

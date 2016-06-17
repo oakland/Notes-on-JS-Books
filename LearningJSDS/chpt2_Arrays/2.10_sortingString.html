@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2.10_sortingString</title>
+	<script type="text/javascript">
+		//假设我们拥有下面的数组
+		var names = ["Ana", "ana", "john", "John"];
+		console.log(names.sort());
+		//你觉得输出的结果是什么呢？答案如下：
+		["Ana", "John", "ana", "john"]
+		//为什么 ana 会出现在 John 之后呢？答案就是，JS 根据 ASCII 码来比较两个字符。例如，A J a j 对应的 ASCII 码是 A:65 J:74 a:97 j:106。
+		//因此 J 的值比 a 的值小，所以 J 会出现在 a 前面。
+		//注意，要想了解更多 ASCII 码表的相关信息，请访问 http://www.asciitabel.com
+		//现在，如果我们传入一个 compareFunction 函数，这个函数包含了忽略字母大小写的代码，我们会得到 ["Ana", "ana", "John", "john"] 的输出结果，如下：
+		names.sort(function(a, b) {
+			if (a.toLowerCase() < b.toLowerCase()) {
+				return -1;
+			}
+			if (a.toLowerCase() > b.toLowerCase()) {
+				return 1;
+			}
+			return 0;
+		});
+		//对于重音字符，我们也可以使用 localeCompare 方法：
+		//è
+		var names2 = ["Mèave", "Meave"];
+		console.log(names.sort(function(a, b) {
+			return a.localeCompare(b);
+		}));
+		//u输出结果是 ["Meave", "Mèave"]
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

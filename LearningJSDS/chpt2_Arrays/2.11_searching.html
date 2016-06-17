@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2.11_searching</title>
+	<script type="text/javascript">
+		//对于搜索，我们可以有两个选项：indexOf 方法，返回和传入参数相同的第一个元素的索引；以及 lastIndexOf，返回和传入参数相同的最后一个元素的索引。我们再回头看看之前就是用的 numbers 数组。
+		console.log(numbers.indexOf(10));//9
+		console.log(numbers.indexOf(100));//-1，如果数组中没有则返回 -1
+		//使用下面的代码，我们可以获得同样的结果：
+		numbers.push(10);
+		console.log(numbers.lastIndexOf(10));//15
+		console.log(numbers.lastIndexOf(100));//-1
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2.8_searchingAndSoring</title>
+	<script type="text/javascript">
+		//通过这本书，我们将要学习如何书写最常用的 搜索和排序 算法。但是，JS 也拥有自己的排序算法和一些搜索方法。我们一起来看看。
+		//首先，我们以 numbers 为例，将元素的顺序打乱。要实现这个效果，我们可以使用 reverse() 方法，整个数组的顺序会颠倒过来：
+		numbers.revers();
+		//输出的结果是 [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]。然后我们执行 sort() 方法：
+		numbers.sort();
+		//然而，当我们输出数组，结果却是 [1, 10, 11, 12, 13, 14, 15, 2, 3, 4, 5, 6, 7, 8, 9]。这个顺序是不正确的。因为 sort 方法会将元素按照字典的顺序排序，并且会默认所有的元素都是字符串。
+		//我们也可以书写我们自己的比较函数。鉴于我们的数组拥有的是数字元素，我们可以使用如下代码：
+		numbers.sort(function(a, b){
+			return a - b;
+		});
+		//这段函数将会返回负数，如果 b 大于 a， 返回正数，如果 a 大于 b，返回 0 ，如果 a 等于 b。这意味着，如果返回复数，就是表示 a 小于 b，这个返回值会被 sort 函数用于排列元素。
+		//上述代码也可以用下面的代码来表示：
+		function compare(a, b) {
+			if (a<b) {
+				return -1;
+			}
+			if (a>b) {
+				return 1;
+			}
+			//a must be equal to b
+			return 0;
+		}
+		numbers.sort(compare);
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

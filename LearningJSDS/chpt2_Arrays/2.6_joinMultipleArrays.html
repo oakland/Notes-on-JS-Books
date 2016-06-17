@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2.6_joinMultipleArrays</title>
+	<script type="text/javascript">
+		//想想一个场景，你拥有多个数组，但是你需要将这些数组合并为一个数组。我们需要遍历每一个数组，然后将每一个元素都添加到最终的数组中。幸运的是，JS 已经拥有了一个这样的方法，这个方法叫 concat，
+		var zero = 0;
+		var positiveNumbers = [1, 2, 3];
+		var negativeNumbers = [-1, -2, -3];
+		var numbers = negativeNumbers.concat(zero, positiveNumbers);
+		//我们可以根据需要，传入任意多的数组，以及 对象/元素到最终数组中。数组将会按照我们给 concat() 方法传参的顺序，组合成为一个最终的数组。本例中， 0 会连接到 negativeNumbers 之后，然后 positiveNumbers 会连接到 0 之后。最终的输出结果就是 [-3, -2, -1, 0, 1, 2, 3]
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
