@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3.3_decimalToBinary</title>
+	<script type="text/javascript">
+		//现在，我们已经直到如何使用 stack 了，我们使用 stack 来解决一些计算机问题。
+		//也许你已经直到十进制了。但是 2 进制在计算机中非常重要，因为计算机中的所有东西都是由 2 进制代表的。如果不能在二进制和十进制数字之间来回切换的话，与计算机交流将会是一件非常困难的事情。
+		//要将一个十进制数字转化为二进制数字，我们需要将数字不断地除以 2， 直到最后的除以结果为 0 为止。我们将以 10 转化为二进制数字为例。
+		//将十进制转化为二进制是你在大学中计算机课上学习的第一件事情：
+		function divideBy2(decNumber) {
+			var remStack = new Stack(),
+				rem,
+				binaryString = '';
+
+			while (decNumber > 0) {
+				rem = Math.floor(decNumber % 2);
+				remStack.push(rem);
+				decNumber = Math.floor(decNumber / 2);
+			}
+			while (!remStack.isEmpty()) {
+				binaryString += remStack.pop().toString();
+			}
+			return binaryString;
+		}
+		//...
+		//我们将上面的算法进行简单的转化之后，就可以实现将十进制转化为任何其他进制的算法。我们可以传入任何我们希望的进制数作为函数的参数，将其应用到除法中，而不是使用上面的 2 ，如下面的算法所示：
+		function baseConverter(decNumber, base) {
+			var remStack = new Stack(),
+				rem,
+				baseString= '',
+				digits = '012346789ABCDEF';
+			while (decNumber > 0) {
+				rem = Math.floor(decNumber % base);
+				remStack.push(rem);
+				decNumber = Math.floor(decNumber / base);
+			}
+			while (!remStack.isEmpty()) {
+				baseString += digits[remStack.pop()];
+			}
+			return baseString;
+		}
+		//还有一件事情我们需要更改。在十进制转化为二进制的过程中，余数是 0 或者 1。在十进制转八进制的时候，余数是 0-8，但是从十进制转十六进制的时候，余数可以是 0-8 加上字母 A-F(10-15)。鉴于这个原因，我们需要将这些值也进行转化。
+		console.log(baseConverter(100345, 2));
+		console.log(baseConverter(100345, 8));
+		console.log(baseConverter(100345, 16));
+		//注意，如果你要下载本书的源码的话，你还会发现 balanced parentheses 和 Hanoi Tower 的例子。
+		//balanced parentheses 不知道是什么
+		//Hanoi Tower 是汉诺塔
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

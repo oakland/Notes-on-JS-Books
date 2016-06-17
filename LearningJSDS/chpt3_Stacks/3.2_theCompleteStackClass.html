@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3.2_theCompleteStackClass</title>
+	<script type="text/javascript">
+		function Stack() {
+			var items = [];
+			this.push = function(element) {
+				items.push(element);
+			};
+			this.pop = function() {
+				items.pop();
+			};
+			this.peek = function() {
+				return items[items.length-1];
+			};
+			this.isEmpty = function() {
+				return items.length == 0;
+			};
+			this.size = function() {
+				return items.length;
+			};
+			this.clear = function() {
+				items = [];
+			};
+			this.print = function() {
+				console.log(items.toString());
+			};
+		}
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

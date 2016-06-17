@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3.1_createAStack</title>
+	<script type="text/javascript">
+		//我们将会创建我们自己的，代表栈的class。让我们从头开始，先声明一个 class：
+		function Stack() {
+			//properties and methods go here
+		}
+		//首先我们需要一个可以存储栈元素的数据结构。我们可以使用数组来做这件事情：
+		var items = [];
+		//接着我们需要为这个栈声明可以访问的方法：
+		//push(element(s))，这个方法添加一个元素或者多个元素到栈顶
+		//pop()，这个方法移除栈顶的项目，同时返回被移除的元素。
+		//peek()，该方法返回栈顶的元素，而保持栈不发生改变（它并不是移除元素；而只是返回元素用于信息收集和处理）。
+		//isEmpty()，如果栈不包含任何元素，则该方法返回 true，如果栈的大小大于 0 则返回 false。
+		//clear()，该方法将移除栈中的所有元素。
+		//size()，该方法将返回栈中元素的数量。类似数组的 length 属性
+		this.push = function(element) {
+			items.push(element);
+		};
+		this.pop = function() {
+			items.pop();
+		};
+		this.peek = function() {
+			return items[items.length -1];
+		};
+		this.ieEmpty = function() {
+			return items.length == 0;
+		};
+		this.size = function() {
+			return items.length;
+		};
+		this.clear = function() {
+			items = [];
+		};//另一种方法就是调用 pop() 方法直到 stack 为空
+		this.print = function() {
+			console.log(items.toString());
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
