@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.1_creatingAQueue</title>
+	<script type="text/javascript">
+		//我们将要创建自己的类 class 来代表 queue。我们从头开始声明类：
+		function Queue() {
+			//properties and methods goes here
+		}
+		//首先我们需要一个数据结构来存储队列元素。我们可以使用数组来做这件事情，就像我们在前面章节中创建 Stack 一样（你会注意到，queue 和 stack 非常相似，只有添加和移除元素的原则不同）
+		var items = [];
+		//接下来，我们要声明队列可以访问的方法：
+		//1. enqueue(element(s)): 该方法添加一个或多个项目到队列的末尾。
+		//2. dequeue(): 该方法移除队列的第一个项目，同时返回这个被移除的项目。
+		//3. front(): 该方法返回队列的第一个元素，即第一个被添加入队列中的元素，也是第一个会从队列中被移除的元素。该方法会保持队列不发生改变（该方法并不是真正的移除元素，而只是返回元素用于信息获取，和 stack 中的 peek 方法非常类似）。
+		//4. isEmpty()，如果队列不包含元素则返回 true，如果包含元素则返回 false。
+		//5. size()，返回队列的元素数量。和 array 中的 length 属性类似。
+		this.enqueue = function(element) {
+			items.push(element);
+		};
+		this.dequeue = function() {
+			return items.shift();
+		};
+		this.front = function() {
+			return items[0];
+		};
+		this.isEmpty = function() {
+			return items.length == 0;
+		};
+		this.size = function() {
+			return items.length;
+		};
+		this.print = function() {
+			console.log(items.toString());
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

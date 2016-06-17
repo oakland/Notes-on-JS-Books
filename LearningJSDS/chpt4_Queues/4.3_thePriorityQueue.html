@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.3_thePriorityQueue</title>
+	<script type="text/javascript">
+		//鉴于队列在计算机科学和实际生活中有着广泛的应用，也存在着一些默认队列的改进版本。
+		//修改版本的队列是 priority queue。元素根据优先级进行添加和移除。现实中的例子就是机场的登机队列。头等舱和商务舱的乘客拥有比普通舱乘客更高的优先级。在一些国家，年老的人和孕妇（或者带小孩的妇女）也会比其他乘客优先登机。
+		//当执行优先队列时，有两个选项：你可以设置优先级，然后将元素添加到正确的位置，或者你也可以按照元素添加到队列的顺序进行排序，但是根据优先级将它们移除。本例中，我们将会将元素添加到正确的位置，以便于我们可以将它们按照默认的方式移除：
+		function priorityQueue() {
+			var items = [];
+			function QueueElement(element, priority) {
+				this.element = element;
+				this.priority = priority;
+			}
+			this.enqueue = function(element, priority) {
+				var queueElement = new QueueElement(element, priority);
+				if (this.isEmpty()) {
+					items.push(queueElement);
+				} else {
+					var added = false;
+					for (var i = 0; i < items.length; i++) {
+						if (queueElement.priority < items[i].priority) {
+							items.splice(i, 0, queueElement);
+							added = true;
+							break;
+						}
+					}
+					if (!added) {
+						items.push(queueElement);
+					}
+				}
+			};
+			//Other methods - the same as default Queue implementation
+		}
+		//默认的 queue 和 PriorityQueue 的区别在于，我们需要创建一个特殊的元素添加到 PriorityQueue 中。这个元素包含我们需要填寄到队列中的元素（可以是任何类型的元素），同时还要包含这个元素在队列中的优先级。
+		//如果队列为空，我们直接将元素添加到队列中。如果队列不为空，我们需要比较这个元素的优先级和其他元素的优先级，当我们找到一个优先级高于我们要添加的项目的优先级的时候，我们将新添加的元素插入到这个元素的前一位（运用这个逻辑，我们会尊重队列中拥有和本优先级一样的元素，但是这些元素先添加到队列中，所以同样优先级的的元素会被添加到后面，即对于同样优先级的元素而言，谁先被添加，谁会放在前面）。要实现这个效果，我们可以使用 JS 的 splice 方法。一旦我们找到拥有更高优先级的元素，我们就会插入该元素，并且停止遍历对了。这种方法，我们的队列会按照优先级进行排序和组织。
+		//如果我们要添加的元素的优先级高于队列中已有任何元素的优先级，我们就直接将新元素添加到队列的末尾。
+		var priorityQueue = new PriorityQueue();
+		priorityQueue.enqueue("John", 2);
+		priorityQueue.enqueue("Jack", 1);
+		priorityQueue.enqueue("Camila", 1);
+		priorityQueue.print();
+		//通过上面的代码，我们可以了解如何使用 PriorityQueue 的例子。我们可以在下面的图表中看到上面的每一条代码命令的结果。
+		//第一个被添加的元素是 John ，优先级是 2。因为队列此时为空，所以它成为队列中的唯一一个元素。接着，我们添加了优先级为 1 的 Jack。因为 Jack 比 John 的优先级高，所以 Jack 成为了队列中的第一个元素。然后我们添加了优先级为 1 的 Camila。因为 Camila 和 Jack 拥有同样的优先级，所以它会被插入到 Jack 之后（因为 Jack 先被添加到队列中）；而 Camila 的优先级比 John 要高，所以 Camila 被添加到 John 之前。
+		//我们所操作的优先级队列，被称为顺序队列（按照优先级从小到大的顺序排列）。同时还有一个逆序队列，即将优先级更高的元素添加到队列前面。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

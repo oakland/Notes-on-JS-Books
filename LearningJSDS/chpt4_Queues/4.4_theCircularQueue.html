@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.4_theCircularQueue</title>
+	<script type="text/javascript">
+		//我们还有另外一个改进的队列，叫做 circular queue。circular queue 的一个例子是 Hot Potato 游戏。这个游戏中，孩子们被组织围成一个圆圈，然后他们以最快的速度将一个热的土豆传递给自己的相邻的小朋友。在游戏中的某个节点，在孩子们循环流动的热土豆会停在某个人手中，此时，拥有热土豆的这个孩子会被移除出队列中。这个动作会一直重复，直到剩下一个小孩（即最后的胜利者）：
+		function hotPotato(nameList, num) {
+			var queue = new Queue();
+			for (var i = 0; i < nameList.length; i++) {
+				queue.enqueue(nameList[i]);
+			}
+
+			var eliminated = '';
+			while (queue.size() > 1) {
+				for (var i = 0; i < num; i++) {
+					queue.enqueue(queue.dequeue());
+				}
+				eliminated = queue.dequeue();
+				console.log(eliminated + " was eliminated from Hot Potato game.");
+			}
+			return queue.dequeue();
+		}
+		var names = ["John", "Jack", "Camila", "Ingrid", "Carl"];
+		var winner = hotPotato(names, 7);
+		console.log("The winner is " + winner);
+		//...
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

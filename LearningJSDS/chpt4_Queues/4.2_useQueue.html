@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.2_useQueue</title>
+	<script type="text/javascript">
+		//首先实例化 queue ，然后判断是否为空
+		var queue = new Queue();
+		queue.isEmpty();//true
+		//接着添加元素到 queue 中，（我们按照顺序向队列中添加元素）：
+		queue.enqueue("John");
+		queue.enqueue("Jack");
+		//我们在添加一个元素
+		queue.enqueue("Camila");
+		//执行一下其他的命令：
+		queue.print();
+		console.log(queue.size());
+		console.log(queue.isEmpty());
+		queue.dequeue();
+		queue.dequeue();
+		queue.print();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
