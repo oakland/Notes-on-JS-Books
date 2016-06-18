@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.1_creatingALinkedlist</title>
+	<script type="text/javascript">
+		//现在我们已经知道链表是什么了，让我们来一起操作一遍链表。
+		//这是我们的链表的框架(skeleton)：
+		function LinkedList() {
+			var node = function(element) {      //{1}
+				this.element = element;
+				this.next = null;
+			};
+
+			var length = 0;      //{2}
+			var head = null;      //{3}
+
+			this.append = function(element) {};
+			this.insert = function(position, element) {};
+			this.removeAt = function(position) {};
+			this.remove = function(element) {};
+			this.indexOf = function(element) {};
+			this.isEmpty = function() {};
+			this.size = function() {};
+			this.toString = function() {};
+			this.print = function() {};
+		}
+		//对于链表这样的数据结构，我们需要一个 node 这样的协助性类(class)，如行 {1} 所示。 node 类代表了我们会添加到链表中的项目。它包含了元素属性，即我么要添加到链表中的值，以及下一个属性，即包含了一个链表中链接下一个 node 项目的指针。
+		//在链表类中，我们也拥有长度属性，如行 {2} 所示，属于内部变量或者叫私有变量(internal / private variable)，它存储着链表中项目的数量。
+		//另一个要注意的地方就是，我们需要存储一个指向下一个 node 的引用。要实现这一点，我们可以在变量中存储一个名为 head 的引用。如行 {3} 所示。
+		//接下来我们要创建链表类的方法。在正式操作这些之前，我们先来看下每种方法都是干什么的：
+		//1. append(element)，添加项目到链表的最后。
+		//2. insert(position,element)，在链表的某个具体的位置插入一个项目。
+		//3. remove(element)，从链表中移除一个项目。
+		//4. removeAt(position)，根据指定的位置，从链表中移除一个项目。
+		//5. isEmpty()，如果链表不包含任何元素，则返回 true；只要链表长度大于 0 ，就返回 false。
+		//6. size()，返回链表包含的元素的数量，与 array 的 length 属性类似。
+		//7. toString()，鉴于链表使用 node 类作为项目，我们需要改写 JS 中，对象所具有的只输出元素值的 toString() 方法。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>5.3_removeElements</title>
+    <script type="text/javascript">
+    //现在我们来看一下，如何从链表对象中移除元素。当移除元素的时候，也有两种情况：第一种情况是移除第一个元素，第二种情况是移除除第一个元素之外的任何一个元素。我们将会实现这两种 remove 方法：第一种是移除给定位置的元素，第二种是根据给定的元素值来移除元素（第二种移除方法将会在后面展示）。
+    //下面是根据指定位置来移除元素的实现方法：
+    this.removeAt = function(position) {
+
+        //check for out-of-bounds values
+        if (position > -1 && position < length) { //{1}
+
+            var current = head, //{2}
+                previous, //{3}
+                index = 0; //{4}
+
+            //removing first item
+            if (position == 0) {
+                head = current.next;
+            } else {
+                while (index++ < position) {
+                    previous = current;
+                    current = current.next;
+                }
+
+                //link previous with current.next: skip it to remove
+                previous.next = current.next;
+            }
+
+            length--;
+            return current.element;
+        } else {
+            return null;
+        }
+    };
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
