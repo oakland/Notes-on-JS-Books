@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.3_addMethod</title>
+	<script type="text/javascript">
+		this.add = function(value) {
+			if (!this.has(value)) {
+				items[value] = value;   //{1}
+				return true;
+			}
+			return false;
+		};
+		//给定值，我们可以判断该值是否已经存在在集合中。如果没有，我们就将值添加到 set 中，行{1}，同时返回 true，表明值已经被添加了。如果值已经在 set 中存在，我们直接返回 false 表明，值没有被添加。
+		//我们将要添加的值同时作为 key 和 value，因为，这可以协助我们搜索值。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

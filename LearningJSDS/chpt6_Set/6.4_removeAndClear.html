@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.4_removeAndClear</title>
+	<script type="text/javascript">
+		this.remove = function(value) {
+			if (this.has(value)) {
+				delete items[value];   //{2}
+				return true;
+			}
+			return false;
+		};
+		//在 remove 方法中，我们先验证值是否在 set 中存在。如果存在，我们就直接将其从 set 中移除，行{2}，而且返回 true 表明值已经被移除了。否则返回 false。
+		//鉴于我们使用对象来存储 items 对象集，我们可以直接使用 delete 操作符来移除 items 对象的属性，行{2}。
+		//为了使用 Set class，我们可以使用下面的代码作为例子：
+		var set = new Set();
+		set.add(1);
+		set.add(2);
+		//注意，好奇起见，执行上述代码之后，如果我们在控制台输出 items 变量，google chrome 将会输出：
+		// Object {1: 1, 2: 2}
+		//如我们所见，是一个拥有两个属性的对象。属性的键值都是我们添加的 value。
+		//如果我们想要移除 set 中的所有值，我们可以使用 clear 方法：
+		this.clear = function() {
+			item = {};   //{3}
+		};
+		//我们要向充值 items 对象，所要做的就是将其指向一个空对象，行{3}。我们也可以遍历对象然后一个个去移除，但是这实在是一件麻烦事。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.2_hasMethod</title>
+	<script type="text/javascript">
+		//我们要实现的第一个方法是 has(value)。我们之所以先实现这个方法是因为在其他的方法，例如 add 和 remove 中，将会使用 has() 方法。
+		this.has = function(value) {
+			return value in items;
+		};
+		//鉴于我们使用对象来存储集合中的所有值，我们可以使用 JS 中的 in 操作符来验证给定的值是不是 items 对象的属性。
+		//但是还有一种更好的方式，如下所示：
+		this.has = function(value) {
+			return items.hasOwnProperty(value);
+		};
+		//所有的 JS 对象都有 hasOwnProperty() 方法。这个方法返回一个布尔值，表明对象是否拥有指定的属性。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
