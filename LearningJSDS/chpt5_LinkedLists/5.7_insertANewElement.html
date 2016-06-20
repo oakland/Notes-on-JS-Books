@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.7_insertANewElement</title>
+	<script type="text/javascript">
+		//双链中插入一个项目的方法和单链中插入的方法类似。区别在于，在单链中我们只控制一个指针，next，而在双链中，我们需要同时控制 next 和 prev (previous)。
+		//下面是在任何指定位置插入新元素的算法：
+		this.insert = function(element, position) {
+
+			//check for out-of-bounds values
+			if (position>=0 && position<=length) {
+				var node = new Node(element),
+					current = head,
+					previous,
+					index = 0;
+
+				if (positon === 0) {
+					if (!head) {
+						head = node;
+						tail = node;
+					} else {
+						node.next = current;
+						current.next = node;
+						head = node;
+					}
+				} else if (potition === length) {
+					current = tail;
+					current.next = node;
+					node.prev =current;
+					tail = node;
+				} else {
+					while (index++ < position) {
+						previous = current;
+						current = current.next;
+					}
+				}
+			}
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

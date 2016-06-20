@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>5.6_doublyLinkedList</title>
+    <script type="text/javascript">
+    //存在两种不同类型的链表。本章我们将学习 doubly linked list。双链和普通链表之前的区别在于，普通链表只有从一个 node 向另外一个 node 之间的联系。而在双链中，我们会建立第二个联系：即从下一个元素向上一个元素的联系，如下图所示：
+    //<linkedList8>
+    //一起来看下如何实现双链
+    function DoublyLinkedList() {
+        var Node = function(element) {
+            this.element = element;
+            this.next = null;
+            this.prev = null; //NEW
+        };
+
+        var length = 0;
+        var head = null;
+        var tail = null;    //NEW
+
+        //methods here
+    }
+    //如代码中所示，普通链表和双链之间的区别用 NEW 进行了标识。在 Node 类中，我们拥有了 prev 属性（一个新的指针），而在 DoublyLinkedList 类中，我们拥有了 tail 属性，以保持对链表最后一个项目的引用。
+    //双链给我们提供了两种遍历链表的方法：从头到尾以及相反的方向。我们可以进入到给定节点的下一个节点或者上一个节点。在单链中，当你遍历链表的时候，当你错过了需要的节点，你需要返回链表开头然后重新再进行遍历。这是双链给我们的一个优势。
+    </script>
+</head>
+
+<body>
+    <img src="linkedList8.png" alt="">
+</body>
+
+</html>

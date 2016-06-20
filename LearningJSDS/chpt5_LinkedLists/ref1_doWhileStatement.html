@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ref1_doWhileStatement</title>
+    <script type="text/javascript">
+    //鉴于在数据结构和算法的书里，用到了很多 while 的语句，之前又对这个语句很不了解，所以这里找来了高程英文版，将 do while 和 while 语句作为参考，专门写一个文档。
+    //The do-while statement is a post-test loop, meaning that the escape condition is evaluated only after the code inside the loop has been executed. The body of the loop is always executed at least once before the expression is evaluated. 
+    //do-while 语句是一个后测试语句，意味着，跳出循环的条件会在回路内部代码执行之后才被判断。回路的代码体在表达式被判断正确与否之前，至少会被执行一次。
+
+    //while Statement
+    //while 语句是前测试回路。这意味着，跳出回路的条件会在内部代码执行前就被判断。鉴于这个原因，回路体有可能永远不会被执行。
+    var i = 0;
+    while (i < 10) {
+        i += 2;
+    }
+    //while 循环和 for 循环非常类似，但是两者又有区别，摘录一些网上的说法，供参考。
+    //for称为计数循环，即你知道循环多少次即可使用。而while为条件循环，即满足条件就会循环，而你不一定要知道循环多少次。
+    //for用于可预测循环次数的情况，而while可在不确定循环次数时使用，while甚至可以不在循环指令上指定跳出循环的条件。应该优先考虑for循环，一般情况下for循环的效率都是最高的。
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.5_implementOtherMethods</title>
+	<script type="text/javascript">
+		//本章，我们将学习如何实现 linkedList 的其他方法，例如 toString / indexOf / isEmpty / size等。
+		//toString
+		//toString 方法将链表对象转化为字符串。下面是 toString 方法的实现：
+		this.toString = function() {
+			var current = head,  //{1}
+				string = '';     //{2}
+			while (current) {    //{3}
+				string = current.element;   //{4}
+				current = current.next;   //{5}
+			}
+			return string;                //{6}
+		};
+		//首先，要遍历链表中的所有元素，我们需要一个起点，即 head。我们将会使用 current 变量作为我们的索引，在链表中导航。我们还需要初始化一个变量来连接所有 elements 的值，行{2}。
+		//接着，我们遍历链表中的每一个 element，行{3}。我们将会使用 current 来判断是否还有元素（如果链表为空或者我们到达了链表的最后一个元素(null)，while 回路中的代码就会停止执行）。接着，我们获得 element 中的内容，并将它们连接起来放入我们的字符串中，行{4}。最后，我们循环了下一个元素，行{5}。
+		//最后，我们返回链表内容的字符串，行{6}。
+		//indexOf
+		//indexOf 方法接受一个元素的值，如果找到这个元素就会返回这个元素所在的位置。否则，返回 -1。
+		//我们来一起看下实现过程：
+		this.indexOf = function(element) {
+			var current = head,  //{1}
+				index = -1;
+
+			while (current) {   //{2}
+				if (element === current.element) {
+					return index;      //{3}
+				}
+				index ++;       //{4}
+				current = current.next;       //{5}
+			}
+
+			return -1;
+		};
+		//和平常一样，我们需要一个变量来协助我们遍历链表；这个变量是 current 和链表的第一个变量 head (链表的第一个元素——我们也需要一个变量增量来计算位置的数字 index，行{1})。
+		//这部分内容回过头来再看，现在不是重点。2016.6.20
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>5.4_insertElementAtAnyPosition</title>
+    <script type="text/javascript">
+    //接着，我们来实现 insert 方法。这个方法能够让你在任何位置插入一个元素。我们一起看下实现过程：
+    this.insert = function(position, element) {
+        //check for out-of-bounds value
+        if (position >= 0 && position <= length) { //{1}
+
+            var node = new Node(element),
+                current = head,
+                previous,
+                index = 0;
+
+            if (position === 0) { //add on first position
+                node.next = current; //{2}
+                head = node;
+            } else {
+                while (index++ < position) { //{3}
+                    previous = current;
+                    current = current.next;
+                }
+                node.next = current; //{4}
+                previous.next = node; //{5}
+            }
+            length++; //update the size of list
+            return false;
+        } else {
+            return false; //{6}
+        }
+    };
+    //在我们处理 position 的时候，我们需要判断 position 是否超出边界，行{1}，就像我们在 remove 方法中所做的一样。如果超出边界，我们就返回 false，表示链表中没有添加任何元素，行{6}。
+    //现在，我们来看另外一种场景。第一种场景，如果我们需要在链表的第一个位置添加元素。下面的图表就展示了这个场景：
+    //<linkedList5>
+    //我们让 current 变量指向链表的第一个元素。我们要做的就是将 node.next 的值设置为 current（链表的第一个元素）。现在我们让 head 和 node.next 都指向了 current。接下来我们要做的就是，将 head 的引用改变为 node ，行{2}，我们就会在链表中拥有一个新的元素。
+    //现在我们来处理第二种情景：在链表的中间或者末尾添加一个元素。首先我们需要遍历链表，直到我们到达期望的位置，行{3}。当我们跳出回路的时候，current 变量将会成为我们要插入元素的位置之后的元素索引，而 previous 将会成为我们要插入元素的位置之前的元素的索引。在这种情况下，我们希望在 previous 和 current 之间插入一个新的项目。所以，首先我们需要建立新项目（node）和 current 项目之间的链接，行{4}。接着，我们需要改变 previous 和 current 之间的联系。我们需要让 previous.next 指向 node，行{5}。
+    //让我们用图表来展示上述代码的执行过程：
+    //<linkedList6>
+    //如果我们想要在最后一个位置添加一个新的元素，previous 将会成为链表最后一个项目的引用，而 current 则会指向 null。这种情况下，node.next 指向 current，而 previous.next 指向 node，我们就会在链表中拥有一个新的项目。
+    //现在我们来看下如何在链表中间添加一个新元素：
+    //<linkedList7>
+    //在这种情况下，我们尝试在 previous 和 current 之前插入一个新的项目，node。首先，我们需要将 node.next 的值指向 current。接着，我们将 previous.next 的值指向 node。这样，我们就拥有了一个新项目。
+    //拥有我们需要控制的节点的索引是非常重要的，只有这样，我们才不会丢失 nodes 之间的联系。我们可以只操作一个变量(previous)，但是控制 nodes 之间的联系就会很困难。鉴于此，最好建立一个额外的变量来帮助我们处理这些索引。
+    </script>
+</head>
+
+<body>
+    <img src="linkedList5.png" alt="">
+    <img src="linkedList6.png" alt="">
+    <img src="linkedList7.png" alt="">
+</body>
+
+</html>

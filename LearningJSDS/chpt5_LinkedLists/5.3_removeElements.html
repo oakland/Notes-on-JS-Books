@@ -17,28 +17,42 @@
                 index = 0; //{4}
 
             //removing first item
-            if (position == 0) {
+            if (position == 0) {//{5}
                 head = current.next;
             } else {
-                while (index++ < position) {
-                    previous = current;
-                    current = current.next;
+                while (index++ < position) {//{6}
+                    previous = current;//{7}
+                    current = current.next;//{8}
                 }
 
                 //link previous with current.next: skip it to remove
-                previous.next = current.next;
+                previous.next = current.next;//{9}
             }
 
-            length--;
+            length--;//{10}
             return current.element;
         } else {
-            return null;
+            return null;//{11}
         }
     };
+    //我们来深入的一步步看一下这段代码。该方法将要获得要被移除元素的位置，我们需要验证位置的值是有效的，行{1}。有效地位置指的是 0 （包括0）到链表的大小（size-1）。如果是一个无效的位置，我们就返回 null（意味着没有元素会从链表中移除）。
+    //我们来给第一种场景写一下代码：我们想要移除链表的第一个元素（position ===0，行{5}）。下面的图表展示了这个效果：<linkedList2.png>
+    //所以，如果我们想要移除第一个元素的话，我们所做的就只需要让 head 指向链表的第二个元素。我们用 current 变量来索引链表的第一个元素（行{2}，我们也会使用 current 来遍历链表，我们待会儿就会用到遍历的这一步）。所以，如果我们让 head 指向 current.next 我们就移除了第一个元素。
+    //现在，假设我们要移除链表的最后一项，或者中间的某一项。要实现这个效果，我们需要边历链表到我们想要到达的位置（行{6}，我们会使用 index 变量作为内部控制和增量），但是有一个细节需要注意：current 变量总是会索引我们要遍历的链表的当前元素，行{8}。并且我们也需要索引到当前元素的前一个元素，行{7}，我们将之命名为 previous，行{3}。
+    //所以，要从链表中移除当前元素，我们所要做的就只是让 previous.next 和 current.next 连接起来，行{9}。通过这种方式，当前的元素就会从电脑的内存中丢失，然后就会被垃圾回收机制所清理。
+    //注意，要想更好的理解 JS 的垃圾回收机制是如何工作的，请阅读：
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
+    //我们一起通过一些图表来更好的理解这些内容。我们假设我们希望移除最后一个元素：<linkedList3.png>
+    //在最后一个元素的这个例子中，当我们在行{6}跳出循环时，current 变量索引到了整个链表中的最后一个元素（也就是我们要移除的元素）。current.next 的值是 null。鉴于我们也引用了 previous 元素（当前元素的前一个元素），所以 previous.next 指向 current。所以，要移除 current，我们所要做的就只是让 previous.next 的值变为 current.next。
+    //我们再来看下，同样的逻辑是否适用链表中间的元素：<linkedList4>
+    // current 变量索引我们想要移除的元素。...
     </script>
 </head>
 
 <body>
+<img src="linkedList2.png" alt="">
+<img src="linkedList3.png" alt="">
+<img src="linkedList4.png" alt="">
 </body>
 
 </html>
