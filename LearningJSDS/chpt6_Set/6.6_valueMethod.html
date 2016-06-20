@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.6_valueMethod</title>
+	<script type="text/javascript">
+		//values 方法应用同样的逻辑，解压 items 对象的所有属性，然后将这些属性作为数组返回：
+		this.values = function() {
+			return Object.keys(items);
+		};
+		//上面的代码只能用在现代浏览器中。如果想要在任何浏览器中都能使用，我们需要使用下面的代码：
+		this.valuesLegacy = function() {
+			var keys = [];
+			for (var key in items) {    //{7}
+				keys.push(key);  //{8}
+			}
+			return keys;
+		};
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.5_sizeMethod</title>
+	<script type="text/javascript">
+		//要实现这个方法总共有三种方式：
+	    //第一种是当我们使用 add 或者 remove 方法的时候，我们使用 length 变量来控制它。
+	    //第二种，使我们使用 Object 内置的方法，JS (ECMAScript5 +)
+	    this.size = function() {
+	    	return Object.keys(items).length;  //{4}
+	    };
+	    //JS 中的 Object class 包含一个 keys() 的方法，这个方法以数组的方式返回指定对象的所有属性。这种情况下，我们可以使用这个返回数组的 length 属性，行{4}，来返回 items 对象的属性个数。这个方法只能在现代浏览器中使用。
+	    //第三种方式是，手动一个个去解压 items 对象的每一个属性，然后算出有多少个属性，然后返回这个数字。这个方法在很多浏览器中都可以使用：
+	    this.sizeLegacy = function() {
+	    	var count = 0;
+	    	for (var prop in items) {  //{5}
+	    		if (items.hasOwnProperty(prop)) {  //{6}
+	    			++count;  //{7}
+	    		}
+	    	}
+	    	return count;
+	    };
+	    //首先我们遍历了 items 对象的所有属性，行{5}，然后判断这个属性是否是一个真实存在的属性（以便于我们不止一次的计算同一个属性，行{6}）。如果是，我么就给 count 变量增加 1 ，行{7}，然后在方法的最后我们返回这个数字。
+	    //我们不能仅仅使用 for-in 语句遍历 items 对象的所有属性，然后给 count 变量增加值。我们必须要使用 has 方法来验证 items 对象拥有这个属性，因为 object's prototype 包含了一些额外的属性（基于 JS Object class 继承来的属性，但是并不是这个数据结构中使用的）。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
