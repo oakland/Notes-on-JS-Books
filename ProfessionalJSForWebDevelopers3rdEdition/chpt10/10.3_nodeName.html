@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.3_nodeName</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //对element而言，nodeName就是标签名，而nodeValue为null
+        var test = document.getElementById('test');
+        if (test.nodeType == 1) {
+            console.log(test.nodeName);
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="test"></div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14.7_commonFormFieldMethods</title>
+    <script type="text/javascript">
+    //每个表单字段都有两个共同的方法： focus() 和 blur()。 focus() 方法将浏览器聚焦到表单字段，意味着字段被激活并且对键盘事件会有反应。常用的场景就是，当页面加载的时候，聚焦到页面中表单的第一个字段。
+    EventUtil.addHandler(window, "load", function(event) {
+        document.forms[0].elements[0].focus();
+    });
+    //注意到，如果第一个表单的字段是 type 为 hidden 的 <input>元素的话，或者是利用了 CSS 属性的 display 或者 visibility 将元素隐藏的时候，上面的代码会报错。HTML5 为表单字段引入了 autofocus 属性，用于支持这个属性的浏览器可以自动聚焦元素，而不需要使用 JS ，例如下面的input元素。
+    //为了让前面的代码和autofocus一起正确使用，你必须检查 autofocus 是否被设置了，如果设置了就不调用 focus() 方法：
+    EventUtil.addHandler(window, "load", function(event) {
+        var element = document.forms[0].elements[0];
+
+        if (element.autofocus !== true) {
+            element.focus();
+            console.log("JS focus");
+        }
+    });
+    //因为 autofocus 是布尔属性，所以，在支持这个属性的浏览器中 autofocus 的值为 true。（在不支持的浏览器中，这个值是空字符串）。所以只有当 autofocus 属性不等于 true的时候，上面代码才会调用 focus()方法，保证了向前兼容。
+    //focus() 方法的对应方法就是 blur()，在网页开发得早期这个方法用户创建只读的字段，在 readonly 属性没有引入之前。很少调用 blur()。
+    </script>
+</head>
+
+<body>
+    <input type="text" autofocus>
+</body>
+
+</html>

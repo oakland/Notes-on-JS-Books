@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10.12_removeChild</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			//获取父级元素
+			var fruit = document.getElementById('fruit');
+
+			//删除列表第一个和最后一个node
+			var formerFirstChild = fruit.removeChild(fruit.childNodes[1]);
+			var formerLastChild = fruit.removeChild(fruit.childNodes[6]);
+			
+			//removeChild的返回值就是被删除的node
+			console.log(formerFirstChild);
+			console.log(formerLastChild);
+		}
+	</script>
+</head>
+<body>
+	<ul id="fruit">
+		<li>apple</li>
+		<li>pear</li>
+		<li>banana</li>
+		<li>peach</li>
+	</ul>
+</body>
+</html>

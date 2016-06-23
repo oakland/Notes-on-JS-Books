@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.11_cross-BrowserEventHandlers</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //为了能够以一种跨浏览器的方式解决事件处理，很多开发者要么采用JS库的方式，要么采用自己写代码的方式。自己写代码非常直接，因为这依赖于能力探测（第9章中有说明）。为了保证事件处理器代码能在跨浏览器是顺利执行，需要在事件冒泡阶段添加。第一种创建的方式是addHandler()，作用是使用DOM0 或者DOM 2级，或者IE的方式添加事件，由那种方式可以使用来决定。这个方法被添加到了一个叫EventUtil的对象上，整本书都将使用这个对象帮助解决跨浏览器的差别。addHandler()方法接收3个参数：要执行的元素，事件的名称，实际处理器函数。
+        //与addHandler()相对应的是removeHandler()，接收同样的3个参数。....
+        //EventUtil的全部代码如下：
+        var EventUtil = {
+                addHandler: function(element, type, handler) {
+                    if (element.addEventListener) {
+                        element.addEventListener(type, handler, false);
+                    } else if (element.attachEvent) {
+                        element.attachEvent("on" + type, handler);
+                    } else {
+                        element["on" + type] = handler;
+                    }
+                },
+                removeHandler: function(element, type, handler) {
+                    if (element.removeEventListener) {
+                        element.removeEventListener(type, handler, false);
+                    } else if (element.detachEvent) {
+                        element.detachEvent("on" + type, handler);
+                    } else {
+                        element["on" + type] = null;
+                    }
+                }
+            };
+            //utility可以通过以下方式使用：
+        var btn = document.getElementById('myBtn');
+        var handler = function() {
+            alert("Clicked");
+        };
+        EventUtil.addHandler(btn, "click", handler);
+        //other code here
+        EventUtil.removeHandler(btn, "click", handler);
+    }
+    </script>
+</head>
+
+<body>
+    <button id="myBtn">button</button>
+</body>
+
+</html>

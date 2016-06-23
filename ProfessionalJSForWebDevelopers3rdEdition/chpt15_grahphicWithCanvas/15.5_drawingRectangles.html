@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>15.5_drawingRectangles</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //可以直接在 2D 画布背景上进行绘制的就是矩形。有三种方法绘制矩形：fillRect() / strokeRect() / clearRect()。三种方法都接受 4 个参数：矩形的 x 坐标点，y 坐标点，宽度和高度。这四个值都是以像素为单位。
+        //fillRect() 方法绘制的矩形是在画布上填充了某种颜色的矩形。填充色由 fillStyle 属性来指定。
+        var drawing = document.getElementById('drawing');
+        //make sure <canvas> is completely supported
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+
+            /*
+             * Based on Mozilla’s documentation:
+             * http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage 
+             */
+
+            //draw a red rectangle
+            context.fillStyle = "#ff0000";
+            context.fillRect(10, 10, 50, 50);
+
+            //draw a blue rectangle that is semi-transparent
+            context.fillStyle = "rgba(0, 0, 255, 0.5)";
+            context.fillRect(30, 30, 50, 50);
+        }
+        //上面这段代码首先将 fillStyle 设置为红色，然后绘制了一个以 (10, 10) 为左上角的起点，宽和高都为 50 的方形。 接着使用 rgba() 方式将 fillStyle 设置为蓝色半透明状，然后又绘制了一个覆盖在原来矩形上面的矩形。结果，你可以透过蓝色矩形看到红色矩形。
+    };
+    </script>
+</head>
+
+<body>
+    <canvas id="drawing"></canvas>
+</body>
+
+</html>

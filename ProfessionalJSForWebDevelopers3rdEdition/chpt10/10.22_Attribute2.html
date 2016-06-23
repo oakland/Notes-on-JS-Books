@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.22_Attribute2</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        //默认的属性都可以通过 . 的方法来获取，而自定义属性在非IE中是无法通过 . 的方法来获取的
+        alert(div.id); //"myDiv"
+        alert(div.align); //"left"
+        alert(div.my_special_attribute); //undefined (except in IE)
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" align="left" my_special_attribute="hello"></div>
+</body>
+
+</html>

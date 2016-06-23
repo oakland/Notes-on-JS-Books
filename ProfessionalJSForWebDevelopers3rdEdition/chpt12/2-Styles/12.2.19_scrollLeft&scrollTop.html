@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.19_scrollLeft&scrollTop</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //scrollLeft 和 scrollTop可以用来确定当前元素的滚动，或者设置滚动。当一个元素没有滚动时，两个属性都是0。如果在垂直方向上进行了滚动，那么scrollTop会大于0，表示的是元素顶部不可见内容的尺寸。scrollLeft同理。因为这两个属性都可以被设置，所以你可以通过设置scrollLeft和scrollTop都为0，来恢复元素的滚动位置。下面的函数来检查，元素是否在顶端，如果不是，则回到顶部。
+        function ScrollToTop() {
+            if (element.scrollTop != 0) {
+                element.scrollTop = 0;
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

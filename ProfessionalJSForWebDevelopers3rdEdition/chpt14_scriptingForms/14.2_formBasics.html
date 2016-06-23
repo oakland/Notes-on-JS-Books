@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14.2_formBasics</title>
+	<script type="text/javascript">
+		//网络表单由 HTML 中的 <form> 元素和 JS 中的 HTMLFormElement 类型代表。HTMLFormElement 类型继承自 HTMLElement，因此拥有与所有其他 HTML 元素相同的默认属性。然而，HTMLFormElement 也拥有以下额外的属性和方法：
+		//1. acceptCharset，服务器可以处理的字符集；等同于 HTML accept-charset 属性。
+		//2. action，发送请求的URL；等同于 HTML 的 action 属性。
+		//3. elements，表单中所有控制器的 HTMLCollection。
+		//4. enctype，请求的编码类型；等同于 HTML 的 enctype 属性。
+		//5. length，表单中控制器的数量。
+		//6. method，要发送的 HTTP 请求的类型，通常是 get 或者 post；等同于 HTML 的 method 属性。
+		//7. name，表单的名称；等同于 HTML 的 name 属性。
+		//8. reset()，将所有表单字段重置为默认值。
+		//9. submit()，提交表单。
+		//10. target，用于发送请求和获得相应的 window 名称；等同于 HTML 的 target 属性。
+		//<form>元素的引用可以通过很多种不同的方法获取。最常见的就是把它其他元素一样对待，通过赋值id，然后使用 getElementById() 方法来获取，例如：
+		var form = document.getElementById("form1");
+		//页面中的所有 form 也可以通过 document.forms 来获取。选择集中的每一个表单都可以通过数字索引或者 name 来得到，如下例所示：
+		var firstForm = document.forms[0]; //get the first form in the page
+		var myForm = document.forms["form2"]; //get the form with a name of "form2"
+		//旧的浏览器或者兼容严格模式的浏览器，也给每一个表单给 document 添加了一个 name 属性。例如，名为 form2 的表单可以通过 document.form2 来获取。这种方式并不推荐，因为很容易产生错误而且可能会在未来从浏览器中移除。
+		//注意，表单可以同时拥有 id 和 name 属性，并且他们的值没必要一定相同。
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

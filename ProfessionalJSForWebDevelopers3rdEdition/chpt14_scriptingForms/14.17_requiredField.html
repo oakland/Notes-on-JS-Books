@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14.17_requiredField</title>
+	<script type="text/javascript">
+		//给元素添加一个 required 属性，这个属性可以应用在 <input> <textarea> 和 <select> 元素上。
+		//你也可以使用 JS 来实现这个属性
+		var isUsernameRequired = document.forms[0].elements["username"].required;
+		//你也可以通过下面的片段来试验浏览器是否支持 required 属性
+		var isRequired = "required" in document.createElement("input");
+		//上面的代码使用简单的特点来是否 required 属性存在与新创建的 <input> 元素中。
+		//记住，不同的浏览器对于 required 有不同的反应。 FF 4 和 O 11 组织表单提交，并且在字段下方弹出帮助对话框，而S 5 和 C 9 仅仅阻止表单提交，不会有任何其他行为。
+	</script>
+</head>
+<body>
+	<input type="text" name="username" id="" required="required" >
+</body>
+</html>

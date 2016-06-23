@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.15_innerHTML</title>
+    <script type="text/javascript">
+    //当为读取的方式的时候，innerHTML返回的是所有子节点组成的HTML文本，包括元素、注释和文本节点。当为写入模式的时候，innerHTML会将所有子节点替换为所有指定值
+    window.onload = function() {
+            var div = document.getElementById('content');
+            console.log(div.innerHTML);
+            //innerHTML的值会根据浏览器的不同发生变化，IE和Opera会将所有的标签转化为大写，Safari, Chrome, FireFox会按照文档中的内容返回完全一样的内容，包括所有的空格和缩进。你无法根据innerHTML的返回值来获得完全一样的内容
+
+            //当innerHTML为写入状态时，innerHTML会被解析为DOM节点，然后把内容全部替换掉，所以如果写入的字符串中含有标签的时候，非Opera浏览器会将标签也进行解析，但是Opera浏览器则会将其转化为特殊字符。
+            div.innerHTML = "Hello & welcome, <b>\"reader\"</b>";
+            //上面这段代码在opera浏览器中则被解析为 <div id=”content”>Hello &amp; welcome, <b>&quot;reader&quot;!</b></div>
+        }
+        //innerHTML有一些限制，例如，当通过innerHTML插入时，<script>标签在大多数浏览器中都不会执行，只有IE8和比较老的浏览器才可以，而且有很多专门的说法，这个参见高程英文版第三版，368页倒数第二段
+        //而且并非所有的元素都拥有innerHTML属性，下列元素就不支持innerHTML：
+        //<col>, <colgroup>, <frameset>, <head>, <html>, <style>, <table>, <tbody>, <thead>, <tfoot>, <tr>。另外，IE8-浏览器不支持<title>元素
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <p>This is a <strong>paragraph</strong> with a list following it.</p>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+</body>
+
+</html>

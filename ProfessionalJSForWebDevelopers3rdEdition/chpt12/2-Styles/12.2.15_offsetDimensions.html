@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.15_offsetDimensions</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //第一部分的属性是关于偏移尺寸的，偏移尺寸囊括了一个元素在屏幕上占用的所有视觉空间。一个元素在网页上的视觉空间由其高度、宽度，包括所有的padding，scrollbar，和borders（但是不包括margins）组成。下面的四个属性可以获得offset dimessions：
+        //1. offsetHeight：元素所占据的垂直空间的大小，以像素为单位，包括高度，水平滚动条的高度（如果可见的话），上边界高度以及下边界高度。
+        //2. offsetLeft：元素左边界外部到父级元素（containing element）左边界内部之间的像素数量。
+        //3. offsetTop：元素上边界的外部到父级元素（containing element）上边界的内部之间的像素数量。
+        //4. offsetWidth：元素占据的水平空间的大小，包括其宽度，垂直滚动条的宽度（如果可见的话），左边界的宽度和右边界的宽度。
+        //The offsetLeft and offsetTop properties are in relation to the containing element, which is stored in the offsetParent property. The offsetParent may not necessarily be the same as the parentNode. For example, the offsetParent of a <td> element is the <table> element that it’s an ancestor of, because the <table> is the first element in the hierarchy that provides dimensions.
+
+        //offsetLeft和offsetTop是不是marginLeft 和 marginTop啊？
+    }
+    </script>
+</head>
+
+<body>
+    <img src="img/offsetDimesions.png" alt="offsetDimesions">
+</body>
+
+</html>

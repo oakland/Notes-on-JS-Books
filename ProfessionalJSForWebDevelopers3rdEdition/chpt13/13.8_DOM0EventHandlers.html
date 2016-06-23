@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.8_DOM0EventHandlers</title>
+    <style type="text/css">
+    div#outBox {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    
+    div#innerBox {
+        width: 50px;
+        height: 50px;
+        background: yellow;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        //在JS中，传统的指定时间处理器的方法就是为一个事件的处理器属性指定一个函数。这是第四代浏览器的事件处理器指定方式，这种方式在现代浏览器中依然被保留，由于其跨浏览器的支持和简单。...
+        //每一个元素（包括window 和 document）都有事件处理器属性，通常都是小写，例如onclick。事件处理器的指定是通过设置属性等于一个函数：
+        //var btn = document.getElementById("myBtn");
+        //btn.onclick = function() {alert("Clicked");};
+        //这里，首先从文档中获取一个button，然后onclick事件处理器被指定。注意，事件处理器在代码被执行以前并未被指定...
+        //通过这种方式添加的事件处理器，会在事件流的冒泡阶段执行。你可以通过设置事件处理器的属性值为null的方法，将DOM 0 级方法指定的事件处理器移除。
+        //btn.onclick = null;//remove event handler
+        var outBox = document.getElementById('outBox');
+        var innerBox = document.getElementById('innerBox');
+        outBox.onclick = function() {
+            alert("out");
+        };
+        innerBox.onclick = function() {
+            alert("inner");
+        };
+    }
+    </script>
+</head>
+
+<body>
+    <div id="outBox">
+        <div id="innerBox"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.14_customDataAttributes</title>
+    <script type="text/javascript">
+    window.onload = function() {
+            //the method used in this example are for illustrative purpose only
+            var div = document.getElementById('myDiv');
+
+            //get the values
+            var appId = div.dataset.appId;
+            var myName = div.dataset.myname;
+
+            //set the value
+            div.dataset.appId = 67890;
+            div.dataset.myname = "Michael";
+
+            //is there a "myname" value?
+            if (div.dataset.myname) {
+                alert("Hello, " + div.dataset.myname);
+            }
+        }
+        //HTML5允许元素具有以 data- 为前缀的非标准属性，以便于给元素提供非必须渲染的或者语义化的信息值。这些属性可以根据意愿随意添加，但是必须要以data-为前缀
+        //当自定义data属性被定义之后，这些属性可以通过元素的 dataset 这个属性获取。dataset是由所有 data属性的键值对组成的。但是键是没有前缀的。例如data-myname，可以直接通过div.dataset.myname获取。
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" data-appId="12345" data-myname="Nicholas"></div>
+</body>
+
+</html>

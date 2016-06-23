@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.17_stopPropagation</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //stopPropagation()方法会立即阻止事件流穿过DOM结构，取消之后任何之后的事件捕获和冒泡。例如，给button直接添加的event handler可以调用stopPropagation()阻止事件处理器在document.body上触发，如下所示：
+        var btn = document.getElementById('myBtn');
+        btn.onclick = function(event) {
+            alert("Clicked");
+            event.stopPropagation();
+        };
+        document.body.onclick = function(event) {
+            alert("Body clicked");
+        };
+        //如果在这个例子中，没有调用stopPropagation()，当button被点击的时候会触发两次弹框。然而click事件并未到达document.body，所以onclick事件处理器永远不会被执行。
+    }
+    </script>
+</head>
+
+<body>
+    <button id="myBtn">button</button>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <p>p4</p>
+    <p>p5</p>
+    <p>p6</p>
+    <p>p7</p>
+    <p>p8</p>
+    <p>p9</p>
+    <p>p10</p>
+</body>
+
+</html>

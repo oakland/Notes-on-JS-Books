@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.4_insertAKeyInATree</title>
+	<script type="text/javascript">
+		//本章中我们要实现的方法会比前面章节中我们实现的方法都要复杂一些。在这些方法中，我们将会使用大量的递归。如果你不是很熟悉递归，请参与 chapter11-更多算法 中 Recursion section。
+		// 下面的代码只是在 tree 中插入一个新 key 的第一部分算法：
+		this.insert = function(key) {
+			var newNode = new Node(key);    //{1}
+
+			if (root == null) {   //{2}
+				root = newNode;
+			} else {
+				insertNode(root, newNode); //{3}
+			}
+		};
+		// 要想在 tree 中插入一个新的节点，我们需要执行三步。
+		// 第一步，创建一个 Node class 实例，代表新 node，行{1}。由于它的构造器属性，我们只需要把我们希望传入到 tree 中的值传入进去，然后让 left 和 right 自动指向空。
+		// 第二步，我们需要验证插入是否是一个特殊事件。当我们添加的是 tree 中的第一个 node 的时候，就是特殊事件。如果是，那么我们所要做的就是只是让 root 指向 new node；
+		//第三步就是将 node 添加到非 root 的位置。在这种情况下，我们需要一个协助性私有方法来帮助我们实现：
+		var insertNode = function(node, newNode) {
+			if (newNode.key < node.key) {    //{4}
+				if (node.left === null) {    //{5}
+					node.left = newNode;    //{6}
+				} else {
+					insertNode(node.left, newNode);    //{7}
+				}
+			} else {
+				if (node.right === null) {    //{8}
+					node.right = newNode;    //{9}
+				} else {
+					insertNode(node.right, newNode);    //{10}
+				}
+			}
+		};
+		// insertNode 函数协助我们找到新插入节点的正确位置：
+		//如果 tree 为空，我们调用 insertNode 函数，将 root 和 node 作为参数传入，行{3}。
+		//如果 node key 比当前 node key 小，（本例中，是 root，行{4}），那么我们就需要判断一下 node 的 leftchild。如果没有 left node（{行5}），我们就需要把 node 插入到这个位置(行{6})。如果有，我们就需要在 tree 中下降一个层级来递归调用 insertNode(行{7})。在这种情况下，我们下次要比较的代码就是当前 node 的 leftchild。
+		//如果 node key 比当前 node key值大，而当前 node key 的 rightchild 又没有({行8})，那我们就把 node key 插入到这个位置({行9})。如果不是，我们就需要递归调用 insertNode 函数，但是 new node 需要和 rightchild 进行比较。
+		//我们来举个例子，以便于我们更好的理解这个过程
+		// 考虑如下情况：我们拥有一个新的 tree，我们需要传入第一个 key
+		var tree = new BinarySearchTree();
+		tree.insert(11);
+		// 此时，tree 中只有一个 node，root 指针指向这个 node。要执行的代码是我们源代码中的行{2}。
+		// 现在，我们假设我们已经拥有了下面的 tree：
+		//<tree4.png>
+		//上图所示的 tree 是下面代码连续执行后的结果：
+		tree.insert(7);
+		tree.insert(15);
+		tree.insert(5);
+		tree.insert(3);
+		tree.insert(9);
+		tree.insert(8);
+		tree.insert(10);
+		tree.insert(13);
+		tree.insert(12);
+		tree.insert(14);
+		tree.insert(20);
+		tree.insert(18);
+		tree.insert(25);
+		//接着，我们想要插入一个值为 6 的新 key，我们会执行下面的代码：
+		tree.insert(6);
+		//会执行下面的步骤：
+		//...过程不写了，很简单。看图<tree5.png>
+	</script>
+</head>
+<body>
+	<img src="tree4.png" alt="">
+	<img src="tree5.png" alt="">
+</body>
+</html>

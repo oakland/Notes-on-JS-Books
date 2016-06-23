@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.35_pageCoordinates</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //pageX 和 pageY给出的坐标是鼠标事件发生时，鼠标指针在整个页面中的位置，包含了滚动的部分。表示的是距离页面顶部和左侧的坐标位置，而不是以视口为坐标标准。因此当页面没有发生滚动的时候，pageX = clientX ，pageY = clientY。
+        //IE8及以前的浏览器不支持page coordinates，但是你可以通过client coordinates 和 scroll information计算出page coordinates。你需要使用标准模式下document.documentElement，或者怪异模式下，document.body的scrollLeft 和 scrollTop属性。计算方法如下：
+        var div = document.getElementById('myDiv');
+        EventUtil.addHandler(div, "click", function(event) {
+            event = EventUtil.getEvent(event);
+            var pageX = event.pageX,
+                pageY = event.pageY;
+
+            if (pageX === undefined) {
+                pageX = event.clientX + (document.body.scrollLeft ||
+                    document.documentElement.scrollLeft);
+            }
+
+            if (pageY === undefined) {
+                pageY = event.clientY + (document.body.scrollTop ||
+                    document.documentElement.scrollTop);
+            }
+
+            alert("Page coordinates: " + pageX + "," + pageY)
+        });
+    };
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.1.9_variableDecleration</title>
+	<script type="text/javascript">
+		//当使用 var 声明变量时，这个变量会自动添加到最直接的上下文中。在函数内部，最直接的上下文就是函数的本地上下文；在 with 语句中，最直接的上下文就是函数上下文。如果一个变量没有声明直接初始化，它会自动被添加到全局上下文中，如：
+		function add (num1, num2) {
+			var sum = num1 + num2;
+			return sum;
+		}
+		var result = add(10, 20);// 30
+		alert(sum);              // causes an error since sum is not a valid variable
+		//这里， add() 函数定义了一个名为 sum 的局部变量，这个 sum 包含了一个加法操作的结果。这个值被作为函数的值返回，但是 sum 变量不能在函数外部获取到。如果本例中 var 关键词被忽略，则 sum 就可以在函数被调用之后再函数外部获取到。
+		function add(num1, num2) {
+			sum = num1 + num2;
+			return sum;
+		}
+		var result = add(10, 20); //30
+		alert(sum); //30
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

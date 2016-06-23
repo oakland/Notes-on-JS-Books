@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.24_createElement</title>
+    <style type="text/css">
+    .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.createElement('div');
+        div.id = "myDiv";
+        div.className = "box";
+        document.body.appendChild(div);
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

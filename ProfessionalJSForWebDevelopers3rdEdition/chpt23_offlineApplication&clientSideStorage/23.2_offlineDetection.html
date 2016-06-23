@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>23.2_offlineDetection</title>
+    <script type="text/javascript">
+    //HTML5 定义了一个 navigator.onLine 属性，这个属性为 true 时，网络连接正常，当值为 false 时，网络无法连接。实际情况是，navigator.onLine 在不同的浏览器上表现不同：
+    // IE6+ S5+，可以正确的按照上面的说法检测网络情况。
+    // FF3+ O6.3+，也支持 navigator.onLine，但是你必须手动设置浏览器离线状态时可以工作，File =》 Work Offline menu item。
+    // Chrome 的所有 11 个版本，将 navigator.onLine 永远设置为 true。
+    //考虑到上述的浏览器兼容性问题，navigator.onLine 无法单独来确定网络是否连接。尽管如此，一旦在请求的过程中发生错误，它也是有用的。你可以用下面的方法检查状态：
+    if (navigator.onLine) {
+        //work as usual
+    } else {
+        //perform offline behavior
+    }
+    //除了 navigator.onLine 之外， HTML5 定义了两个事件来追踪网络连接是否正常，这两个事件是：online 和 offline。每个事件都会根据网络连接的变化而触发。这两个事件都是在 window 上：
+    EventUtil.addHandler(window, "online", function(event) {
+        alert("Online");
+    });
+    EventUtil.addHandler(window, "offline", function(event) {
+        alert("Offline");
+    });
+    //要确定一个应用是否离线，第一步最好是，页面加载时就查看 navigator.onLine 以获得初始状态。接着使用事件来确定网络连接的变化。
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

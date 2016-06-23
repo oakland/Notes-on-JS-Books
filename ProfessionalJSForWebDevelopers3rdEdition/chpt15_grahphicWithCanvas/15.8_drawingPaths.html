@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>15.5_drawingRectangles</title>
+    <script type="text/javascript">
+    window.onload = function() {
+    	//2D 画布背景支持很多方法来绘制路径。路径允许你绘制复杂的形状和线条。在绘制路径之前，你必须使用 beginPath() 方法来表明一条新的路径开始了。之后，为了创建路径，下列的方法都可以被调用：
+    	//1. arc(x, y, radius, startAngle, endAngle, counterclockwise)，绘制一条弧线，中心点为 (x, y)，半径为 radius，从起始角度 startAngle 到 终止角度 endAngle。最后一个是布尔值，是否 startAngle 和 endAngle 可以使用逆时针的方向而不是顺时针的方向。
+    	//2. arcTo(x1, y1, x2, y2, radius)，绘制一段弧线，从终点 (x2, y2)，穿过起点 (x1, y1)，半径为 radius。
+    	//3. bezierCurveTo(c1x, c1y, c2x, c2y, x, y)，从终点向 (x, y) 点绘制一条曲线，使用了两个控制点 (c1x, c1y), (c1x, c1y)。
+    	//4. lineTo(x, y)，从终点向 (x, y) 点绘制一条直线
+    	//5. moveTo(x, y)，将 drawing cursor 移动到 (x, y)点，而不绘制直线。
+    	//6. quadraticCurveTo(cx, cy, x, y)，绘制一条二次方曲线，从终点向 (x, y) 点，使用控制点 (cx, cy)。
+    	//7. rect(x, y, width, height)，绘制一个 (x, y) 为起点，宽高为给定值的矩形。这和 fillRect() 和 strokeRect() 方法不同，因为这个方法绘制的是路径(path)而不是形状(shape)。
+    	//一旦路径创建，你就会有很多选项。要想绘制一条与路径起点闭合的线条，你可以使用 closePath() 方法。如果路径完成，你想用 fillStyle 来填充它，你可以调用 fill() 方法。另外一种方法就是通过调用 stroke() 方法来描边路径。最后一个选项就是调用 clip() ，这个方法会基于路径创建一个剪切区域。
+    	//下面的代码是用来绘制一个没有数字的钟表
+        var drawing = document.getElementById('drawing');
+        //make sure <canvas> is completely supported
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+
+            //start the path
+            context.beginPath();
+
+            //draw out circle
+            context.arc(100, 100, 99, 0, 2*Math.PI, false);
+
+            //draw inner circle
+            context.moveTo(194, 100);
+            context.arc(100, 100, 94, 0, 2*Math.PI, false);
+
+            //draw minute hand
+            context.moveTo(100, 100);
+            context.lineTo(100, 15);
+
+            //draw hour hand
+            context.moveTo(100, 100);
+            context.lineTo(35, 100);
+
+            //stroke the path
+            context.stroke();
+        }
+        //路径是绘制 2D 图形的基本原理，因为路径经常被使用，所以还有一个 isPointInPath() 方法，接受一个 x 和 一个 y 值作为参数。这个方法可以在路径被结束之前的任何时候被调用，以判断某一点是否存在于路径上，
+        if (context.isPointInPath(100, 100)) {
+        	alert("Point(100, 100) is in the path");
+        }
+        //
+    };
+    </script>
+</head>
+
+<body>
+    <canvas id="drawing"></canvas>
+</body>
+
+</html>

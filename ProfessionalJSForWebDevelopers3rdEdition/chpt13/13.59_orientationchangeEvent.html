@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.59_orientationchangeEvent</title>
+    <script type="text/javascript">
+    //苹果在移动设备的safari浏览器上创造了 orientationchange 事件，以便于开发者能够确定用户何时将设备从垂直模式转变为水平模式。在移动端的safari中，有一个window.orientation属性，包含3个值：0 对应 portrait mode，90代表水平向左旋转（Home键在右侧），-90代表水平向右旋转（Home键在左侧）。。
+    //不论何时，当用户把设备从一个模式切换为另一种时，orientationchange事件就会被触发。event对象没有包含任何有用信息。这一事件的典型应用如下：
+    var EventUtil = {
+        addHandler: function(element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = handler;
+            }
+        },
+        getEvent: function(event) {
+            return event ? event : window.event;
+        },
+
+        preventDefault: function(event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+        },
+        removeHandler: function(element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+                element.detachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = null;
+            }
+        },
+        stopPropagation: function(event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            } else {
+                event.cancelBubble = true;
+            }
+        }
+    };
+    EventUtil.addHandler(window, "load", function(event) {
+        var div = document.getElementById('myDiv');
+        div.innerHTML = "Current orientation is " + window.orientation;
+
+        EventUtil.addHandler(window, "orientationchange", function(event) {
+            div.innerHTML = "Current orientation is " + window.orientation;
+        });
+    });
+    //所有的IOS设备都同时支持
+    </script>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+</body>
+
+</html>

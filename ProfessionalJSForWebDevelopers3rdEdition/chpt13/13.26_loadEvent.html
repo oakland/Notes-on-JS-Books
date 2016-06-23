@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.26_loadEvent</title>
+    <script type="text/javascript">
+    //load事件也许是JS事件中最常用的。对于window对象，当页面完全被加载时会被触发，包括所有的外部资源都加载，比如images，JS文件，CSS文件。你可以以两种方式来定义onload事件处理器。第一种是使用JS代码：
+    EventUtil.addHandler(window, "load", function(event) {
+        alert("Loaded!");
+    });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

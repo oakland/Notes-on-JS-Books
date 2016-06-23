@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.18_getElementsByName</title>
+    <script type="text/javascript">
+    window.onload = function() {
+    	//The getElementsByName() method is most often used with radio buttons, all of which must have the same to ensure the correct value gets send to the server
+    	//The IDs allow the <label> elments to be applied to the radio buttons, and the name attribute ensures that only one of the three values will be send to the server.
+        var radios = document.getElementsByName('color');
+        console.log(radios.length);
+    }
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Which color do you prefer?</legend>
+        <ul>
+            <li>
+                <input type="radio" name="color" id="colorRed" value="red">
+                <label for="colorRed">Red</label>
+            </li>
+            <li>
+                <input type="radio" name="color" id="colorGreen" value="green">
+                <label for="colorGreen">Green</label>
+            </li>
+            <li>
+                <input type="radio" name="color" id="colorBlue" value="blue">
+                <label for="colorBlue">Blue</label>
+            </li>
+        </ul>
+    </fieldset>
+</body>
+
+</html>

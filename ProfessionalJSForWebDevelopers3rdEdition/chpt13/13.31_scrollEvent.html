@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.31_scrollEvent</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //尽管scroll事件在window上发生，它实际上指的是页面级别的元素变化。在怪异模式下，通过<body>元素的scrollLeft和scrollTop，这些变化可以被观察到。在标准模式下，在除了safari（safari也是跟踪<body>的scroll position）外的所有浏览器中，变化都发生在<html>元素上。例如：
+        EventUtil.addHandler(window, "scroll", function(event) {
+            if (document.compatMode == "CSS1Compat") {
+                alert(document.documentElement.scrollTop);
+            } else {
+                alert(document.body.scrollTop);
+            }
+        });
+        //这段代码，根据渲染模式的不同，指定了一个输出页面垂直滚动距离的事件处理器，鉴于safari3.1及以前的版本不支持document.compatMode，就得版本都进行了第二种方式的处理。与resize类似，当文档在滚动的时候，scroll事件会不停地重复触发，所以尽可能的简化事件处理器。
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

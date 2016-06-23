@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10.3_selectionSort</title>
+	<script type="text/javascript">
+		//选择排序算法是一种在位比较的排序算法。选择排序的总体思路是，找到数据结构中的最小值然后将它放到第一个位置，接着寻找第二小的值，将它放到第二个位置，以此类推。
+		//下面是选择排序算法的源码：
+		this.selectionSort = function() {
+			var length = array.length,                   //{1}
+				indexMin;
+			for (var i = 0; i < length; i++) {           //{2}
+				indexMin = i;                            //{3}
+				for (var j = 0; j < length; j++) {       //{4}
+					if (array[indexMin] > array[j]) {    //{5}
+						indexMin = j;                    //{6}
+					}
+				}
+				if (i !== indexMin) {                    //{7}
+					swap(i, indexMin);
+				}
+			}
+		};
+		//首先，我们声明一些在算法中会使用到的变量 {1}。接着，我们有一个外部回路 {2}，这个外部回路会遍历数组并控制路径（我们下一个要找的值——下一个最小的值）。我们假设当前路径的第一个值是整个数组的最小值。接着，从 i 到数组的最后一个位置，我们比较 j 位置的值是不是小于当前的最小值；如果为真，我们将最小值改为当前的新的最小值。当我们走过一圈内部的回路之后，我们就会拥有数组的 第几个最小值。接着，最小值不同于当时的值，我们就将他们两个对调(swap them)。
+		//要测试选择排序算法，我们可以使用下面的代码：
+		array = createNonSortedArray(5);
+		console.log(array.toString());
+		array.selectionSort();
+		console.log(array.toString());
+		//下面的图表展示了选择排序算法的过程：<sortingAndSearching3.png>
+		//数组下面的箭头表示，为了找到最小值（inner loop {4}），我们应当要考虑的位置，上面图表的每一步都展示了外部的回路(outer loop)。
+		//选择排序也是一种事件复杂度为 O(n2) 的算法。就像冒泡排序一样，它包含了两个相互嵌套的回路，导致了平方阶的复杂性。但是，下面你就会了解，选择排序比插入排序更差。
+	</script>
+</head>
+<body>
+	<img src="sortingAndSearching3.png" alt="">
+</body>
+</html>

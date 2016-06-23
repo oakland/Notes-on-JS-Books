@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.7_removeOneClass1</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //通过传统的算法来移除"user"这个class
+
+        //获取class列表
+        var div = document.getElementById('myDiv');
+        var classNames = div.className.split(/\s+/); //注意这里的split方法，split方法是string的原生方法，这个方法根据分隔符，将字符串分割成由子字符串组成的数组，这里就表示将class按照空格分开，分成['bd','user','disabled']这样一个数组
+
+        //找到要移除的class名
+        var pos = -1,
+            i,
+            len;
+        for (var i = 0, len = classNames.length; i < len; i++) {
+            if (classNames[i] == "user") {
+                pos = i;
+                break;
+            }
+        }
+
+        //移除class名
+        classNames.splice(i, 1); //注意这里的splice方法，splice是数组的原生方法，而且也是数组中最有用的方法，splice方法本来的目的是在数组中某个位置插入一些元素，但是实际上，这个方法有以下三种用途：删除、插入、替换
+        //删除：接受两个参数，第一个参数是开始删除的位置，第二个参数是要删除多少个，例如splice(0, 2)就表示删除前两个元素
+        //插入：接受三个及以上的参数，第一个表示起始点，第二个表示要删除的数量，因为是插入，所以不删除任何元素，所以第二个参数恒为0，后面得参数表示要插入的元素，可以有多个，例如splice(2, 0, "red", "green")，这个表示将red 和 green 插入到数组的2号位置
+        //替换：接受三个及以上的参数，第一个表示起始点，第二个表示要删除的数量，后面得参数表示要插入的元素，要插入的元素的数量可以和删除的元素的数量不同，也就是说可以删除一个，插入两个，也可以删除两个，插入一个。例如splice(2, 1, "red", "green")，将2号位置的一项元素删除，同时在这个位置插入两个元素
+        //关于String的split方法和Array的splice方法，请查阅本章ref_split和ref_splice两个html文档
+
+        //再将剩下的class设置回去
+        div.className = classNames.join(" ");
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" class="bd user disabled">myDiv test</div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.17_insertAdjacentHTML</title>
+    <script type="text/javascript">
+    //insertAdjacentHTML()方法接受两个参数，插入的位置和要插入的HTML文本，第一个参数有以下四种情况
+    //1. beforebegin，在元素之前插入，作为其前一个兄弟元素
+    //2. afterbegin，在元素内部插入一个新的子节点，作为这个元素的首个子节点
+    //3. beforeend，在元素内部插入，作为最后一个子节点
+    //4. afterend，在这个元素之后插入，作为其后一个兄弟节点
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        div.insertAdjacentHTML("beforebegin", "<p>This is a paragraph inserted before myDiv.</p>")
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv">This is myDiv.</div>
+</body>
+
+</html>

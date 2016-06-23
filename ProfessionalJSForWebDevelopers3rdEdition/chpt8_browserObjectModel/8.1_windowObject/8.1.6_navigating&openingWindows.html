@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.1.6_navigating&openingWindows</title>
+	<script type="text/javascript">
+		// window.open() 方法可以用于导航到某个 URL 或者开启一个新的浏览器窗口。这个方法接收四个参数：要载入的 URL，window target，一个用于描述特性的字符串，一个布尔值，用于判断新页面是否覆盖当前页面。通常只使用前3个参数。
+		//如果第二个参数是已存在的 window 的名称或者 frame 的名称，那么相应的 window 或者 frame 就会载入参数中的 URL。
+
+		//same as <a href="http://wrox.com" target="topFrame"></a>
+		window.open("http://wwww.wrox.com", "topFrame");
+
+		//这段代码的作用久仿佛一个用户点击了一个 a 链接，href 属性是 http://wrox.com，而 target 属性 topFrame。如果存在一个名为 topFrame 的 window 或者 frame ，那么 URL 就会在对应的位置载入；如果不存在，那么就会创建一个新的 window，并赋予一个 name 属性，值就是 topFrame。第二个参数也可以是任何特殊的 window 名称，比如：_self / _parent / _top / _blank。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

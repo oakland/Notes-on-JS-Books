@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.55_readystatechange</title>
+    <script type="text/javascript">
+    //IE最开始给若干个DOM文档定义了一个名为readystatechange的事件。这个有点玄乎的事件，目的是为了提供一些文档或者元素的加载状态信息，尽管它的行为有些不稳定。每一个支持readystatechange事件的对象都拥有一个readyState属性，这个属性有以下5种可能的字符串值：
+    //1. uninitialized，对象存在但还没有被初始化。
+    //2. loading，对象正在加载数据
+    //3. loaded，对象结束了数据加载。
+    //4. interactive，对象可以进行交互但是并未完全加载。
+    //5. complete，对象完全加载。
+    //尽管，这看起来有些直白，但是并非所有的对象都会完整的经历这些状态。文档说明了，对象如果不适用的话也许可以完全跳过某一阶段，但是并未说明哪些阶段会适用哪些对象。这就意味着readystatechange事件触发的次数通常少于4次。而readyState属性也不会总是遵循同样的进程。
+    //当在document上使用时，readystatechange事件中的readyState属性中interactive会在类似于DOMContentLoaded的时候被触发。当整个DOM树被加载而非常安全的可以交互的时候，interactive阶段就会被触发。图片或者其他的外部资源也许还在那个点无法及时的获取。readystatechange事件可以像这样被处理：
+    EventUtil.addHandler(document, "readystatechange", function(event) {
+        if (document.readyState == "interactive") {
+            alert("Content loaded.");
+        }
+    });
+    //关于readystatechange的讨论有很多的内容，暂时可以先不用深入知道，待需要的时候可以再回头来翻阅仔细研读。
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

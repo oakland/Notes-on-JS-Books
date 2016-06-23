@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.29_unloadEvent</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //load事件的一个伙伴就是unload，当文档完全被unloaded的时候unload时间就会被触发。unload通常在从一个网页向另一个网页导航的时候触发，并且常常被用来清理引用以避免内存泄露。与load事件类似，onunload事件处理器有两种指定方式。第一种是JS：
+        EventUtil.addHandler(window, "unload", function(event) {
+            alert("Unloaded!");
+        });
+        //unload事件生成的event对象，在DOM-Compliant浏览器中仅仅包含target（指向document）这一条信息。IE8及早期的浏览器不为这一事件提供srcElement属性。
+    }
+    </script>
+</head>
+<!-- 另一种方式是给body添加一个属性 -->
+
+<body onunload="alert(" Unloaded!! ")">
+    <!-- 不论哪种方式，都要小心onunload事件处理器内部的代码。因为unload事件是所有事情都unloaded之后触发，并不是网页生成时可以获取到的所有对象这个时候都可以获取得到。试着去操作DOM节点或者DOM节点的展示都会导致错误！ -->
+</body>
+
+</html>

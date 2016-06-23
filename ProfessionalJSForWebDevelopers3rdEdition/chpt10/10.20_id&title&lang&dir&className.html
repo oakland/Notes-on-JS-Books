@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.20_id&title&lang&dir&className</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        //下面的五项都被称为property，同时也属于attribute
+        alert(div.id); //"myDiv"
+        alert(div.className); //"bd"
+        alert(div.title); //"Body text"
+        alert(div.lang); //"en"
+        alert(div.dir); //"ltr"
+
+        //通过下面直接赋值的方法，可以让div的各种属性都发生变化，打开控制台查看div元素，会发现上面的属性都变化了
+        div.id = "someOtherId";
+        div.className = "ft";
+        div.title = "Some other text";
+        div.lang = "ft";
+        div.dir = "rtl";
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" class="bd" title="Body text" lang="en" dir="ltr"></div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.1.5_determiningType</title>
+	<script type="text/javascript">
+		//typeof 操作符，前面已经使用过了，是判断一个变量是不是原始值的最好的方式。再具体一点而言，typeof 是判断一个变量是否是 string / number / boolean / undefined 的最好方式。如果一个值是对象或者 null，则 typeof 操作符返回 "object"，如下例：
+		var  s  = "Nicholas";
+		var b = true;
+		var i = 22;
+		var u;
+		var n = null;
+		var o = new Object();
+		console.log(typeof s);     //string
+		console.log(typeof b);     //boolean
+		console.log(typeof i);     //number
+		console.log(typeof u);     //undefined
+		console.log(typeof n);     //object
+		console.log(typeof o);     //object
+		//尽管 typeof 对于原始值非常有效，但是对于引用值却几乎没有作用。通常你不会在意一个值是不是对象——你真正想知道的是这个对象的类型是什么。为了帮助能够识别对象的类型， ECMAScript 提供了一个 instanceof 操作符，可以按照如下语法进行使用：
+		result = variable instanceof constructor;
+		//如果 variable 是指定引用类型的实例，则返回 true (通过原型链来判断，第 6 章中会有讨论)。如下例：
+		alert(person instanceof Object);        //is the variable person an Object?
+		alert(colors instanceof Array);        //is the variable person an Array?
+		alert(pattern instanceof RegExp);        //is the variable person an RegExp?
+		//根据定义，所有的引用类型都是 Object 的实例，所以当 instanceof 操作符被用于一个引用值和 Object 构造器之间的时候永远返回 true。同理， instanceof 用于原始值的时候，永远返回 false，因为原始值不是对象。
+		//当 typeof 用于一个函数的时候，会返回 function。当在 safari 和 chrome 中用于一个正则表达式的时候也会返回 function。。。。？？？这里还有些内容没太理解
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

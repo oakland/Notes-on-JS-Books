@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.47_NodeList2</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var divs = document.getElementsByTagName('div'),
+            i,
+            len,
+            div;
+        for (i = 0, len = divs.length; i < len; i++) {
+            div = document.createElement("div");
+            document.body.appendChild(div);
+        }
+        //每次当你希望遍历一个NodeList时，最好再初始化一个长度变量len，然后用循环者i（iterator）去和这个长度变量比较。
+        //注意，这里的len初始化之后，获得的是divs.length在循环开始时的瞬间大小，或者说这个时间结点的长度，是个固定值，英语叫snapshot
+        //总的来说，还是尽量减少和NodeList的交互次数，因为查询会每次都在文档中执行，尽量频繁地从NodeList缓存所需要的值
+    }
+    </script>
+</head>
+
+<body>
+    <div class="test">test</div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.16_outerHTML</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('content');
+        console.log(div.outerHTML);
+        div.outerHTML = "<p>This is a paragraph.</p>"; //p元素把div元素完全替换掉了
+        //上面的代码和下面的代码结果完全一样
+        // var p = document.createElement("p");
+        // p.appendChild(document.createTextNode("This is a paragraph."));
+        // div.parentNode.replaceChild(p, div);
+    }
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <p>This is a <strong>paragraph</strong> with a list following it.</p>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.5_childNodes2</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var test = document.getElementById('test');
+        //test.childNodes只是一个类数组的对象，但并不是真正的对象，要通过下面的方法可以将其转化为数组对象，函数的默认参数arguments也不是数组，通过这个方法也可以转化成数组
+        var arrayOfNodes = Array.prototype.slice.call(test.childNodes, 0);
+        console.log(test.childNodes);
+        console.log(arrayOfNodes);
+        console.log(Array.isArray(arrayOfNodes)); //true，表示是array
+    }
+    </script>
+</head>
+
+<body>
+    <ul id="test">
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+    </ul>
+</body>
+
+</html>

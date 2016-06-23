@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>23.6_restrictions</title>
+	<script type="text/javascript">
+		//cookies 会与某个 domain 绑定。当一个 cookie 被设置之后，它会和它被创建的时候的统一域中的请求一起被发送。这个限制保证了存储在 cookie 中的信息，只能被验证过的接收器接受，而不能被其他域获取。
+		//鉴于 cookies 存储在客户端电脑上，我们也必须保证 cookies 不会被恶意使用，而且不会占用太多磁盘空间。每个域中 cookie 的数量是有限制的，尽管不同的浏览器有不同的限制。例如：
+		//IE6- 限制每个域中最多有 20 个cookies
+		//IE7+，50
+		//FF，50
+		//O，30
+		//S 和 C 没有硬性指标。
+		//当 cookies 数量超过上述标准之后，浏览器就会抹去最前面设置的 cookies。IE 和 O 会移除最近最少被使用的 cookies，以给新设置的 cookies 腾出空间。FF 似乎是随机决定哪个 cookie 被移除。所以要时刻牢记 cookie 的限制，以避免不必要的后果。
+		//浏览器中 cookies 的大小也有限制，大多数的浏览器限制是 4096 byte，可以增加 1 个或者减少 1 个 byte。为了保证浏览器兼容性，最好保证小于 4095 b。注意，通常一个 character 占用一个 byte。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

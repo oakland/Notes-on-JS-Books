@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.9_appendChild</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var son = document.getElementById('son');
+        var parent = document.getElementById('parent');
+        console.log(parent.childNodes);
+        parent.appendChild(son);
+        console.log(parent.childNodes);
+        //appendChild会把document中原来的element剪切到新的位置，也就是说原来的位置元素会消失并不能保留
+    }
+    </script>
+</head>
+
+<body>
+    <div id="son"></div>
+    <div id="parent"></div>
+</body>
+
+</html>

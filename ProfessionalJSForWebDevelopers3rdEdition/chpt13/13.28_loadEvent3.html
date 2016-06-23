@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.28_loadEvent3</title>
+    <script type="text/javascript">
+    //load事件同样会在图片中触发，不论是在DOM中的图片还是不在DOM中的图片。你直接使用HTML，给文档的任何图片，指定onload事件处理器。如下例
+    //<img src="smile.gif" onload="alert('Image loaded.')" />
+    //在上面的例子中，当指定图片被加载后，就会弹出一个对话框。我们也可以通过JS来实现：
+    window.onload = function() {
+        var img = document.getElementById('myImg');
+        EventUtil.addHandler(img, "load", function(event) {
+            event = EventUtil.getEvent(event);
+            alert(EventUtil.getTarget(event).src);
+        });
+    };
+    //这里，onload事件处理器通过JS来指定。event对象被传入进去，尽管event对象没有太多有用的信息。event的目标是<img>元素，所以它的src属性可以被获取并展示。
+    //当创建一个新的<img>元素时，可以给其指定一个事件处理器，当图片加载时。在这种情况下，在指定src属性之前必须指定时间处理器，如下例：
+    EventUtil.addHandler(window, "load", function() {
+        var image = document.createElement("img");
+        EventUtil.addHandler(image, "load", function(event) {
+            event = EventUtil.getEvent(event);
+            alert(EventUtil.getTarget(event).src);
+        });
+        document.body.appendChild(image);
+        image.src = "smile.gif";
+    });
+    //上述例子的第一部分是给window指定一个onload事件处理器。因为例子中牵扯到给DOM添加一个新的元素，你必须保证页面被成功加载，因为在完全加载前尝试操作document.body会导致错误的发生。一个新的image元素被创建，并且给它设置了onload事件处理器。接着image被添加到页面中，并指定了其src属性。注意，。。。我们也可以使用DOM 0级 Image对象来创建img元素。
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

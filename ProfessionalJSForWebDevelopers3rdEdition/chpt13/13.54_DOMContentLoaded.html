@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.54_DOMContentLoaded</title>
+    <script type="text/javascript">
+    //当页面上的所有内容都加载成功之后window的load事件就会触发，对于那些要加载很多外部资源的页面来所，这也需要花费一点时间。而DOMContentLoaded事件，则会在DOM树完全形成时就会触发，而不用考虑图片，JS文件，CSS文件和其他类似资源。与load事件相比，DOMContenLoaded事件允许事件处理器在页面下载进程前添加，这就意味着和用户可以更早的进行交互。
+    //为了处理DOMContentLoaded事件，你可以给document或者window添加事件处理器（事件的真实目标是document，而事件会冒泡到window上）。
+    EventUtil.addHandler(document, "DOMContentLoaded", function(event) {
+        alert("Content loaded.");
+    });
+    // 这个事件对象没有更多的其他信息
+    //DOMContentLoaded事件被Internet Explorer 9+, Firefox, Chrome, Safari 3.1+, and Opera 9+ 支持，通常用于添加事件处理器或者执行其他DOM操作。这个事件总是在load事件前触发。
+    //对于那些不支持这个事件的浏览器而言，在网页加载时设置一个0毫秒的延时。
+    setTimeout(function() {
+        //attach event handlers here
+    }, 0);
+    //这段代码的本质意思是说，只要当前JS进程完成就执行这段代码。在页面进行下载和构建时，有一个JS进程运行，所以延时会在运行结束之后触发。Whether or not this coincides directly with the timing of DOMContentLoaded relates to both the browser being used and other code on the page. To work properly, this must be the first timeout set on the page, and even then, it is not guaranteed that the timeout will run prior to the load event in all circumstances.
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

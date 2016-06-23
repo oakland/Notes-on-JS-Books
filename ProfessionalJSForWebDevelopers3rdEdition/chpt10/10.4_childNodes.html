@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.4_childNodes</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var test = document.getElementById('test');
+        var firstChild = test.childNodes[1];
+        var secondChild = test.childNodes.item(3);//通过item方法传入参数的方式也可以获得，但是肯定是上面方括号的方式最方便
+        var count = test.childNodes.length;
+        console.log(firstChild);
+        console.log(secondChild);
+        console.log(count);
+        //这里之所以是9，是因为所有标签之间的空格和换行都算childNodes，所以4个li元素加上他们之间以及和ul标签之间的空白总共就是9个childNodes
+    }
+    </script>
+</head>
+
+<body>
+    <ul id="test">
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.1.1_safeTypeDetection</title>
+	<script type="text/javascript">
+		//JS 内置的类型检测机制并不是万无一失的，甚至很多时候会同时给出错误的积极和错误的消极。例如，typeof 操作符有很多怪异的行为，使得其在检测数据类型方面并不是那么可靠。鉴于 Safari(version 4)中，当给正则表达式使用 typeof 操作符时，返回 function，所以要明确的知道一个值是否是函数是非常困难的。
+		//instanceof 操作符也会产生问题，当多个全局作用域呈现的时候，例如，有多个 frames 的时候，instanceof 操作符使用起来就很困难。这个错误的经典例子，在第 5 章中有所涉及，就是，当使用下面的代码时，会尝试将一个对象识别为数组：
+		var isArray = value instanceof Array;
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

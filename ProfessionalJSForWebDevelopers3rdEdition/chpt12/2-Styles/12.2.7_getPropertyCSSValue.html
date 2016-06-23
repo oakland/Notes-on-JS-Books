@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.7_getPropertyCSSValue</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //getPropertyCSSValue()方法返回一个CSSValue对象，这个对象包含两个属性：cssText 和 cssValueType。
+        //cssText属性和getPropertyValue()方法的返回值是一样的。cssValueType是一个数字常量，代表着值的类型：0代表继承的值，1代表原始值，2代表list，3代表自定义值。下面这段代码可以输出CSS属性值和值的类型：
+        var prop, value, i, len;
+        for (var i = 0, len = div.style.length; i < len; i++) {
+            prop = div.style[i];
+            value = div.getPropertyCSSValue(prop);
+            alert(prop + ":" + value.cssText + "(" + value.cssValueType + ")");
+        }
+        //实际工作中，getPropertyCSSValue()没有getPropertyValue()有用。
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

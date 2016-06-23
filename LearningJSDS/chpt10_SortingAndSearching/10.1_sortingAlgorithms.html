@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10.1_sortingAlgorithms</title>
+	<script type="text/javascript">
+		//在本章的简介中，你应当理解了，我们需要首先了解如何排序，接着根据给定的信息进行检索。这个部分，计算机科学中某些非常著名的搜索算法。我们从最慢的算法开始，然后我们会学习一些更好的算法。
+		//在我们开始正式学习搜索算法之前，我们先创建一个 array(list) 来代表我们要排序和搜索的数据结构：
+		function ArrayList() {
+			var array = [];                  //{1}
+			this.insert = function(item) {   //{2}
+				array.push(item);
+			};
+			this.toString = function() {   //{3}
+				return array.join();
+			};
+		}
+		//ArrayList 是一个非常简单的在 array 中储存项目的数据结构 {1}。我们只有 insert 方法用于给数据结构添加元素 {2}，这个方法只是简单的使用我们在第二章中的 JS 原生 push 方法。最后，为了验证我们的结果，toString() 方法将会把数组的所有元素都结合成一个单一的字符串，以便于我们在浏览器控制台中很容易的输出结果。
+		//注意，ArrayList 没有任何移除数据或者将数据插入到某个位置的方法。我们想要它保持简单，以便于我们能够集中精力在排序和搜索算法上。我们将会把所有的排序和搜索算法都添加到这个 ArrayList class 上。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

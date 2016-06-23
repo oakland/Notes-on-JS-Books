@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.18_eventPhase</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //eventPhase属性协助确定，当前事件流的哪个阶段是处于激活状态。如果事件处理器在捕获阶段被调用，eventPhase就是1；如果事件处理器在目标上被调用，eventPhase就是2；如果是冒泡阶段，则为3。注意，尽管在目标上的时候也是冒泡阶段，但是eventPhase也为2。如下例所示：
+        var btn = document.getElementById('myBtn');
+        btn.onclick = function(event) {
+            alert(event.eventPhase); //2
+        };
+        document.body.addEventListener("click", function(event) {
+            alert(event.eventPhase); //1
+        }, true);
+        document.body.onclick = function(event) {
+            alert(event.eventPhase); //3
+        };
+        //当上例中的button被点记得时候，第一个被触发的事件处理器是document.body在捕获阶段的事件，这个事件处理器弹出1。接着，button自己的事件处理器被触发，这个时候eventPhase是2。最后被触发的事件处理器是document.body在冒泡阶段被触发的事件，其eventPhase是3。当eventPhase为2的时候，this，target，currentTarget总是相同。
+        //event对象只有当事件处理器被执行的时候才会存在；一旦被执行过，event对象就会被摧毁。
+    }
+    </script>
+</head>
+
+<body>
+    <button id="myBtn">button</button>
+</body>
+
+</html>

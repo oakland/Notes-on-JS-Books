@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.70_removingEventHandler2</title>
+</head>
+
+<body>
+    <div id="myDiv">
+        <input type="button" value="Click Me" id="myBtn">
+    </div>
+    <script type="text/javascript">
+    var btn = document.getElementById('myBtn');
+    btn.onclick = function() {
+        //do something
+
+        btn.onclick = null; //remove event handler
+
+        document.getElementById('myDiv').innerHTML = "Processing..."; //Bad!!!
+    };
+    //在这段重写的代码中，button的事件处理器在设置 div 元素的 innerHTML 之前就被移除了。这保证了不会占用内存而且 button 可以安全地从 DOM 中移除。
+    //同时也要注意，移除了 button 的事件处理器也阻止了事件的冒泡。只有当事件的目标依然保留在 DOM 中的时候，事件才会冒泡。
+    //事件代理也可以协助解决这样的问题。如果你知道页面中的某一部分将会被 innerHTML 的方法替换掉，那么就不要直接给这一部分的元素添加事件处理器，而是而是给这个区域的更高级别添加事件处理器。
+    //另外一个悬着的事件处理器成为问题就是当页面卸载的时候。依然，IE8 及早期的浏览器在这种情况下会出现问题，尽管这也以一种其他的方式影响着别的浏览器。如果事件处理器在页面卸载前没有被清理干净，他们就会保留在内存中。每次浏览器加载或者卸载页面时（导航出去或者退回或者重载的结果），内存中的对象数量就会增加，因为，事件处理器内存并没有被召回。
+    //总的来说，通过使用 onunload 事件处理器来将页面卸载前所有的事件处理器都移除，是一个非常好的主意。这也是事件代理非常有用的另外一个原因，当有很少的事件处理器时，我们很容易跟踪这些事件处理器。一种非常好的思考这项技术的方法是，任何使用 onload 事件处理器的内容都需要用 onunload 来进行反向处理。
+    //记住，制定一个 onunload 事件处理器意味着你的页面将不会被存储在 bfcache。如果需要考虑这个问题，你也许需要在 IE 中使用 onunload 来移除事件处理器。
+    </script>
+</body>
+
+</html>

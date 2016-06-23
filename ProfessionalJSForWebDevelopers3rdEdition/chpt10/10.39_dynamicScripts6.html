@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.39_dynamicScripts6</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        function loadScriptString(code) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            try {
+                script.appendChild(document.createTextNode(code))
+            } catch (ex) {
+                script.text = code;
+            }
+            document.body.appendChild(script);
+        }
+        loadScriptString("function sayHi() {alert('hi');}");
+
+        sayHi();
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

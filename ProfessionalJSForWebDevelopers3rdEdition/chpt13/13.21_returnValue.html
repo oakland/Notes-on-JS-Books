@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.21_returnValue</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //returnValue属性，在取消指定事件的默认行为时，等价于DOM preventDefault()方法。你只需要将returnValue设置为false就可以阻止默认行为。如下例：
+        var link = document.getElementById('myLink');
+        link.onclick = function() {
+            window.event.returnValue = false;
+        };
+        //在上面的例子中，在onclick事件处理器中使用了returnValue来阻止了链接的默认行为。
+    }
+    </script>
+</head>
+
+<body>
+    <a href="http://www.yunkechina.com" id="myLink">yunke</a>
+</body>
+
+</html>

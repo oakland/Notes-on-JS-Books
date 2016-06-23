@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.8_postOrderTraversal</title>
+	<script type="text/javascript">
+		//post-order 遍历先访问后代元素，后访问祖先元素。post-order 的应用之一就是计算一个目录下文件夹及子文件夹的空间。
+		this.postOrderTraverse = function(callback) {
+			postOrderTraverseNode(root, callback);
+		};
+
+		var postOrderTraverseNode = function(node, callback) {
+			if (node !== null) {
+				postOrderTraverseNode(node.left, callback);   //{1}
+				postOrderTraverseNode(node.right, callback);   //{2}
+				callback(node.key);                            //{3}
+			}
+		};
+
+		//这种情况下，post-order 遍历首先访问 left node {1}，然后访问 right node {2}，最后访问 node {3}。
+		// 如你所见，in-order pre-order post-order 的算法非常类似。唯一的区别在于 {1} {2} {3} 行在方法中的执行顺序。
+		// post-order 的输出结果如下：
+		// 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
+		// 下面的图表展示了 post-order 的路径：<tree8.png>
+	</script>
+</head>
+<body>
+	<img src="tree8.png" alt="">
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.23_cross-browserEventObject</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //尽管DOM的事件对象和IE的事件对象不同，也有足够的共同点来实现跨浏览器的解决方案。IE事件对象的所有信息和能力都DOM对象中有所展示，只不过以不同的方式展示。
+        var EventUtil = {
+            addHandler: function(element, type, handler) {
+                //code removed for printing
+                if (element.addEventListener) {
+                    element.addEventListener(type, handler, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = handler;
+                }
+            },
+            getEvent: function(event) {
+                return event ? event : window.event;
+            },
+            getTarget: function(event) {
+                return event.target || event.srcElement;
+            },
+            preventDefault: function(event) {
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            removeHandler: function(element, type, handler) {
+                //code removed for printing
+                if (element.removeEventListener) {
+                    element.removeEventListener(type, handler, false);
+                } else if (element.detachEvent) {
+                    element.detachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = null;
+                }
+            },
+            stopPropagation: function(event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                } else {
+                    event.cancelBubble = true;
+                }
+            }
+        };
+        //EventUtil的这段代码添加了4个新的方法。第一个是getEvent()，返回event对象的引用。鉴于event对象在IE中的位置不同，这个对象可以用来获取event对象，不论事件处理器的指定方式是什么。要使用这个方法，你必须要保证event对象被传入到了event handler中，并且将这个变量传入到了方法中。如下例：
+        btn.onclick = function(event) {
+            event = EventUtil.getEvent(event);
+        };
+        //getTarget
+        btn.onclick = function(event) {
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+        };
+        //preventDefault
+        var link = document.getElementById('myLink');
+        linck.onclick = function(event) {
+            event = EventUtil.getEvent(event);
+            EventUtil.preventDefault(event);
+        };
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

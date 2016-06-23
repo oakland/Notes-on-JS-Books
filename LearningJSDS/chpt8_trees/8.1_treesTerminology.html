@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.1_treesTerminology</title>
+	<script type="text/javascript">
+		//tree 由父子关系的节点组成。每个节点都有一个父节点（除了顶端的第一个节点），以及 0 个或者多个子节点：<tree2.png>
+		// tree 的最顶端的节点被称为 root(11)。它是没有父级节点的节点。tree 中的每一个元素都被叫做 node。有 internal nodes 和 external nodes。internal node 指的是那些至少拥有一个子节点的节点（7 5 9 15 13 20 都是 internal node）。没有子节点的节点被称为 external node 或者 leaf（3 6 8 10 12 14 18 25 都是 leaves）。
+		// node 可能有祖先和子孙。一个 node 的祖先（除了 root 之外）是 parent grandparent great-grandparent等等。一个 node 的子孙是 child grandchild great-grandchild 等等。例如 node 5 拥有 7 和 11 是它的祖先，而 3 和 6 是它的子孙。
+		//tree 中的另外一个术语是 subtree。subtree 由一个 node 和它的子孙组成。例如 node 13 12 14 就组成了一个 subtree。
+		// node 的深度是由祖先数量组成的。例如，3 的深度是 3，因为它有三个祖先（5 7 11）。
+		//tree 的高度是节点中最大的高度。tree 也可以被分成好几个层次。 root 是 level 0，root 的子节点是 level1，以此类推。上面图表中的 tree 高度是3。
+		//了解了这些和 tree 相关的重要属于，我们来深入的学习一下 tree。
+	</script>
+</head>
+<body>
+	<img src="tree2.png" alt="">
+</body>
+</html>

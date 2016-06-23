@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.32_createDocumentFragment</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var fragment = document.createDocumentFragment(); //函数没有任何参数
+        var ul = document.getElementById('myList');
+        var li = null;
+
+        for (var i = 0; i < 3; i++) {
+            li = document.createElement("li");
+            li.appendChild(document.createTextNode("Item " + (i + 1))); //参数不一定是静态的，可以是动态的，或者说是语句，可以有操作符
+            fragment.appendChild(li);
+        }
+
+        ul.appendChild(fragment);
+    }
+    </script>
+</head>
+
+<body>
+    <ul id="myList"></ul>
+</body>
+
+</html>

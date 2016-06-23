@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ref_splice</title>
+    <script type="text/javascript">
+    window.onload = function() {
+            var arr1 = ["white", "black"];
+
+            //add some items
+            arr1.splice(1, 0, "red", "green", "blue");
+            console.log(arr1); //["white", "red", "green", "blue", "black"]
+
+            //delete some items
+            arr1.splice(1, 1);
+            console.log(arr1); //["white", "green", "blue", "black"]
+
+            //replace some items
+            arr1.splice(1, 1, "red");
+            console.log(arr1); //["white", "red", "blue", "black"]
+
+            arr1.splice(1, 1, "yellow", "green");
+            console.log(arr1); //["white", "yellow", "green", "blue", "black"]
+        }
+        //通过以上的例子，我们可以总结出：splice的功能很强大，可以实现对Array的增、删、改，基本上大多数的操作都可以用这个方法实现
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

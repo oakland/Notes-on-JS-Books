@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.8_removeOneClass2</title>
+    <script type="text/javascript">
+    window.onload = function() {
+            var div = document.getElementById('myDiv');
+
+            //remove the "disabled" class
+            div.classList.remove("disabled");
+            console.log(div.classList); //["bd", "user"]
+
+            //add the "current" class
+            div.classList.add("current");
+            console.log(div.classList); //["bd", "user", "current"]
+
+            //toggle the "user" name
+            div.classList.toggle("user");
+            console.log(div.classList); //["bd", "current"]
+
+            //figure out if what's on the element now
+            if (div.classList.contains("bd") && !div.classList.contains("disabled")) {
+                //do something
+            }
+
+            //iterate over the class name
+            for (var i = 0, len = div.className.length; i < len; i++) {
+                //doSomething(div.className[i]);
+            }
+        }
+        //通过上面的实例，我们可以注意到有很多HTML5新增加的获取css class和操作css class的方法
+        //1. 通过classList可以获得一个元素的class列表
+        //2. classList有四个方法可以使用，add / remove / toggle / contains，下面就这四种方法分别做说明
+        //3. add()，向classList中添加一个值，如果值已经存在就不会重复添加了
+        //4. contains()，返回布尔值，表示是否某个class已经添加到这个classList中
+        //5. remove()，从classList中删除某个值
+        //6. toggle()，如果值已经存在，则删除这个值。如果这个值不存在，则添加这个值。就是表示切换的意思
+        //7. 不过classList这个属性只在firefox3.6+ 和 chrome中才有
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" class="bd user disabled"></div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.53_beforeunloadEvent</title>
+    <script type="text/javascript">
+    //beforeunload事件在window上触发，目的在于给开发者一种阻止页面卸载的方法。这个事件在浏览器页面开始卸载前触发，允许页面的继续使用并最终不被卸载。你无法直接取消这个事件，因为这相当于把用户劫持在这个网页上。相反，这个事件给你一个向用户展示一条信息的可能性。信息暗示，网页即将卸载，询问用户是否继续关闭页面还是留在本页。
+    //为了能够让这条消息弹出来，你必须将event.returnValue设置为你想展示在对话框中的字符串（对于IE 和 FF而言），并且将它作为一个函数值（对于safari 和 chrome而言）。
+    var EventUtil = {
+        addHandler: function(element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = handler;
+            }
+        },
+        getEvent: function(event) {
+            return event ? event : window.event;
+        },
+
+        preventDefault: function(event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+        },
+        removeHandler: function(element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+                element.detachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = null;
+            }
+        },
+        stopPropagation: function(event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            } else {
+                event.cancelBubble = true;
+            }
+        }
+    };
+    EventUtil.addHandler(window, "beforeunload", function(event) {
+        event = EventUtil.getEvent(event);
+        var message = "I'm really going to miss you if you go.";
+        event.returnValue = message;
+        return message;
+    });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

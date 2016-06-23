@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3.1.7_variables</title>
+	<script type="text/javascript">
+		//ECMAScript 变量是松散类型的，意味着一个变量可以承载任何类型的数据。一个变量仅仅是一个值得名字承载着。要定义一个变量可以使用 var 操作符，后面跟上变量名。
+		//注意，使用 var 操作符定义的变量，会使得变量成为定义变量时局部作用域的局部变量。例如，在函数内部使用 var 操作符定义变量意味着，变量会在函数结束时被摧毁，如下例：
+		function test() {
+			var message = "hi";   //local variable
+		}
+		test();
+		alert(message); //error!
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

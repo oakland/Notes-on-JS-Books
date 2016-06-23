@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.52_contextmenuEvent</title>
+</head>
+
+<body>
+    <div id="myDiv">Right click or Ctrl+click me to get a custom context menu. Click anywhere to get the default context menu.</div>
+    <ul id="myMenu" style="position:absolut;visibility:hidden;background-color:silver">
+        <li><a href="http://nczonline.net">Nicholas’ site</a></li>
+        <li><a href="http://www.wrox.com">Wrox site</a></li>
+        <li><a href="http://www.yahoo.com">Yahoo!</a></li>
+    </ul>
+    <!-- 在这段代码中，创建了一个拥有默认context menu的div元素，ul元素作为自定义context menu并且最开始是隐藏的。 -->
+    <script type="text/javascript">
+    //windows 95 通过右键的方式，给PC用户引入了上下文菜单的概念。很快，这种模式就在网页中被模仿。开发者的问题是如何监测菜单应该被展示（在windows系统中是右键，在mac上，是Ctrl+click），以及如何避免这个动作的默认的上下文菜单。这就导致了专门用于展示上下文菜单什么时候应当被展示的contextmenu事件的引入，允许开发者能够取消默认的context menu而提供自定义的菜单。
+    //contextmenu事件会冒泡，所以可以给document指定一个单独的事件处理器，来处理整个页面上的这个事件。这个事件可以在所有的浏览器中取消，通过在符合DOM（DOM-compliant）的浏览器中使用event.preventDefault()，或者在IE 8 及以前的浏览器中通过将event.returnValue设置为false。contextmenu被认为是鼠标事件，所以拥有所有和指针位置相关的属性。通常，自定义的context menu通过oncontextmenu事件处理器来展示，然后再通过onclick事件处理器再进行隐藏。如下
+    var EventUtil = {
+        addHandler: function(element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = handler;
+            }
+        },
+        getEvent: function(event) {
+            return event ? event : window.event;
+        },
+
+        preventDefault: function(event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+        },
+        removeHandler: function(element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+                element.detachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = null;
+            }
+        },
+        stopPropagation: function(event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            } else {
+                event.cancelBubble = true;
+            }
+        }
+    };
+    EventUtil.addHandler(window, "load", function(event) {
+        var div = document.getElementById('myDiv');
+        EventUtil.addHandler(div, "contextmenu", function(event) {
+            event = EventUtil.getEvent(event);
+            EventUtil.preventDefault(event);
+
+            var menu = document.getElementById("myMenu");
+            menu.style.left = event.clientX + "px";
+            menu.style.top = event.clientY + "px";
+            menu.style.visibility = "visible";
+        });
+        EventUtil.addHandler(document, "click", function() {
+            document.getElementById('myMenu').style.visibility = "hidden";
+        });
+    });
+    //这里一个contextmenu事件处理器定义给了div。事件处理器通过取消默认行为，保证浏览器的菜单不会被展示。接着ul根据事件对象的clientX 和 clientY放置到相应位置。最后通过将visibility设置为visible，将菜单显示出来。接着，onclick事件处理器被赋予给document，以便于当鼠标点击发生时，菜单被隐藏。
+    //尽管这个例子非常简单，但是它是所有网页自定义菜单的基础。给菜单应用一些额外的CSS会产生出更好的效果。
+    //contextmenu事件被IE FF Safari Chrome 和 Opera 11+支持。
+    </script>
+</body>
+
+</html>

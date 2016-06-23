@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>8.1.7_poppingUpWindows</title>
+    <script type="text/javascript">
+    //如果第二个参数没有指明一个已存在的 window 或者 frame ，那么一个基于第三个参数的字符串内容的 window 或者 tab 就会被创建。如果第三个参数也没有，那么一个拥有默认设置的浏览器窗口就会被打开。第三个参数是一段以逗号作为分隔的字符串，用于设置新打开窗口的展示信息。下面的表格就是这些选项。
+    //注意，第三个参数字符串不允许出现任何空格
+    window.open("http://www.wrox.com", "wroxWindow", "height=400,width=400,top=10,left=10,resizable=yes");
+    //window.open() 方法的返回值是新创建窗口的引用。这个对象和其他任何的 window 对象一样，除了你可以更多的控制它之外。这个对象可以像操作任何其他窗口一样，用来操作新打开的窗口，如下例：
+    var wroxWin = window.open("http://www.wrox.com", "wroxWindow", "height=400,width=400,top=10,left=10,resizable=yes");
+
+    //resize it
+    wroxWin.resizeTo(500, 500);
+
+    //move it
+    wroxWin.moveTo(100, 100);
+
+    //也可以通过 close() 方法来关闭这个新打开的窗口
+    wroxWin.close();
+    //这个方法仅适用于通过 window.open() 打开的窗口。未经用户许可是无法关闭主窗口的。但是新开的窗口却可以不经用户确认久自己关闭，要调用 top.close() 方法。窗口关闭之后， window 的引用依然存在，但是除了验证 close 属性之外，不能有别的用途。
+
+    wroxWin.close();
+    alert(wroxWin.closed); //true
+
+    //尽管有一个从新开窗口向打开它的窗口的引用，但是没有相反的引用。
+    </script>
+</head>
+
+<body>
+    <img src="img/windowSettings1.png" alt="">
+    <img src="img/windowSettings2.png" alt="">
+</body>
+
+</html>

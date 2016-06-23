@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.34_clientCoordinates</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //所有的鼠标事件发生时，都会在浏览器中有一个位置，这个信息被存储在event对象的clientX 和 clientY属性中。这两个属性在所有的浏览器中都支持。
+        //你可以通过下面的方法获得用户鼠标事件的客户坐标：
+        var div = document.getElementById('myDiv');
+        EventUtil.addHandler(div, "click", function(event) {
+        	event = EventUtil.getEvent(event);
+        	alert("Client coordinates: " + event.clientX + "," + event.clientY);
+        });
+        //注意这个坐标不包含网页的滚动位置，这些数字并不能表明指针在整个页面中的位置，只能表明鼠标在视口中的位置。
+    }
+    </script>
+</head>
+
+<body>
+    <img src="img/clientX&Y.png" alt="">
+</body>
+
+</html>

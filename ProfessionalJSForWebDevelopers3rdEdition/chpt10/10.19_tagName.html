@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.19_tagName</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        alert(div.tagName); //"DIV"
+        //注意：这里的tagName是大写的，在HTML中tagName永远返回的是大写的，而在XML中，返回的和原始的标签是一样的，如果原始的是大写的那么就返回大写的，如果原始的是小写的那么就返回小写的。为了保险起见，在验证标签的时候一般都统一通过toLowerCase()方法将返回的值转化成小写再去验证，如下所示：
+        if (div.tagName.toLowerCase() == 'div') {
+            alert('This is a div');
+        }
+        alert(div.tagName == div.nodeName); //true对于element来说，tagName 和 nodeName 其实是一样的
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+</body>
+
+</html>

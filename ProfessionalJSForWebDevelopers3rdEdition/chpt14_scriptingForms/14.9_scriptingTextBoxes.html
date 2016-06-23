@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14.9_scriptingTextBoxes</title>
+	<script type="text/javascript">
+		//在 HTML 中展示文本框有两种方式：单行的版本用 <input> 元素，多行的用 <textarea>。这两个元素非常相似，并且在多数情况下行为也一致。但是还是有一些不同的。
+		//默认情况下，对于 <input> 元素而言，如果没有定义 type 属性的话，就是一个文本框。 size 属性可以用来指定文本框中可见字符的宽度，maxlength 定义了允许输入的最多字符数量。所以，创建一个可以显示25个字符，而最多可以拥有50个字符的文本框，我们可以使用一下的代码
+		//<textarea> 元素渲染的是多行文本框。为了指定文本框的大小，可以使用 rows 和 cols 这两个属性，分别定义了文本框字符高度和宽度，和 <input>元素的 size 类似。
+		//和 <input> 元素不同的是，<textarea> 元素无法在 HTML 中指定字符的最大数量。用 value 属性可以获取或者改变文本框的内容。
+	</script>
+</head>
+<body>
+	<input type="text" size="25" maxlength="50" value="Initial value">
+	<textarea cols="5" rows="25">initial value</textarea>
+</body>
+</html>

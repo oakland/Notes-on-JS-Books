@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.13_DOMEventObject</title>
+    <script type="text/javascript">
+    //在符合DOM的浏览器中，event对象会被当做event handler这个函数的唯一参数传入到函数中。不论指定事件处理器的方法是什么，DOM 0级或者DOM 2级，event对象都会被传入。下面是一个例子：
+    window.onload = function() {
+            var btn = document.getElementById('myBtn');
+            btn.onclick = function(event) {
+                alert(event.type); //"click"
+            };
+            btn.addEventListener("click", function(event) {
+                alert(event.type); //"click"
+            }, false);
+        }
+        //当event handler通过HTML属性被指定时，event对象以名为event的变量可以被获取到。见HTML中input元素的例子
+        
+    </script>
+</head>
+
+<body>
+    <button id="myBtn">Button</button>
+    <input type="button" value="Click me" onclick="alert(event.type)" />
+</body>
+
+</html>

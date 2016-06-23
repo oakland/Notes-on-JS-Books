@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.22_cancelBubble</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //cancelBubble属性和DOM的stopPropagation()方法有相同的作用，阻止事件冒泡。鉴于IE8及之前的浏览器不支持事件捕获，所以只有冒泡被取消，而stopPropagation()同时阻止捕获和冒泡。
+        var btn = document.getElementById('myBtn');
+        btn.onclick = function() {
+            alert("Clicked");
+            window.event.cancelBubble = true;
+        };
+        document.body.onclick = function() {
+            alert("Body clicked");
+        };
+        //By setting cancelBubble to true in the button’s onclick event handler, it prevents the event from bubbling up to the document.body event handler. The result is that only one alert is displayed when the button is clicked.
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

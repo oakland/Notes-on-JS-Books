@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13.25_UIEvents</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			//UI事件是那些与用户行为非必须相关的事件。这些事件以优先于DOM规范的这种或者那种形式存在，并且一直向后保留了可兼容性。UI事件如下：
+			//1. DOMActivate，当一个元素被一些用户行为激活时触发，鼠标或者键盘（不仅仅是点击和按下键盘）。...我们建议最好不要使用这类事件。
+			//2. load，在页面完全加载后在window上触发，或者当所有的frame完全加载时在frameset上触发，当图片完全加载后在<img>元素上触发，或者在<object>元素上触发，当其完全加载后。
+			//3. unload，除了img，完全和上面的相反
+			//4. abort，在用户停止下载进程前，<object>没有完全加载完成前，在<object>上触发。
+			//5. error，当JS代码发生错误时在window上触发，如果指定图片不能加载时，在<img>元素上触发，在<object>元素上触发当其不能被加载时，如果frames的任何一个frame不能加载，则会在frameset上触发。这一事件在第17章中有讨论。
+			//6. select，当用户选择文本框（<input>或者<textarea>）中的一个或多个字符时被触发。这一事件会在第14章中讨论。
+			//7. resize，当window或者frame尺寸发生变化时触发。
+			//8. scroll，对于任何拥有滚动条的元素，当用户进行滚动的时候，会在该元素上触发。对于已加载的页面，<body>元素包含了滚动条。
+			//大多数的HTML事件，与window 或者 form control相关。
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

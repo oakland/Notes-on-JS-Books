@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14.8_commonFormFieldEvents</title>
+    <script type="text/javascript">
+    //所有的表单除了支持鼠标、键盘、改变和 HTML 事件之外，还支持以下三个事件：
+    //1. blur，当字段失焦时触发
+    //2. change，对 <input> 和 <textarea> 元素，当字段失焦并且 value 值发生变化时触发；对于 <select> 元素而言，当备选项发生变化时触发。
+    //3. focus，当字段获得焦点时触发。
+    //blur 和 focus 事件触发的原因都是用户手动改变了字段的焦点，或者调用了 focus() 或 blur()。而 change 事件对于不同的控制器而言，在不同的时间点被触发。对于 <input> 和 <textarea> 元素而言，从控制器获得焦点开始，当字段失焦并且 value 发生变化的时候触发。然而，对于 <select> 元素，当用户改变选项的时候 change 事件被触发。对于 change 触发，控制器无需失焦。
+    //focus 和 blur 通常用于以某种方式改变用户交互，提供视觉的信息或者附加函数（例如显示文本框的下拉菜单选项）。change 事件常常用于验证字段中的数据。例如，一个只接受数字输入的文本框。focus 事件可以用于改变背景色，明确提示字段已经获得焦点，blur 事件用于移除背景色，change 事件可以将背景色改变为红色，当非数字字符输入得时候。下面的代码就可以实现上述功能：
+    var textbox = document.forms[0].elements[0];
+    EventUtil.addHandler(textbox, "focus", function(event) {
+        event = EventUtil.getEvent(event);
+        target = EventUtil.getTarget(event);
+        if (target.style.backgroundColor != "red") {
+            target.style.backgroundColor = "yellow";
+        }
+    });
+    EventUtil.addHandler(textbox, "blur", function(event) {
+        event = EventUtil.getEvent(event);
+        target = EventUtil.getTarget(event);
+        if (/[^\d]/.test(target.value)) {
+            target.style.backgroundColor = "red";
+        } else {
+            target.style.backgroundColor = "";
+        }
+    });
+    EventUtil.addHandler(textbox, "change", function(event) {
+        event = EventUtil.getEvent(event);
+        target = EventUtil.getTarget(event);
+        if (/[^\d]/.test(target.value)) {
+            target.style.backgroundColor = "red";
+        } else {
+            target.style.backgroundColor = "";
+        }
+    });
+    //
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

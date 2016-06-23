@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    div#outer {
+        width: 200px;
+        height: 200px;
+        background: red;
+    }
+    
+    div#inner {
+        width: 100px;
+        height: 100px;
+        background: orange;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        var outer = document.getElementById('outer'),
+            inner = document.getElementById('inner');
+        // outer.onclick = function() {
+        //     alert("outer box");
+        // };
+        // inner.onclick = function() {
+        //     alert("inner");
+        // };
+        outer.addEventListener("click",function() {alert("outer box 捕获")},true);
+        inner.addEventListener("click",function() {alert("inner box 冒泡")},false);
+        inner.addEventListener("click",function() {alert("inner box 捕获")},true);
+        outer.addEventListener("click",function() {alert("outer box 冒泡")},false);
+    };
+    </script>
+</head>
+
+<body>
+    <div id="outer">outer
+        <div id="inner">inner</div>
+    </div>
+</body>
+
+</html>

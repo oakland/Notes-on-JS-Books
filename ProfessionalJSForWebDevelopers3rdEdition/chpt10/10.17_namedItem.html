@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10.17_namedItem.html</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var images = document.getElementsByTagName('img');
+			console.log(images.length);
+			console.log(images.namedItem('myImage'));
+			console.log(images['myImage']);
+		}
+	</script>
+</head>
+<body>
+	<img src="" alt="" name="myImage">
+	<img src="" alt="">
+	<img src="" alt="">
+	<img src="" alt="">
+</body>
+</html>

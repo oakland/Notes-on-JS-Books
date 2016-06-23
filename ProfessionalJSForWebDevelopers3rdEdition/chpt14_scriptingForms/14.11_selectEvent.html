@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14.11_selectEvent</title>
+	<script type="text/javascript">
+		//伴随着 select() 方法，还有一个 select 事件。当文本框中的文本被选中时，select 事件就会触发。这个事件到底什么时候触发，不同的浏览器有不同的效果。在IE 9+, Opera, Firefox, Chrome, and Safari 中，当用户结束选择时，select 事件触发。而在Internet Explorer 8 and earlier中，当选中第一个字符的时候，就会触发 select 事件。当 select() 方法调用的时候 select 事件也会触发。
+		var textbox = document.forms[0].elements["textbox1"];
+		EventUtil.addHandler(textbox, "select", function(event) {
+			alert("Text selected: " + textbox.value);
+		});
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

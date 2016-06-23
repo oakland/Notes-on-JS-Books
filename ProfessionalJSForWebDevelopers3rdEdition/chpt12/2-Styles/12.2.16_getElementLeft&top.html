@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.16_getElementLeft&top</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        function getElementLeft(element) {
+            var actualLeft = element.offsetLeft;
+            var current = element.offsetParent;
+
+            while (current !== null) {
+                actualLeft += current.offsetLeft;
+                current = current.offsetParent;
+            }
+
+            return actualLeft;
+        }
+
+        function getElementTop(element) {
+            var actualTop = element.offsetTop;
+            var current = element.offsetParent;
+
+            while (current !== null) {
+                actualTop += current.offsetTop;
+                current = current.offsetParent;
+            }
+
+            return actualTop;
+        }
+        //上述两个函数，使用offsetParent属性，沿着DOM树不断向上累计，将每一层的偏移属性都进行相加。对于使用CSS进行简单布局的页面而言，以上两个函数的返回值是准确的。但是对于使用table 和 iframe布局的页面，返回值在跨浏览器时缺少准确性，因为这些元素执行的方式不同。总的来说，所有的单独包含在div元素中的元素，都将<body>作为其offsetParen，所以getElementLeft() 和 getElementTop() 将会返回与 offsetLeft 和 offsetTop一样的值。
+        //所有的offset dimesions属性都是只读的，并且在获取的时候每次都会计算一遍。因此，你应当尽量避免多次调用这些属性。而是，将你需要的值存储在局部变量中，以避免性能问题的出现。
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

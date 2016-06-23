@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.69_removingEventHandler</title>
+    <script type="text/javascript">
+    //当事件处理器被赋予给元素时，运行浏览器的代码就和页面中交互的JS代码之间就形成了一种联系。这种存在的联系越多，页面的表现就会越差。解决这个问题的一种方式就是，通过事件代理来限制这种联系的数量。另外一种方式就是，当事件处理器不再需要的时候就将事件处理器移除。悬着的事件处理器，那些不必要的依然存在在内存中的事件处理器，是网页应用中内存和表现问题的主要根源。
+    //在整个页面的生命周期中，这个问题会在两个时间点发生。第一种情况是，当一个元素已经从 DOM 中移除了，但是它已然添加了事件处理器。这个也许是 DOM 操作的 removeChild() 或者 replaceChild() 导致的，但是很多情况下是，使用 innerHTML 来替换页面中的一个部分造成的。任何添加给通过调用 innerHTML 来消除的元素的事件处理器，也许都无法被垃圾机制合适的回收。例如：
+    </script>
+</head>
+
+<body>
+    <div id="myDiv">
+        <input type="button" value="Click Me" id="myBtn">
+    </div>
+    <script type="text/javascript">
+    var btn = document.getElementById('myBtn');
+    btn.onclick = function() {
+        //do something
+        document.getElementById('myDiv').innerHTML = "Processing..."; //Bad!!!
+    };
+    //这里，div元素中有一个button。当button被点击的时候，它被移除并由一条阻止双击的信息取代，在网页中，这是非常常见的一种模式。而问题在于，当button从网页中移除时，button依然拥有事件处理器的添加事件。在div上设置 innerHTML 完全移除了 button，但是事件处理器依然被添加。有些浏览器，尤其是IE 8 及以前的浏览器，在这种情况下会出现问题，很有可能，元素和事件处理器的引用依然保留在内存中。如果你知道某个元素会被移除，最好你自己手动将事件处理器清除。详见13.70_removingEventHandler2.html
+    </script>
+</body>
+
+</html>

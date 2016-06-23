@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var fragment = document.createDocumentFragment();
+        var ul = document.createElement("ul");
+        var li = null;
+
+        for (var i = 0; i < 3; i++) {
+            li = document.createElement("li");
+            li.appendChild(document.createTextNode("Item " + (i + 1)));
+            ul.appendChild(li);
+        }
+
+        document.body.appendChild(ul);
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" style="width:100px;height:100px;background:red;">text test</div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.42_dynamicStyles3</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var style = document.createElement("style");
+        style.type = "text/javascript";
+        style.appendChild(document.createTextNode("body{color:red}"));
+        document.body.appendChild(style);
+        //同样的问题，这个方法可以在非IE的浏览器中正常运行，但是IE会把style标签当做特殊标签，所以不能获取style标签的child nodes。
+        //IE可以通过style元素的styleSheet.cssText属性来获取，详见10.43_dynamicStyles4.html
+    }
+    </script>
+</head>
+
+<body>
+    <div class="test">test</div>
+</body>
+
+</html>

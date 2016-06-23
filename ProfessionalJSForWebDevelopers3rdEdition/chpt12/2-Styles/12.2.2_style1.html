@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.2_style</title>
+    <script type="text/javascript">
+    window.onload = function() {
+            var div = document.getElementById('myDiv');
+
+            //set the background color
+            div.style.backgroundColor = "red";
+
+            //change the dimesions
+            div.style.width = "100px";
+            div.style.height = "100px";
+
+            //assign a border
+            div.style.border = "1px solid black";
+        }
+        //注意：在标准模式（standard mode）下，所有的测量尺寸必须包含尺寸的单位。但是在怪异模式（quirks mode）下，你可以将style.width设置为"20"，怪异模式默认你设置的是"20px"。而在标准模式下，将style.width设置为"20"将会被忽略，因为没有单位。所以在实际中，设置尺寸的时候最好包含单位。
+    </script>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+</body>
+
+</html>

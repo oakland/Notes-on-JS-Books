@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>15.4_Fills&Strokes</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //在 2D 背景下，有两个基本操作： fill 和 stroke。fill 自动在形状中填充某种样式（颜色、渐变或者图片），而 stroke 仅仅绘制边界的颜色。大多数的 2D 背景操作都同时拥有 fill 和 stroke 变量，他们如何被呈现则基于两种属性：fillStyle 和 strokeStyle。
+        //两个属性都可以被设置为字符串，或者渐变对象(a gradient object)，或者模式对象(pattern object)，而两者最开始默认都是 "#000000"。字符串值可以使用 CSS 颜色格式的任何一种来定义：name，hex，code，rbg，rbga，hsl，hsla。例如：
+        var drawing = document.getElementById('drawing');
+        //make sure <canvas> 被浏览器支持
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+            context.strokeStyle = "red";
+            context.fillStyle = "#0000ff";
+        }
+        //
+    };
+    </script>
+</head>
+
+<body>
+    <canvas id="drawing" width="200" height="200"></canvas>
+</body>
+
+</html>

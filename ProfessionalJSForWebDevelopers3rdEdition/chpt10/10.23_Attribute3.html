@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.23_Attribute3</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        //有两个属性通过getAttribute()方法和 . 的方法获取的内容是不一样的，一个是styel，一个是event-handler。style的例子如下所示，而event-handlder的和style类似，style通过 . 的方法获取的是对象，是因为可以通过更改style对象的键值对来让元素的样式发生改变，通过event-handler，例如onclick，通过 . 的方法获得是一个javascript的函数，而通过getAttribute()方法获得是原始的函数文本。通过 . 的方法之所以获得的是函数，是因为可以通过改变函数的内容来让元素的事件触发时产生不同的函数动作
+
+        console.log(div.style);//返回的是一个object
+        console.log(div.getAttribute('style'));//返回的只是style的文本内容
+
+        console.log(div.onclick);//返回的是一个object
+        console.log(div.getAttribute('onclick'));//返回的只是style的文本内容
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" style="width:100px;height:100px;background:red;" onclick="alert('hello');"></div>
+</body>
+
+</html>

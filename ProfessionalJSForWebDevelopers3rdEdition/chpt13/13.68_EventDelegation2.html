@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.68_EventDelegation2</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var EventUtil = {
+            addHandler: function(element, type, handler) {
+                if (element.addEventListener) {
+                    element.addEventListener(type, handler, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = handler;
+                }
+            },
+            getEvent: function(event) {
+                return event ? event : window.event;
+            },
+            getTarget: function(event) {
+                return event.target || event.srcElement;
+            },
+            preventDefault: function(event) {
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            removeHandler: function(element, type, handler) {
+                if (element.removeEventListener) {
+                    element.removeEventListener(type, handler, false);
+                } else if (element.detachEvent) {
+                    element.detachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = null;
+                }
+            },
+            stopPropagation: function(event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                } else {
+                    event.cancelBubble = true;
+                }
+            }
+        };
+        var list = document.getElementById('myLinks');
+        EventUtil.addHandler(list, "click", function(event) {
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            switch (target.id) {
+                case "doSomething":
+                    document.title = "I changed the document’s title";
+                    break;
+                case "goSomewhere":
+                    location.href = "http://www.wrox.com";
+                    break;
+                case "sayHi":
+                    alert("Hi");
+                    break;
+            };
+        });
+    };
+    //在这段代码中，使用了事件代理将唯一一个事件处理器添加给了ul元素。鉴于所有的列表项都是ul元素的子元素，他们的事件就会冒泡并交给这个函数来处理。事件的目标是被点击的列表项，所以你可以通过检查id属性来决定执行哪个特有的行动。与前面没有使用事件代理的代码相比，这段代码拥有更少的预付成本。因为代码仅仅获取了一个 DOM 元素，添加了一个事件处理器。对于用户而言，最终结果是相同的，但是这种方法需要更少的内存。所有使用buttons（绝大多数的鼠标事件和键盘事件）的事件，都是这个技术的候选对象。
+    //如果这个技术实用的话，你也许在考虑是否是给document添加唯一一个事件处理器，用于处理所有的页面事件。与传统技术相比，有以下优点：
+    //1. document对象可以直接获取，并且在页面的生命周期中，任何时间点都可以添加事件处理器（无需等待 DOMContentloaded 或者 load 事件）。这意味着，可点击元素一旦被渲染，就可以立即正确地执行函数。
+    //2. 设置页面中事件处理器需要更短的时间。添加一个事件处理器花费更少的 DOM 索引和更少的时间。
+    //3. 对于整个页面而言，需要更少的内存使用量，提高了整个页面的性能。
+    //事件代理的最佳候选人就是 click, mousedown, mouseup, keydown, keyup 和 keypress。mouseover 和 mouseout 事件也会冒泡，但是很难处理得当，并且为了合适的处理经常需要计算元素的位置（因为，mouseout在从一个元素移动到它的一个子元素或者从一个元素中移出时才会触发）。
+    </script>
+</head>
+
+<body>
+    <ul id="myLinks">
+        <li id="goSomewhere">Go somewhere</li>
+        <li id="doSomething">Do something</li>
+        <li id="sayHi">Say hi</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.67_EventDelegation</title>
+    <script type="text/javascript">
+    //过多的事件处理器这个问题的解决办法就是 event delegation。事件代理利用了事件冒泡来将某一个事件处理器来管理所有的某类事件。例如，click 事件，会一直冒泡到 document 级别。这意味着，将一个 onclick 事件处理器用于整个页面就成为可能，而不是每个可点击事件都拥有一个单独的 onclick 事件处理器。
+    //例子中的 HTML 包含了三个点击时执行动作的项目。通常，不经过思考我们就会直接添加3个事件处理器：
+    window.onload = function() {
+        var EventUtil = {
+            addHandler: function(element, type, handler) {
+                if (element.addEventListener) {
+                    element.addEventListener(type, handler, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = handler;
+                }
+            },
+            getEvent: function(event) {
+                return event ? event : window.event;
+            },
+
+            preventDefault: function(event) {
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            removeHandler: function(element, type, handler) {
+                if (element.removeEventListener) {
+                    element.removeEventListener(type, handler, false);
+                } else if (element.detachEvent) {
+                    element.detachEvent("on" + type, handler);
+                } else {
+                    element["on" + type] = null;
+                }
+            },
+            stopPropagation: function(event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                } else {
+                    event.cancelBubble = true;
+                }
+            }
+        };
+        var item1 = document.getElementById("goSomewhere");
+        var item2 = document.getElementById("doSomething");
+        var item3 = document.getElementById("sayHi");
+        EventUtil.addHandler(item1, "click", function(event) {
+            location.href = "http: //www.wrox.com";
+        });
+        EventUtil.addHandler(item2, "click", function(event) {
+            document.title = "I changed the document’s title";
+        });
+        EventUtil.addHandler(item3, "click", function(event) {
+            alert("hi");
+        });
+    }
+    //如果这个场景对于一个复杂网页应用的所有可点击元素都重复的话，结果就是非常长的大段代码仅仅用于添加事件处理器。而事件代理是通过给 DOM 树的可能的最高点添加唯一一个事件处理器，来解决这个问题。见13.68_EventDelegation2.html
+    </script>
+</head>
+
+<body>
+    <ul id="myLinks">
+        <li id="goSomewhere">Go somewhere</li>
+        <li id="doSomething">Do something</li>
+        <li id="sayHi">Say hi</li>
+    </ul>
+</body>
+
+</html>

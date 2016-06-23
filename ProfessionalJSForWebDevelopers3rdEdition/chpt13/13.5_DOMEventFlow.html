@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.5_DOMEventFlow</title>
+    <style type="text/css">
+    div#outBox {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    
+    div#innerBox {
+        width: 50px;
+        height: 50px;
+        background: yellow;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        //由DOM2级所认可的事件有3个阶段：时间捕获期，	目标期，和时间冒泡期。事件捕获首先发生，如果需要，则提供了拦截事件的机会。接着真正的目标获得事件。最后是冒泡的阶段，冒泡阶段允许对事件做出最后的响应。
+        //这一段有点不太懂，当点击inner的时候，到底应该是先弹出inner还是应该先弹出out????????
+        var outBox = document.getElementById('outBox');
+        var innerBox = document.getElementById('innerBox');
+        outBox.onclick = function() {
+            alert("out");
+        };
+        innerBox.onclick = function() {
+            alert("inner");
+        };
+    }
+    </script>
+</head>
+
+<body>
+    <div id="outBox">
+        <div id="innerBox"></div>
+    </div>
+</body>
+
+</html>

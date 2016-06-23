@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.7_HTMLEventHandlers</title>
+    <script type="text/javascript">
+    //每一个被某一元素所支持的事件，都可以通过拥有事件处理器名字的HTML属性来指定。属性的值应当是可执行的JS代码。例如，当按钮被点击时，为了执行某些JS代码，你可以使用下面的代码：
+    //<input type="button" value="Click me" onclick="alert('Clicked')" />
+    //当按钮被点击的时候，弹框就会展示出来。
+    //HTML定义的事件处理器可以包含要执行的精确动作，也可以调用页面中其他地方定义的脚本。
+    function showMessage() {
+        alert("Hello world!");
+    }
+    //通过这种方法指定的事件处理器有一些特殊的方面。首先，一个包含了attribute值的函数被创建。这个函数拥有一个特殊的局部变量，叫做event，即我们说的事件对象（关于事件对象在后面的章节中会讨论）：
+    //<!--outputs "click"-->
+    //<input type="button" value="Click me" onclick="alert(event.type)">
+    //函数中的this值，等价于事件的目标元素，例如：
+    //<!--outputs "Click me"-->
+    //<input type="button" value="Click me" onclick="alert(this.value)">
+    //balabala....这意味着事件处理器可以很容易获取其属性。下面的代码和前面的例子可以获得同样的执行结果：
+    //<!--outputs "Click me"-->
+    //<input type="button" value="Click me" onclick="alert(value)">
+    //如果元素是form input元素，那么作用域链可以包含其父级表单元素的入口，balabala....
+    //基本上，这个作用域链增强允许事件处理器的代码允许事件处理器获得同一表单中的其他成员，而不用引用表单元素本身。例如
+    // <form action="" method="post">
+    // 	 <input type="text" name="username" value="">
+    // 	 <input type="button" value="Echo Username" onclick="alert(username.value)">
+    // </form>
+    //在HTML中指定事件处理器会有一些缺点。首先是时间问题：很有可能，HTML元素和用户的交互先于事件处理器代码出现在网页上。balabala...所以尽量避免在HTML文档中指定事件处理器
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Click me" onclick="showMessage()">
+</body>
+
+</html>

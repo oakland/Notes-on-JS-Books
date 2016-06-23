@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.10_IEEventHandler</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //IE使用attachEvent() 和 detachEvent()来添加和移除事件处理器。这两个方法都接受两个参数：事件处理器名称和事件处理器函数。鉴于IE8和早期的浏览器只支持事件冒泡，通过attachEvent()添加的事件处理器只在冒泡阶段被添加。
+        var btn = document.getElementById('myBtn');
+        btn.attachEvent("onclick", function() {
+            alert("Clicked");
+        });
+        //注意，attachEvent()的第一个参数是onclick，而addEventListener()的第一个参数是click。
+        //注意，attachEvent()中的this等价于window，当进行跨浏览器开发时，这个一点非常重要。
+        var btn = document.getElementById('myBtn');
+        btn.attachEvent("onclick", function() {
+            alert(this === window); //true
+        });
+        //attachEvent()和addEventListener()一样，可以给同一个元素添加多个事件处理器
+        var btn = document.getElementById('myBtn');
+        btn.attachEvent("onclick", function() {
+            alert("Clicked");
+        });
+        btn.attachEvent("onclick", function() {
+            alert("Hello world!");
+        });
+        //这里，attachEvent()被调用了两次，向同一个button添加了两个不同的时间处理器。与DOM方法不同，事件处理器以与添加时候相反的顺序被触发。上面这个例子中，首先弹出的是"Hello world!"，接着才是"Clicked"。
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

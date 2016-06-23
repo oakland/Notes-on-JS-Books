@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.14_DOMEventObject2</title>
+    <script type="text/javascript">
+    window.onload = function() {
+            //event对象包含了一些导致事件发生的属性和方法。根据事件类型的不同，属性和方法也会有所不同，但是所有的事件都拥有如下表格所列的成员。
+            //在event handler内部，this对象总是等同于currentTarget的值，而target包含了事件的真实目标。如果事件处理器直接被指定（或者说赋值）给期望的目标，那么this，currentTarget，target三者拥有相同的值。如下面的例子：
+            // var btn = document.getElementById('myBtn');
+            // btn.onclick = function() {
+            //     alert(event.currentTarget === this); //true
+            //     alert(event.target === this); //true
+            // };
+            //上述代码检查了currentTarget，target，this三者之间的关系。鉴于click事件的目标是button，所以三者相等。如果event handler存在于button的父级元素，例如document.body，则三者就不相等了。如下：
+            document.body.onclick = function(event) {
+                alert(event.currentTarget === document.body); //true
+                alert(this == document.body); //true
+                alert(event.target === document.getElementById('myBtn')); //true
+                };
+            }
+    </script>
+</head>
+
+<body>
+    <button id="myBtn">button</button>
+    <p>jkadfljl</p>
+    <p>jkadfljl</p>
+    <p>jkadfljl</p>
+    <p>jkadfljl</p>
+    <p>jkadfljl</p>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.20_srcElement</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //鉴于事件处理器的作用域根据其指定方式的不同而有所不同，所以this值永远无法等于event 目标，所以使用event.srcElement来代替是不错的想法。如下例所示：
+        var btn = document.getElementById('myBtn');
+        btn.onclick = function() {
+            alert(window.event.srcElement === this); //true
+        };
+        btn.attachEvent("onclick", function(event) {
+            alert(event.srcElement === this); //false
+        });
+        //第一个事件处理器是通过DOM 0级来指定的，srcElement属性等于this，但是在第二个事件处理器中，两个值就不相同了。
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.1_querySelector</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //querySelector接受一个css查询词，返回所有符合查询结果的后代元素的第一个元素，注意只返回一个元素且是后代元素的第一个元素
+
+        //get the body element
+        var body = document.querySelector("body");
+        console.log(body);
+
+        //get the element with the ID "myDiv"
+        var myDiv = document.querySelector("#myDiv");
+        console.log(myDiv);
+
+        //get first element with a class of "selected"
+        var selected = document.querySelector(".selected");
+        console.log(selected);
+
+        //get first image with class of "button"
+        var img = document.querySelector("img.button");
+        console.log(img);
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+    <div class="selected">first selected</div>
+    <div class="selected"></div>
+    <div class="selected"></div>
+    <img src="" alt="first img" class="button">
+    <img src="" alt="" class="button">
+    <img src="" alt="" class="button">
+</body>
+
+</html>

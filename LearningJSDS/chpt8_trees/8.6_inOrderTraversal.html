@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.6_inOrderTraversal</title>
+	<script type="text/javascript">
+		//in-order 遍历以升序的方式访问一个 BST 的所有节点，意味着这种方式从最小的之开始访问直到最大的值。in-order 可以用于排序一个 tree。我们来看下它的实现。
+		this.inOrderTraverse = function(callback) {
+			inOrderTraverseNode(root, callback);   //{1}
+		};
+		// inOrderTraverse 方法接受一个回调函数作为一个参数。这个函数用于，当节点被访问到的时候（这是访问者模式 visitor pattern，要想了解更多信心，请参阅https://en.wikipedia.org/wiki/Visitor_pattern），执行我们想要执行的动作。鉴于，我们对 BST 操作的大多数的算法都是递归，我们将使用一个私有的协助函数，能够帮助我们获取 node 和 callback，行{1}：
+		var inOrderTraverseNode = function(node, callback) {
+			if (node !== null) {
+				inOrderTraverseNode(node.left, callback);    //{3}
+				callback(node.key);                          //{4}
+				inOrderTraverseNode(node.right, callback);   //{5}
+			}
+		};
+		// 使用 in-order 方法来遍历 tree，首先我们需要判断，我们传入的 node 是否为 null（这是递归执行时候的停止点——行{2}——递归算法的基准点）。
+		//接着，我们访问了 left node，行{3}，递归的调用了同样的函数。接着，我们访问节点{4}，并执行一个动作，接着我们又访问了 right node{5}。
+		//我们使用前面主题中讨论过的 tree 作为例子，执行以下这个方法：
+		function printNode(value) {    //{6}
+			console.log(value);
+		}
+		tree.inOrderTraverse(printNode)    //{7}
+		// 首先，我们需要新建一个回调函数{6}。我们所做的只是在浏览器的控制台将 node's value 打印出来。接着，我们调用 inOrderTraverse 方法，将回调函数作为参数传入{7}。当我们执行这段代码时，控制台的输出结果如下所示：
+		// 3 5 6 7 8 9 10 11 12 13 14 15 18 20 25
+		//下图展示了 inOrderTraverse 方法所走过的路径：<tree6.png>
+
+	</script>
+</head>
+<body>
+	<img src="tree6.png" alt="">
+</body>
+</html>

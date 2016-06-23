@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.27_loadEvent2</title>
+</head>
+
+<body onload="alert('Loaded!')">
+<!-- 第二种指定onload事件处理器的方式是给<body>添加一个onload属性 -->
+<!-- 总的来说，window上发生的任何事件都可以通过给<body>元素添加属性来实现，因为在HTML中无法获取window元素。这的确是一个向后兼容的hack，但是在所有的浏览器中都被支持的很好。我们建议尽可能的使用JS的方法，而不是在<body>上添加属性的方法。 -->
+<!-- 根据DOM 2级事件，load事件应该是在document中触发，而不是window。但是为了向后兼容，在所有的浏览器中，load都在window上执行。 -->
+</body>
+
+</html>

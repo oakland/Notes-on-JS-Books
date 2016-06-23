@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript">
+    document.addEventListener("storage", function() {
+        alert("Storage is changing!");
+    });
+    console.log(encodeURIComponent);
+    console.log(applicationCache);
+    sessionStorage.book = "JavaScript Professional";
+    console.log(sessionStorage.book);
+    // document.cookie = encodeURIComponent("name") + "=" + encodeURIComponent("value") + "; domain=.wrox.com; path=/";
+    document.cookie = "name=jizq";
+    console.log(document.cookie);
+    </script>
+</body>
+
+</html>

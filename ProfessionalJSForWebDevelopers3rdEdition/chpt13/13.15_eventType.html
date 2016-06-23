@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.15_eventType</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //当你希望通过一个函数来处理多个不同的事件时，type属性就会非常有用
+        var btn = document.getElementById('myBtn');
+        var handler = function(event) {
+            switch (event.type) {
+                case "click":
+                    alert("Clicked");
+                    break;
+
+                case "mouseover":
+                    event.target.style.backgroundColor = "red";
+                    break;
+
+                case "mouseout":
+                    event.target.style.backgroundColor = "";
+                    break;
+            }
+        };
+        btn.onclick = handler;
+        btn.onmouseover = handler;
+        btn.onmouseout = handler;
+    }
+    </script>
+</head>
+
+<body>
+    <button id="myBtn">button</button>
+</body>
+
+</html>

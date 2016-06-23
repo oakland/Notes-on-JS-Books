@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.2_querySelectorAll</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //querySelectorAll()和querySelector()类似，都接受一个css查询词参数，但是querySelectorAll()返回的所有符合css查询词的后代元素，不过返回的是静态的NodeList实例(static instance of NodeList)，而不是之前在第十章中所说的，返回动态的NodeList
+
+        //get all <em> elements in a <div>(similar to getElementsByTagname("em"))
+        var ems = document.getElementById('myDiv').querySelectorAll("em");
+        console.log(ems.length);
+
+        //get all elements with class of "selected"
+        var selecteds = document.querySelectorAll(".selected");
+        console.log(selecteds.length);
+
+        //get all <strong> elements inside of <p> elements
+        var strongs = document.querySelectorAll("p strong");
+        console.log(strongs.length);
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv">Hello <em>world!</em> I <em>love</em> you!</div>
+    <div class="selected">selected1</div>
+    <div class="selected">selected1</div>
+    <div class="selected">selected1</div>
+    <p><strong>Hello</strong> JavaScript! I <strong>love</strong> JavaScript</p>
+</body>
+
+</html>

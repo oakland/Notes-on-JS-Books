@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.37_modifierKeys</title>
+    <script type="text/javascript">
+    //键盘上的很多修饰键，比如Shitf Ctrl Alt Meta，经常被用来触发鼠标事件。DOM规定了四种属性来代表代表这类修饰键的状态：shiftKey, ctrlKey, altKey, metaKey。当相应的键被按下时，每一个属性都包含了true的布尔值，而没有被按下时，则是false。当鼠标事件发生时，你可以通过检查这些属性来查看这些键的状态。
+    var div = document.getElementById('myDiv');
+    EventUtil.addHandler(div, "click", function(event) {
+        event = EventUtil.getEvent(event);
+        var keys = new Array();
+        if (event.shiftKey) {
+            keys.push("shift");
+        }
+        if (event.ctrlKey) {
+            keys.push("ctrl");
+        }
+        if (event.altKey) {
+            keys.push("alt");
+        }
+        if (event.metaKey) {
+            keys.push("meta");
+        }
+
+        alert("Keys: " + keys.join(","));
+    });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

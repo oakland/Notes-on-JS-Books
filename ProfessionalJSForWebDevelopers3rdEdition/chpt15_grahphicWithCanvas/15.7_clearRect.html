@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>15.6_drawingRectangles2</title>
+    <script type="text/javascript">
+    //通过 clearRect() 方法你可以擦除画布中的一片区域。这个方法用于将画布中的一片区域变为透明。通过绘制形状，接着清除一片区域，你可以创建出非常有意思的效果，切掉另一个形状的一部分。
+    window.onload = function() {
+        var drawing = document.getElementById('drawing');
+        //make sure <canvas> is completely supported
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+
+            /*
+             * Based on Mozilla’s documentation:
+             * http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage 
+             */
+
+            //draw a red rectangle
+            context.fillStyle = "#ff0000";
+            context.fillRect(10, 10, 50, 50);
+
+            //draw a blue rectangle that is semi-transparent
+            context.fillStyle = "rgba(0, 0, 255, 0.5)";
+            context.fillRect(30, 30, 50, 50);
+
+            //clear a rectangel that overlaps both of the previous rectangels
+            context.clearRect(40, 40, 10, 10);
+        }
+    };
+    </script>
+</head>
+
+<body>
+    <canvas id="drawing"></canvas>
+</body>
+
+</html>

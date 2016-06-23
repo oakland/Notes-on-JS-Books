@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.1.4_argumentPassing</title>
+	<script type="text/javascript">
+		//ECMAScript 中的所有函数的参数都是通过 值 传递的。这意味函数之外的值被拷贝到了函数内部的一个参数中，就像从一个变量拷贝一个值到另外一个变量一样。如果值是原始值，那么就像原始值拷贝一样，如果值是引用值，那么就会像引用值拷贝一样。这经常是令开发者迷惑的一点，因为变量既可以通过值获取，也可以通过引用获取，但是参数只通过值传入。
+		//当参数按值传递的时候，值被拷贝到了一个局部变量中（实名参数，或者是一个 arguments 对象）。当参数按引用传递的时候，值在内存中的地址会被保存到局部变量中，这意味着局部变量的变化会反映到函数外面。（在 ECMAScript 中，这是不可能发生的）。如下例：
+		function addTen(num) {
+			num += 10;
+			return num;
+		}
+		var count = 20;
+		var result = addTen(count);
+		alert(count); //20 - no change
+		alert(result); //30
+		//这里函数 addTen() 拥有一个 num 参数，num 参数本质上是一个局部变量。当 addTen() 被调用的时候，变量 count 作为参数被传入。这个变量的值是 20，20 被传入参数 num 中，用于函数内部。在函数内部，参数 num 的值发生了变化，增加了10，但是这并未改变函数外部的原始变量 count。参数 num 和 变量 count 互相不认识；他们只是恰好拥有相同的值而已。如果 num 按照引用被传递的话， count 的值会变为 30 反映函数内部的变化。当使用诸如数字这样的原始值的时候，这个事实尤为明显，但是当使用对象的时候，事情就没有那么显而易见了。如下例：
+		function setName(obj) {
+			obj.name = "Nicholas";
+		}
+		var person = new Object();
+		setName(person);
+		alert(person.name);
+		//在上述代码中，创建了一个对象并把它存储在 person 变量中。这个对象接着被传入到 setName() 方法中，在方法内部它被拷贝给了 obj。在函数内部， obj 和 person 都指向同一个对象，结果就是 obj 通过引用获取到了对象，即使对象是按值传入到函数中的。当 name 属性在函数内部被设置给 obj 的时候，这个变化就会反映到函数外部，因为它所指向的对象存在于全局堆中。很多开发者就此误以为，当一个对象的本地变化被反映到全局中的时候，就意味着参数是按应用传递的。为了证明对象是按值传递的，思考一下下面的例子：
+		function setName(obj) {
+			obj.name = "Nicholas";
+			var obj = new Object();
+			obj.name = "Grey";
+		}
+		var person = new Object();
+		setName(person);
+		alert(person.name); //"Nicholas"
+		//本例和上例唯一的区别就在于 setName() 函数内部增加的两行代码，重新定义了 obj 为一个新的对象，而且拥有了一个不同的 name 属性。当 person 被传入到 setName() 中的时候，它的 name 被设置为 Nicholas。接着变量 obj 被设置为一个新对象，它的 name 属性被设置为 Grey。如果 person 是按引用传递的话，那么 person 就会自动变为指向 name 为 Grey 的对象。然而，当再次获取 person.name 的时候，它的值是 Nicholas，这就意味着尽管参数的值在函数内部发生了变化，但是原始的引用依然保持不变。当 obj 在函数内被复写的时候，它就成为了一个局部对象的指针。函数结束执行之后，局部对象就被摧毁。
+		//把 ECMAScript 中的函数参数想象成局部变量。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>7.3_useDictionary</title>
+	<script type="text/javascript">
+		//首先创建一个 dictionary 实例，接着添加三个邮箱。我们将使用 dictionary 实例来展示一个邮箱地址薄
+		var dictionary = new Dictionary();
+		dictionary.set("Gandalf","gandalf@email.com");
+		dictionary.set("John","johnsnow@email.com");
+		dictionary.set("Tyrion","tyrion@email.com");
+
+		console.log(dictionary.has("Gandalf"));//true
+		console.log(dictionary.size()); //3
+
+		console.log(dictionary.keys()); //["Gandalf","John","Tyrion"]
+		console.log(dictionary.values());//["gandalf@email.com","johnsnow@email.com","tyrion@email.com"]
+		console.log(dictionary.get("Tyrion"));//tyrion@email.com
+
+		dictionary.remove("John");
+		console.log(dictionary.keys()); //["Gandalf","Tyrion"]
+		console.log(dictionary.values());//["gandalf@email.com","tyrion@email.com"]
+		console.log(dictionary.getItems());//Object {"Gandalf":"gandalf@email.com", "Tyrion":"tyrion@email.com"}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ref_split</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var str1 = "Hello world";
+        var subStrs1 = str1.split(/\s+/);
+        console.log(subStrs1); //["Hello", "world"]
+
+        var str2 = "2016.05.19";
+        var subStrs2 = str2.split(/\./);
+        console.log(subStrs2); //["2016", "05", "19"]
+
+        var str3 = "abaabaaab";
+        var subStrs3 = str3.split(/b/);
+        console.log(subStrs3); //["a", "aa", "aaa", ""]
+
+        //通过上面的例子可以看到:
+        //1. split是将字符串转化成数组的一种方法，所以下次要是有字符串需要转化成数组的时候第一时间想到的就应该是split方法
+        //2. 要正确使用split方法，要学会正确使用正则表达式，关于正则表达式的写法，需要多加练习，熟悉常见的正则表达式，这个需要总结！！！
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

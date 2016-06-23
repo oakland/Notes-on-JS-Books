@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.9_focusManagement</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var button = document.getElementById('myButton');
+        button.focus();
+        alert(document.activeElement === button); // true
+
+        alert(document.hasFocus()); // true
+    };
+    //docment.acticeElemnet包含一个指针，指向当前获取焦点的元素。除了通过操作鼠标或者键盘获取焦点之外，元素还可以通过focus()方法获取焦点
+    //默认情况下，文档初次加载时document.activeElement指向document.body，而在文档完全加载完成之前，document.activeElement指向null
+    //document.hasFocus()返回一个布尔值，表示文档是否已经拥有焦点
+    </script>
+</head>
+
+<body>
+    <button id="myButton">Button</button>
+</body>
+
+</html>

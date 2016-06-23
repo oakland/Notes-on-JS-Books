@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14.5_formFields</title>
+    <script type="text/javascript">
+    //除了通过正常的 DOM 方法获取表单字段元素之外，所有的表单元素都是表单中 elements 集合这个属性的部分。elements 集合是一个表单的顺序索引，包含<input> <textarea> <button> <select> 和 <fileset>。每一个 elements 集合中的字段都可以通过在整个位置中的数字索引或者 nama 属性获取：
+    var form = document.getElementById('myForm');
+
+    //get the first field in the form
+    var field1 = form.elements[0];
+
+    //get the filed named "textbox1"
+    var field2 = form.elements["textbox1"];
+
+    //get the number of fileds
+    var fieldCount = form.elements.length;
+
+    //如果某个 name 被多个表单控制器所使用，例如 radio buttons，那么一个包含那个名字的所有元素的 HTMLCollection 就会被返回。例如下面的这个表单。
+    //HTML 中的这个表单拥有3个 name 值为 color 的 radio controls，将这个字段紧紧的捆绑在一起。当使用 elements["color"] 时，会返回一个 NodeList，包含了这3个元素。当使用 elements[0] 时，返回的是第一个元素。
+    var form = document.getElementById('myForm');
+
+    var colorFileds = form.elements["color"];
+    alert(colorFileds.length); //3
+
+    var firstColorField = colorFileds[0];
+    var firstFormField = form.elements[0];
+    alert(firstColorField == firstFormField); //true
+    </script>
+</head>
+
+<body>
+    <form method="post" id="myForm">
+        <ul>
+            <li>
+                <input type="radio" name="color" value="red">Red</li>
+            <li>
+                <input type="radio" name="color" value="green">Green</li>
+            <li>
+                <input type="radio" name="color" value="blue">Blue</li>
+        </ul>
+    </form>
+</body>
+
+</html>

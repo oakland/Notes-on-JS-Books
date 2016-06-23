@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.21_Attribute1</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        alert(div.getAttribute("id")); //"myDiv"
+        alert(div.getAttribute("ID")); //"myDiv"，注意，getAttribute()方法对于大小写不敏感，所以大写或者小写的都可以
+        alert(div.getAttribute("class")); //"bd"，注意：这里传入的参数是"class"，而不是原来的"className"
+        alert(div.getAttribute("title")); //"Body text"
+        alert(div.getAttribute("lang")); //"en"
+        alert(div.getAttribute("dir")); //"ltr"
+
+        alert(div.getAttribute("hello")); //"null"，注意如果没有设置的话统统返回null
+        alert(div.getAttribute("my_special_attribute")); //"hello"
+        //可以通过getAttribute()方法获取自定义属性，还要注意！！在HTML5中自定义的属性需要加前缀 data- ，否则自定义属性无效
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" class="bd" title="Body text" lang="en" dir="ltr" my_special_attribute="hello"></div>
+</body>
+
+</html>

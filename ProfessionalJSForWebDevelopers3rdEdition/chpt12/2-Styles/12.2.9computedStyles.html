@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.9computedStyles</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //style 对象提供了支持这个属性的元素的 style 属性信息（有些元素不支持 style 属性，那么就无法获取这些元素的 style 对象，而且这个 style 属性值得是元素的行内样式），而这个 style 对象不包含从样式表中层叠的内容。DOM 2 级提供了 getComputedStyle()方法。这个方法接收两个参数：想要获取样式的元素，和一个伪元素字符串（例如":after"）。第二个参数可以设置为 null，如果不需要伪元素的话。 getComputedStyle() 方法返回一个 CSSStyleDeclaration 对象，包含了所有的计算后的元素样式。
+        //在这个例子中，<div> 元素既有行内样式，又有行内样式表样式。下面的代码可以获得 <div> 元素计算后的样式
+        var myDiv = document.getElementById('myDiv');
+        var computedStyle = document.defaultView.getComputedStyle(myDiv, null);
+
+        alert(computedStyle.backgroundColor); //red
+        alert(computedStyle.width); //100px
+        alert(computedStyle.height); //200px
+        alert(computedStyle.border); //"1px solid black" in some browsers
+        //注意，background 不是 blue，是因为行内样式把样式表的样式覆盖了。注意，border 属性是由很多属性组成的复合属性，比如 border-left-width，border-left-color等等，所以有些浏览器的 getComputedStyle() 返回值不是 "1px solid black"
+        //注意，尽管很多浏览器都支持这个函数，但是函数的返回值的表达方式有时候会有不同。例如，FF 和 S 会对于所有的 color 返回值都是 rgb() 格式，而 O 返回的 color 值都是 hexadecimal 格式的。在使用 getComputedStyle() 方法的时候最好多尝试下不同的浏览器返回值。
+        //IE 不支持 getComputedStyle() 方法，但是它支持另外一种方法来获取层叠样式。每一个拥有 style 属性的元素同时会拥有一个 currentStyle 的属性。 currentStyle 属性是 CSSStyleDeclaration 的实例，包含了元素所有的最终计算属性。下面是在 IE 中获取元素的样式的方法：
+        var myDiv = document.getElementById('myDiv');
+        var computedStyle = myDiv.currentStyle;
+
+        alert(computedStyle.backgroundColor); //red
+        alert(computedStyle.width); //100px
+        alert(computedStyle.height); //200px
+        alert(computedStyle.border); //undefined
+        //border 样式不会在 IE 中返回，因为这是一个复合样式
+        //关于 computed styles 要谨记的一点是，在所有的浏览器中，computed styles 都是只读的（read-only）；你无法通过 computed style 对象来改变元素的 CSS 属性。同时，computed styles 包含了浏览器内置样式表的样式信息，所以，有默认值的 CSS 样式也会被呈现在 computed style 中。例如，在所有的浏览器中， visibility 属性都有默认值，但是这个值在每次执行的时候都会不同。有些浏览器将 visibility 属性默认设置为 visible，而另外一些则将这个属性设置为 inherit。你无法保证浏览器呈现的 CSS 属性默认值相同。
+    };
+    </script>
+    <style type="text/css">
+    #myDiv {
+        background-color: blue;
+        width: 100px;
+        height: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="myDiv" style="background-color: red; border: 1px solid black"></div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.9_DOM2EventHandlers</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //DOM 2 级事件定义了两种方法来处理事件处理器的指定和移除：addEventListener() 和 removeEventListener()。这两个方法存在于所有的DOM节点中，并且接收3个参数：要处理的事件名称，事件处理器函数，和一个布尔值，用于指明什么时候调用事件处理器，在捕获阶段（true）还是冒泡阶段（false）。
+        //给button添加一个click事件处理器，你可以使用下面的代码：
+        var btn = document.getElementById('myBtn');
+        btn.addEventListener("click", function() {
+            alert(this.id)
+        }, false);
+        //使用DOM 2级的最大的好处就是，可以添加多个事件处理器。
+        var btn = document.getElementById('myBtn');
+        btn.addEventListener("click", function() {
+            alert(this.id)
+        }, false);
+        btn.addEventListener("click", function() {
+                alert("Hello world!");
+            }, false)
+            //这里给button添加了两个事件处理器，事件处理器将会按照添加的顺序依次触发，所以首先弹出元素的ID，接着弹出"Hello world!"。
+            //通过addEventListener()添加的事件处理器，只能通过removeEventListener来移除，并且要传入和添加事件处理器时完全相同的参数。这就意味着，通过addEventListener()添加的匿名函数无法被移除：
+            // var btn = document.getElementById('myBtn');
+            // btn.addEventListener("click", function() {
+            //     alert(this.id)
+            // }, false);
+            // //other code here
+
+        // btn.removeEventListener("click", function() {   //won't work
+        //     alert(this.id)
+        // }, false);
+
+        //通过下面的方法可以实现移除
+        //var btn = document.getElementById('myBtn');
+        //var handler = function() {alert(this.id)};
+        // btn.addEventListener("click", handler, false);
+        // btn.removeEventListener("click", handler, false);//works
+        //在大多数的情况下，事件处理器都是在冒泡阶段被添加的，因为这提供了非常广阔的跨浏览器支持。在捕获阶段添加事件处理器，最好是当你需要拦截事件，在它到达目标之前。如果没有必要的话，建议尽量避免事件捕获！！！！
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

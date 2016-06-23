@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.42_touchDeviceSupport</title>
+    <script type="text/javascript">
+    //运行IOS 或者 Andriod的触屏设备拥有一些有趣的执行，当然是因为触屏完全没有鼠标交互事件。当开发触屏设备时，牢记以下内容：
+    //1. dbclick事件完全不被支持。双击浏览器窗口会放大，没有别的办法覆盖这个行为。
+    //2. 触碰一个可点击的元素会导致mousemove事件的发生。如果这个行为导致了内容的变化，那么不会有其他事件触发。如果屏幕上没有发生任何变化，那么mousedown mouseup click事件依次会被触发。当点击一个不可以点击的元素时，任何事件都不会被触发。可点击元素表示那些点击时有默认行为的元素，或者那些被赋予onclick事件处理器的元素。
+    //3. mousemove事件会同时触发mouseover 和 mouseout。
+    //4. 当两个手指同时在屏幕上的时候，mousewheel和scroll事件会被触发，随着手指的移动页面会发生滚动。
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

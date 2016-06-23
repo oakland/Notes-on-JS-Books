@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13.32_focusEvent</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			//当页面中的元素获得或者失去焦点的时候会触发focus事件。这些事件与document.hasFocus()和document.activeElement一起让我们能够洞察到用户是如何导航页面的。有6个focus事件：
+			//1. blur，当元素失焦的时候会触发。这个事件不会冒泡并且在所有浏览器中都支持。
+			//2. DOMFocusIn，当元素获取焦点时触发，这个是HTML focus事件的冒泡版本。Opera是仅有的支持这一事件的主要浏览器。DOM 3 级时间抛弃了DOMFocusIn，而选择了focusin。
+			//3. DOMFocusOut，当元素失去焦点时触发，这个是HTML focus事件的基因版本。Opera是仅有的支持这一事件的主要浏览器。DOM 3 级时间抛弃了DOMFocusOut，而选择了focusout。
+			//4. focus，当元素获取焦点的时候触发。这个事件不会冒泡并且在所有浏览器中都支持。
+			//5. focusin，Fires when an element has received focus. This is a bubbling version of the focus HTML event and is supported in Internet Explorer 5.5+, Safari 5.1+, Opera 11.5+, and Chrome.
+			//6. focusout，Fires when an element has lost focus. This is a generic version of the blur HTML event and is supported in Internet Explorer 5.5+, Safari 5.1+, Opera 11.5+, and Chrome.
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

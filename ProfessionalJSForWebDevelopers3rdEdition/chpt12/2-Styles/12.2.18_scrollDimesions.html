@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.18_scrollDimesions</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //最后一组尺寸是scroll dimesions，scroll dimesions提供内容正在滚动的元素的信息。一些元素，例如<html>，不需要代码就可以自动滚动，而其他元素通过CSS overflow属性可以实现滚动。四个scroll dimesions如下所示：
+        //1. scrollHeight，在没有滚动条出现的情况下，内容的总体高度。
+        //2. scrollLeft，内容区域左侧被隐藏的像素值，可以通过设置这个属性值来改变元素的滚动位置。
+        //3. scrollTop，内容区域顶部被隐藏的像素值，可以通过设置这个属性值来改变元素的滚动位置。
+        //4. scrollWidth，在没有滚动条出现的情况下，内容区域的总宽度
+        //scrollWidth 和 scrollHeight在确定指定元素真实的内容(content)尺寸时非常有用。例如，<html>元素被认为是在网页浏览器中滚动的元素（在IE5.5及以前的版本中，<body>元素是滚动元素）。因此，拥有垂直滚动条的整个页面的高度就是document.documentElement.scrollHeight。
+        //对于没有滚动的文档而言，scrollWidth 和 scrollHeight 以及 clientWidth 和 clientHeight 之间的关系并不明确。
+        //检查document.documentElement的这些属性，在不同的浏览器之间会导致差异。……
+        //当尝试去确定一个文档的总高度时，包括基于视口的最小高度时，你必须最大化的利用scrollWidth/clientWidht 和 scrollHeight/clientHeight，以保证不同浏览器之间的准确值。如下：
+        var docHeight = Math.max(document.documentElement.scrollHeight,
+					        	document.documentElement.clientHeight);
+        var docWidth = Math.max(document.documentElement.scrollWidth,
+					        	document.documentElement.clientWidht);
+        //注意，对于处于怪异模式的IE浏览器，你需要使用document.body替换document.documentElement。
+    }
+    </script>
+</head>
+
+<body>
+    <img src="img/scrollDimesions.png" alt="">
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14.6_commonFormFieldProperties</title>
+    <script type="text/javascript">
+    //除了 <fieldset> 元素，其他所有的表单字段都拥有共同的属性。因为 <input> 类型代表了很多的表单字段，一些属性只被某些固定的字段类型使用，而另外一些则不论是什么类型都可以使用。通用的表单字段属性和放阿飞如下：
+    //1. disabled，表示字段是否无法使用的布尔值。
+    //2. form，字段所从属的表单的引用。这个属性是只读的。
+    //3. name，字段的名称。
+    //4. readOnly，表明字段是否只读的布尔值。
+    //5. tabInde，展示字段的切换顺序。
+    //6. type，字段的类型：checkbox "radio" 等等
+    //7. value，将要提交给服务器的字段的值，对于输入文件的字段，这个属性是只读的，并且包含了文件在电脑上的路径。
+    //除了 form 属性之外， JS 可以动态的修改其他的任何属性。
+    var form = document.getElementById('myForm');
+    var field = form.elements[0];
+
+    //change the value
+    field.value = "Another value";
+
+    //check the value of form
+    alert(field.form === form); //true
+
+    //set focus to the field
+    field.focus();
+
+    //diable the field
+    field.disabled = true;
+
+    //change the type of field (not recommended, but possible for <input>)
+    field.type = "checkbox";
+
+    //动态改变表单字段属性的能力，能够让你在任何时候以任何方式来改变表单。例如，网页表单常见的问题之一就是用户有时候点击两次提交按钮。当牵涉到信用卡订购的时候，这是个很大的问题，因为这有可能会导致重复收费。这个问题的常见解决办法就是，点击按钮被点击之后就 disable 这个按钮，这可以通过监听 submit 事件并 disable 提交按钮来实现。下面的代码就完成了这个功能：
+
+    //Code to prevent multiple form submissions
+    EventUtil.addHandler(form, "submit", function(event) {
+        event = EventUtil.getEvent(event);
+        var target = EventUtil.getTarget(event);
+
+        //get the submit button
+        var btn = target.elements["submit-btn"];
+
+        //disable it
+        btn.disabled = true;
+    });
+    //这段代码给表单的 submit 事件添加了一个事件处理器。当事件被触发时，提交按钮就被获取，并且将其 disabled 属性设置为 true。注意，你不能通过给提交按钮添加 onclick 事件实现这个功能，因为不同的浏览器会有 timing issue：有些浏览器在表单的 submit 事件前会触发 click 事件，而有些是在之后。 对于那些先触发 click 的浏览器，按钮在提交事件发生前就会被 disabled，这就意味着表单永远不会被提交。因此最好通过 submit 事件来 disable 提交按钮。如果你不是通过 submit button 来进行提交的话，这个方法是无效的，因为，submit 事件只能通过 submit button 来触发。
+    //除了 <fieldset> 之外，其他的表单字段都有 type 属性。对于 <input> 元素，这个值等于 HTML 的 type 属性。对于其他元素，type 的值的设置如下表所示：
+    </script>
+</head>
+
+<body>
+    <img src="img/typeValueTable.png" alt="">
+</body>
+
+</html>

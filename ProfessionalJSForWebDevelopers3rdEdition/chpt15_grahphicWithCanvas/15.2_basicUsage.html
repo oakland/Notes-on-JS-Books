@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>15.2_basicUsage</title>
+    <script type="text/javascript">
+    // <canvas> 元素至少需要 width 和 height 两个属性，以明确其绘制区域的大小。通常情况下 <canvas> 标签之间的内容不会被展示，除非浏览器不支持 <canvas>。
+    //和其他 HTML 元素一样，width 和 height 属性也是 DOM 元素对象的属性一样，可以被获取也可以在任何时候被改变。整个元素也可以通过 CSS 来编辑样式，元素会一直不可见，除非添加了样式或者在上面绘制了内容。
+    //为了在 canvas 上进行绘制，你需要获得 drawing context。drawing context 引用可以通过 getContext()方法实现。例如，传入 "2D" 这个参数可以获取 2D context object：
+    var drawing = document.getElementById('drawing');
+    //make sure <canvas> 被浏览器支持
+    if (drawing.getContext) {
+        var context = drawing.getContext("2D");
+        //more code here
+    }
+
+    //当使用 <canvas> 元素的时候，测试 getContext()方法的呈现是很重要的。
+    //在 <canvas> 上创作的图片可以通过 toDataURL() 方法导出。这个方法接受唯一一个参数，要呈现的 MIME 格式的图片，不论使用了什么样的上下文都可以应用。例如，返回一个 PNG 格式的图片：
+    var drawing = document.getElementById('drawing');
+    //maka sure <canvas> is completely supported
+    if (drawing.getContext) {
+        //get DataURI of the image
+        var imgURI = drawing.toDataURL("image/png");
+        //display the image
+        var image = document.createElement("img");
+        image.src = imgURI;
+        document.body.appendChild(image);
+    }
+    //默认情况下，浏览器将图片编码为 PNG，除非单独指定。Firefox and Opera also support JPEG encoding via “image/jpeg”. Because this method was added later in the process, it was adopted in later versions of supporting browsers, including Internet Explorer 9, Firefox 3.5, and Opera 10.
+    </script>
+</head>
+
+<body>
+    <canvas id="drawing" width="200" height="200">A drawing of something.</canvas>
+    A drawing of something. 这段话在chrome打开之后是不显示的。
+</body>
+
+</html>

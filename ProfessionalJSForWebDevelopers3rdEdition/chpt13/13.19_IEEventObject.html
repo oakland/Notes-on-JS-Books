@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.19_IEEventObject</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //不同于DOM的event对象，IE的event对象根据事件处理指定的方式不同，可以通过不同的方法来获取。当时用DOM 0级使用事件处理器时，event对象仅仅作为window对象的一个属性，如下例：
+        var btn = document.getElementById('myBtn');
+        btn.onclick = function() {
+            var event = window.event;
+            alert(event.type); //"click"
+        };
+        //这里event对象通过window.event获取...如果事件处理器通过attachEvent()来指定，event对象就会作为函数的唯一参数：
+        var btn = document.getElementById('myBtn');
+        btn.attachEvent("onclick", function() {
+            alert(event.type); //"click"
+        });
+    }
+    </script>
+</head>
+
+<body>
+    <button id="myBtn">button</button>
+</body>
+
+</html>

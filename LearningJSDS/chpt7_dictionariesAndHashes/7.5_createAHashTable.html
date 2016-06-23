@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>7.5_createAHashTable</title>
+	<script type="text/javascript">
+		//我们将使用一个数组来代表我们的数据结构，与我们在上一个主题中的图表内容非常相似。首先，创建 Hash class 的框架：
+		function HashTable() {
+			var table = [];
+		}
+		// 接着添加一些方法
+		//put(key, value)，向哈希表中添加一个新的项目，或者更新一个项目
+		//remove(key)，用 key 来移除哈希表中的值
+		//get(key)，通过 key 来获取某个值
+		//在实现上述三个方法之前，我们首先要实现的是 hash function。这是 HashTable class 的私有方法：
+		var loseloseHashCode = function() {
+			var hash = 0;
+			for (var i = 0; i < key.length; i++) {
+				hash += key.charCodeAt(i);
+			}
+			return hash%37;
+		};
+		// 传入一个 key 参数，生成一个 key 中所有字符的 ASCII 码表值相加的数字。对于小写字母，我们将使用 hash 数除数的余数。
+		//要想了解更多 ASCII 的信息，查看http://www.asciitable.com/
+		//我们已经拥有了 hash function，我们来实现 put 方法
+		this.put = function(key, value) {
+			var position = loseloseHashCode(key);
+			console.log(position + ' - ' + key);
+			table[position] = value;
+		};
+		// 首先，对于给定的 key ，我们需要使用我们创建的 hash function 在表格中找到一个位置。为了信息目的，我们在控制台记录下这个位置。如果不需要的话可以移除这一行代码。接着我们必须要做的就是添加 value 参数给 position。
+		//从一个 HashTable 实例中获取一个值也很简单。我们来实现一下 get() 方法
+		this.get = function(key) {
+			return table[loseloseHashCode(key)];
+		};
+		//最后我们来实现一下 remove 方法：
+		this.remove = function(key) {
+			table[loseloseHashCode(key)] = undefined;
+		};
+		// 要移除 HashTable 的一个元素，我们只需要获取相应的 position，然后将其值指定为 undefined;
+		// 对于 HashTable class 而言，我们不需要移除 position，...
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

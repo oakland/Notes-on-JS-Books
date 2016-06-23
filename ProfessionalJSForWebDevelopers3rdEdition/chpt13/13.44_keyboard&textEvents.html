@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.44_keyboard&textEvents</title>
+    <script type="text/javascript">
+    //有以下三种键盘事件：
+    //1. keydown，当键盘被按下时会触发，如果键被按住不放手的话会持续触发。
+    //2. keypress，当用户按下键盘上的键并且导致输入的时候被触发，如果按键不放手则会持续触发。这个事件在Esc键同样会发生。DOM 3级抛弃了keypress事件，而采用了textInput事件
+    //3. keyup，当按键被释放的时候触发。
+    //只有一个text事件，就是textInput。这个事件是keypress的增强，为了能够让文本在被展示给用户前更容易被拦截。textInput事件在文字被插入到文本框之前的瞬间触发。
+    //当用户一旦在键盘上按下一个键的时候，keydown事件首先触发，接着是keypress，然后是keyup。注意，keydown和keypress都是文本框发生变化之前触发，而keyup则是文本框发生变化之后触发。如果一个按键被按住不放，则keydown 和 keypress会持续触发，直到按键被释放。
+    //对于非字母按键，一次按键会导致keydown 和 keyup依次触发。如果非字符按键被按住不放，则keydown事件会频繁触发，直至按键释放，与此同时，keyup事件触发。
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

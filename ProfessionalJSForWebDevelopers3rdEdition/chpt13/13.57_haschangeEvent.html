@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.57_haschangeEvent</title>
+    <script type="text/javascript">
+    //HTML5引入了 haschange事件，当URL hash（在一个URL中#后面的所有内容）发生变化的时候，作为一种提醒开发者的方式。鉴于开发者在 Ajax 应用中频繁地使用 URL hash 来存储状态信息或者导航信息，这个事件才会诞生。
+    //onhashchange 事件处理器必须添加给window，不论何时，一旦 URL hash 发生了变化，这个事件就会被调用。event 对象有两个额外的属性：oldURL 和 newURL。这两个属性承载了变化前后完整的URL，包括 hash。
+    EventUtil.addHandler(window, "hashchange", function(event) {
+        alert("Old URL: " + event.oldURL + "\nNew URL: " + event.newURL);
+        //关于这部分的内容也暂不做详细研究，未来如果有需要可以再回头来看。
+    });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

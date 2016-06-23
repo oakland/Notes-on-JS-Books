@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.25_ElementChild</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var ul = document.getElementById('myUl');
+        alert(ul.childNodes.length);//9，非IE浏览器都会返回7，是因为他们将每个li之间的空白区域也算作一个子节点
+        //为了获得ul下面的每个li，可以有以下两种办法。
+        //1.通过遍历的方式，获取nodeType==1的节点。
+        //2.通过在父节点上使用getElementsByTagname()的方法
+
+        for (var i = 0, len = ul.childNodes.length; i<len; i++) {
+        	if(ul.childNodes[i].nodeType == 1) {
+        		//do processing
+        	}
+        }
+
+        var lis = ul.getElementsByTagName('li');
+        alert(lis.length);//4，但是一定要注意，通过第二种方法获得的li是ul下面所有的li，也就是说不仅仅包涵第一层子节点，如果有多层子节点，这种方法会返回ul下面所有的li，不仅仅是第一层的li
+    }
+    </script>
+</head>
+
+<body>
+    <ul id="myUl">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+
+</html>

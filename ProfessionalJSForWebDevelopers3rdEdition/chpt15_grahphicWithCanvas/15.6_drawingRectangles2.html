@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>15.6_drawingRectangles2</title>
+    <script type="text/javascript">
+    //strokeRect() 方法通过指定 strokeStyle 属性的颜色来绘制举行的轮廓线。
+    window.onload = function() {
+        var drawing = document.getElementById('drawing');
+        //make sure <canvas> is completely supported
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+
+            /*
+             * Based on Mozilla’s documentation:
+             * http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage 
+             */
+
+            //draw a red outlined rectangle
+            context.strokeStyle = "#ff0000";
+            context.strokeRect(10, 10, 50, 50);
+
+            //draw a blue outlined rectangle that is semi-transparent
+            context.strokeStyle = "rgba(0, 0, 255, 0.5)";
+            context.strokeRect(30, 30, 50, 50);
+        }
+        //画笔的大小可以通过 lineWidth 来设置，可以被设置为任意整数。同理，lineCap 属性描述了线的端点（有 butt / round / square），lineJoin 表明了线的连接方式（有 round / bevel / miter）。
+    };
+    </script>
+</head>
+
+<body>
+    <canvas id="drawing"></canvas>
+</body>
+
+</html>

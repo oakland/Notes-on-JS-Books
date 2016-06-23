@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.9_searchValuesInATree</title>
+	<script type="text/javascript">
+		//tree 中通常有三种搜索：
+		//Minimum values
+		//Maximum values
+		//Search for a specific value
+
+		//Searching for minimum and maximum values
+		// 我们以下面的 tree 作为例子：<tree9.png>
+		// 看一眼上图，你是不是很快就找到了最大和最小值呢？
+		// 看一下最下层最左边的 node，你会发现是3，即是这个 tree 的最小值。而最下边最右边的 node 的值是25，就是这个 tree 的最大值。在寻找 tree 的最大最小值方面，这个信息非常有用。
+		// 我们看一下如何实现寻找最小值的方法：
+		this.min = function() {
+			return minNode(root); //{1}
+		};
+		// min 方法是暴露给用户的方法。这个方法调用了 minNode() 方法{1}：
+		var minNode = function(node) {
+			if (node) {
+				while (node && node.left !== null) {       //{2}
+					node = node.left;                      //{3}
+				}
+				return node.key;
+			}
+			return null;                                   //{4}
+		};
+		//minNode() 方法允许我们从 tree 的任何一个节点找到最小值。我们可以从 subtree 开始寻找最小值，也可以从 tree 本身开始。鉴于此，我们调用 minNode() 方法，传入 root {1}——因为我们希望找到整个 tree 的最小值。
+		//在 minNode() 方法内部，我们会遍历 left edge of the tree {2} {3}，直到我们找到最左下角的节点。
+		//同样的方法，我们可以实现 max 方法：
+		this.max = function() {
+			return maxNode(root);
+		};
+
+		var maxNode = function(node) {
+			if (node) {
+				while (node && node.right !== null) {     //{5}
+					node = node.right;
+				}
+
+				return node.key;
+			}
+			return null;
+		};
+		//为了找到最大的值，我们遍历了 right edge of the tree，直到找到最右下角的节点。
+		//所以，找最小值，我们就沿着 tree 的最左边走，找最大值，我们就沿着 tree 的最右边走。
+	</script>
+</head>
+<body>
+	<img src="tree9.png" alt="">
+</body>
+</html>

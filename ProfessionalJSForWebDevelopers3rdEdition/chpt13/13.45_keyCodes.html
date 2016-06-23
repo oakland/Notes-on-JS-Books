@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.45_keyCodes</title>
+    <script type="text/javascript">
+    //对于keydown 和 keyup事件，event对象会有一个keyCode属性，这个属性会表明键盘上的哪个键被按下。DOM 和 IE事件都支持keyCode属性：
+    window.onload = function() {
+        var textbox = document.getElementById('myText');
+        EventUtil.addHandler(textbox, "keyup", function() {
+            event = EventUtil.getEvent(event);
+            alert(event.keyCode);
+        });
+        // document.body.onkeyup = function(event) {
+        //     alert(String.fromCharCode(event.keyCode));
+        // };
+        //String.fromCharCode()方法可以将ASC码转化成正常的字符
+    };
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

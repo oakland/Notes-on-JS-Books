@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.37_dynamicScripts4</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.text = "function sayHi() {alert('hi');}";
+        document.body.appendChild(script);
+        //以上方法可以兼容IE以及大多数版本的浏览器，但是不兼容safari 3以下的版本，因为safari 3 一下的版本不支持text属性，但是支持textNode方法，所以要实现全兼容，请参考10.38_dynamicScripts5。html
+
+        sayHi();
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

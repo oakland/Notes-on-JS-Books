@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14.18_alternateInputTypes</title>
+	<script type="text/javascript">
+		//HTML 5 又增加了一些 <input> 元素的 type 属性值，比如 email url 等等，这些属性可以提供一些默认的验证。
+		//你可以通过使用 JS 创建一个元素，并设置 type 值为 email 或 url 然后再来读取 value，来检测浏览器是否支持这些属性。旧的浏览器会自动将无法识别的 type 设置为 text。而支持的浏览器则返回正确的值。
+		var input = document.createElement("input");
+		input.type = "email";
+
+		var isEmailSupported = (input.type == "email");
+		//记住，空的字段也是有效的，除非你设置了 required 属性。
+	</script>
+</head>
+<body>
+	<input type="email" name="email" id="">
+	<input type="url" name="homepage" id="">
+</body>
+</html>

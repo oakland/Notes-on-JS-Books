@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13.47_textInputEvent</title>
+	<script type="text/javascript">
+		//textInput是在DOM 3级才被引入进来，它和keypress有一点不同，就是keypress可以在任何元素上触发，但是textInput只在可编辑区域触发。还有一点不同就是，textInput只在输入文字的时候才触发，而keypress在任何时候都会被触发（包括退格键删除内容的时候）。textInput事件提供了一个data属性给event对象，这个data属性包含了character that was inserted (not the character code)。The value of data is always the exact character that was inserted, so if the S key is pressed without Shift, data is “s”, but if the same key is pressed holding Shift down, then data is “S”.
+		//textInput事件的event对象还有一个inputMethod属性，会表明文本是如何写入到文本框中的。例如1表示键盘输入，2表示是粘贴进去的等等...
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

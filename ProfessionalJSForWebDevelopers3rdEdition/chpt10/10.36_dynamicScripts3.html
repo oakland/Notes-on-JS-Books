@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.36_dynamicScripts3</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.appendChild(document.createTextNode("function sayHi(){alert('hi');}"));
+        document.body.appendChild(script);
+        //以上方法只适用于非IE浏览器，IE将script标签看作是特殊的标签，所以不允许通过正常的DOM方法来获取childNodes
+        //为了让IE也兼容上述方法，我们可以使用text属性来进行操作，详见10.37_dynamicScripts4.html
+        sayHi();
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

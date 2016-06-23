@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14.15_blockingCharacters</title>
+    <script type="text/javascript">
+    //keypress 事件负责在文本框中插入字符，字符可以通过阻止事件默认行为来实现阻止输入。例如，下面代码就组织了所有的按键行为：
+    EventUtil.addHandler(textbox, "keypress", function(event) {
+        event = EventUtil.getEvent(event);
+        EventUtil.preventDefault(event);
+    });
+    //上述代码可以让文本框变成只读状态，因为任何输入行为都被阻止了。要阻止某些特殊字符的输入，你可以检查时间的字符码并决定正确的反应。例如，下面的代码就只允许输入数字：
+    EventUtil.addHandler(textbox, "keypress", function(event) {
+        event = EventUtil.getEvent(event);
+        var target = EventUtil.getTarget(event);
+        var charCode = EventUtil.getCharCode(event);
+        if (!/\d/.test(String.fromCharCode(charCode))) {
+            EventUtil.preventDefault(event);
+        }
+    });
+    //尽管字符键被按下的时候应该触发 keypress 事件，但是一些浏览器对于某些有用的按键也会触发这些事件。FF 和 S(早于3.1版本)会在按压上下键、退格键和删除键的时候也触发 keypress 行为；而 S 3.1及以后的版本中，这些键则不会触发 keypress 事件。如果仅仅使用上述代码的话，你不仅阻止了非数字键的输入，也阻止了这些非常有用的键，你无法删除文本框中的内容了。非常幸运地是，你可以很容易检测到上述按键合适被按下。在 FF 中，所有的非字符键触发 keypress 事件的时候都会拥有一个 0 字符码（character code）。而 S 3.0及以前的版本触发 keypress 的时候，上述非字符键触发的字符码是 8 。为了统一情况，你无需阻止低于10的 character code。
+    EventUtil.addHandler(textbox, "keypress", function(event) {
+        event = EventUtil.getEvent(event);
+        var target = EventUtil.getTarget(event);
+        var charCode = EventUtil.getCharCode(event);
+        if (!/\d/.test(String.fromCharCode(charCode)) && charCode > 9) {
+            EventUtil.preventDefault(event);
+        }
+    });
+    //还有一个问题需要处理，copy paste 和其他牵涉到 Ctrl 键的函数。在所有的非 IE 浏览器中，前面的代码，不允许 Ctrl+C Ctrl+V 以及任何其他使用 Ctrl键的组合快捷键。所以，最后的确认就是，保证 Ctrl 键没有被按压，
+    EventUtil.addHandler(textbox, "keypress", function(event) {
+        event = EventUtil.getEvent(event);
+        var target = EventUtil.getTarget(event);
+        var charCode = EventUtil.getCharCode(event);
+        if (!/\d/.test(String.fromCharCode(charCode)) && charCode > 9 && !event.ctrlKey) {
+            EventUtil.preventDefault(event);
+        }
+    });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

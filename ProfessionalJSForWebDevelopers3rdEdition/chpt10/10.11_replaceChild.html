@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.11_replaceChild</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //获取节点
+        var apple = document.getElementById('apple');
+        var fruit = document.getElementById('fruit');
+        var pear = document.getElementById('pear');
+
+        //打印fruit，用apple替换pear之后再打印fruit，对比两者
+        console.log(fruit);
+        var returnValue = fruit.replaceChild(apple, pear);
+        console.log(fruit);
+    }
+    </script>
+</head>
+
+<body>
+    <div id="apple">apple</div>
+    <div id="fruit">
+        <div id="pear">pear</div>
+    </div>
+</body>
+
+</html>

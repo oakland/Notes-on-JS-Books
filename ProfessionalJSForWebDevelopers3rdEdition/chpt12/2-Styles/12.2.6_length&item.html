@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.6_length&item</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv')
+        for (var i = 0, len = div.style.length; i < len; i++) {
+            alert(div.style[i]); //or div.style.item(i)
+        }
+        //length这个属性和item()方法结合使用，可以遍历赋予在某个元素上的CSS属性
+        //通过使用中括号或者item()，你可以获得CSS属性名称（"background-color"，而不是"backgroundColor"）。然后这个属性名就会被getPropertyValue()方法使用，来获取属性的真实地值，如下面所示：
+        var prop, value, i, len;
+        for (var i = 0, len = div.style.length; i < len; i++) {
+            prop = div.style[i];
+            value = div.style.getPropertyValue(prop);
+            alert(prop + ":" + value);
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv" style="width:100px; height: 10px; background-color: red"></div>
+</body>
+
+</html>

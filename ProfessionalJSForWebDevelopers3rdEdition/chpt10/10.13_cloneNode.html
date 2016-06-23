@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.13_cloneNode</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var fruit = document.getElementById('fruit');
+        var anotherFruit = fruit.cloneNode(true);
+        var thirdFruit = fruit.cloneNode(false);
+
+        console.log(anotherFruit.childNodes.length);//9，因为包含了ul下面所有的li和空格
+        console.log(thirdFruit.childNodes.length);//0，只是克隆了ul这个标签本身
+    }
+    </script>
+</head>
+
+<body>
+    <ul id="fruit">
+        <li>apple</li>
+        <li>pear</li>
+        <li>banana</li>
+        <li>peach</li>
+    </ul>
+</body>
+
+</html>

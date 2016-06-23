@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.33_createAttribute</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        var attr = document.createAttribute("align");
+        attr.value = "left";
+        div.setAttributeNode(attr);
+
+        console.log(div.attributes["align"].value); 
+        //align = "left"，注意attributes是一个对象，获取到的是键值对，因此要加.value才可以获得value值
+        console.log(div.getAttributeNode("align").value); //"left"，同上，必须要加.value才可以获得value值。
+        console.log(div.getAttribute("align")); //"left"，注意后面没有.value
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+</body>
+
+</html>

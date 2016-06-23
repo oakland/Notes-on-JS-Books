@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.1.2_theGlobalScope</title>
+	<script type="text/javascript">
+		//window 对象是 ECMAScript 中的 Global 对象，因此所有在全局声明的变量和函数都是 window 对象的属性和方法。
+		//尽管如此，但是直接定义全局变量和直接在 window 上定义一个属性还是略有不同：全局变量不能通过 delete 操作符删除，而直接通过 window 定义的属性却可以，例如：
+		var age = 29;
+		window.color = "red";
+
+		//throw an error in IE < 9, returns false in all other browsers
+		delete window.age;
+		//throw an error in IE < 9, returns true in all other browsers
+		delete window.color;  //return true
+
+		alert(window.age); //29
+		alert(window.color); //undefined
+
+		//通过 var 来声明的 window 属性拥有一个默认值为 false 的 [[Configurable]] 属性，所以无法通过 delete 操作符来删除。IE 8 和早期的浏览器通过抛出错误来加强了这一点，当 delete 操作符操作在 window 的属性上时，不论这个属性是以何种形式创建的。IE 9及后来的浏览器就不会抛出错误了。
+		//另外要记住的一点是：试图去获取一个非声明的变量会导致错误，但是通过查询 window 来判断一个潜在的未声明变量的存在却是可能的，如下例：
+
+		//this throws an error because oldValue is undeclared
+		var newValue = oldValue;
+		//this doesn't throw an error because it is a property lookup
+		//newValue is set to undefined
+		var newValue = window.oldValue;
+
+		//记住，JS 中有很多被认为是 global 的对象，例如 location 和 navigator ，但是他们实际上都是 window 对象的属性。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

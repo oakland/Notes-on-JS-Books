@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.26_nodeValue||data</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        console.log(div.firstChild.nodeValue); //Test，可以通过nodeValue获取到文字的内容，data也可以
+        console.log(div.firstChild.data); //Test
+        div.firstChild.nodeValue = "Hello world";//可以直接修改里面的内容
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv">
+        Test
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.40_dynamicStyles</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = "./style/main.css";
+        var head = document.getElementsByTagName('head')[0]; 
+        //注意，为了让link元素在所有浏览器中正常工作，必须要把它放入到Head标签中，而不能放在body中
+        head.appendChild(link);
+    }
+    </script>
+</head>
+
+<body>
+    <div class="test">test</div>
+</body>
+
+</html>

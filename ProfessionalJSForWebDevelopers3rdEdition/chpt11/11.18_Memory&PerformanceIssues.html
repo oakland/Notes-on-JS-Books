@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11.18_Memory&PerformanceIssues</title>
+    <script type="text/javascript">
+    //使用innerHTML outerHTML的方法来替换子节点，在IE中会造成内存泄露的问题
+    //当事件处理器或者JavaScript对象被指定给一个已经被移除的subtree时，内存泄漏的问题就会发生。如果一个元素有事件处理器（或者有一个作为属性的JS对象），并且这些属性的其中之一以这种方式使用，元素被从document tree中移除，而元素和事件处理器之间的绑定关系已然存在在内存中。如果这种情况频繁的重复发生，网页的内存使用情况就会增加。当使用innerHTML outHTML insertAdjacentHTML时，对于要被移除的元素而言，最好手动移除这些元素的事件处理器和JS对象属性。
+    //使用这些属性确实有好的地方，尤其是使用innerHTML。总的来说，插入一大段的HTML要比通过复杂的DOM操作来生成节点并指认他们之间的关系有效率的多。这是因为HTML解析器只有当一个值被设置为innerHTML（或者outerHTML）时才会被创造出来。这个解析器在浏览器层面的代码运行，比JS快很多。也就是说，HTML解析器的创建和摧毁的确拥有一些管理费用，所以最好限制设置innerHTML 和 outerHTML的次数。例如，以下面的代码为例
+    window.onload = function() {
+        for (var i = 0, len = values.length; i < len; i++) {
+            ul.innerHTML += "<li>" + values[i] + "</li>"; //avoid!!
+        }
+        //上面这段代码是低效的，因为在遍历的时候，每次都会设置一下innerHTML。而且，遍历的时候也每次都会读取innerHTML，这就意味着innerHTML在遍历的时候每次要读取两次。最好分开建立字符串，最后一次性使用innerHTML进行指定，如下：
+        var itemHtml = "";
+        for (var i = 0; len = value.length; i < len; i++) {
+            itemHtml += "<li>" + value[i] + "</li>";
+        }
+        ul.innerHTML = itemHtml;
+        //上面这种方式更加有效率，将innerHTML的使用限制到了一次
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

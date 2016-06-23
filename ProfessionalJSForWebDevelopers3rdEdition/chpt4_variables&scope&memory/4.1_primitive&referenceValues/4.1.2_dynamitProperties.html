@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.1.2_dynamitProperties</title>
+	<script type="text/javascript">
+		//原始值和引用值定义的方式类似：创建一个变量，然后赋值一个值。但是，一旦值被存储在变量中之后，你可以执行的操作却非常不同。当你操作引用值的时候，你可以在任何时候添加、改变或者删除属性或者方法。例如：
+		var person = new Object();
+		person.name = "Nicholas";
+		alert(person.name);        //"Nicholas"
+		//这里我们创建了一个对象，并将其存储在 person 这个变量中。接着，name 属性被添加到对象中，并且赋值一个字符串 "Nicholas"。然后，我们从这个时候起就可以获取这个新的属性，直到对象被摧毁或者属性被显性地移除。
+		//原始值是无法添加属性的，尽管这么做也不会引起错误。例如
+		var name = "Nicholas";
+		name.age = 27;
+		alert(name.age);    //undefined
+		//这里，age 属性被定义在 name 字符串上，并指定值为 27。然后接下来的一行代码，属性就消失了。只有引用类型才可以拥有动态定义的属性，以供未来使用。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

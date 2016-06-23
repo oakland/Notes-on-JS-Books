@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8.3_createABinarySearchTree</title>
+	<script type="text/javascript">
+		//我们从创建一个 binary search tree 开始。首先，声明框架：
+		function BinarySearchTree() {
+
+			var Node = function(key) {   //{1}
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			}
+
+			var root = null;    //{2}
+		}
+		// 下面的图表展示了 Binary Search Tree (BST)数据结构是如何组织的：
+		//<tree3.png>
+		//就像在链表中一样，我们将再次操作指针来操作 nodes 之间的联系(called edges in tree terminology)。当我们在操作双链的时候，每一个节点都有两个指针：一个指向下一个节点，而另一个指向前一个节点。在操作 tree 的时候，我们会采取同样的方式，操作两个指针。但是，两个指针中的一个指向左侧的子节点，而另一个则指向右侧的子节点。由于这个元素，我们要声明一个 Node class 来代表 tree 的每一个 node，行{1}。一个值得注意的细节是，我们并没有将 node 称为一个 node 或者 item，而是将它称为 key。key 是 tree node 在 tree 属于中的叫法。
+		// 我们将遵循我们在链表中使用的同样的模式。这意味着我们也需要声明一个变量以便于我们控制整个数据结构的第一个节点。在 tree 这种情况下，我们拥有的是 root，行{2}，而不是 head。
+		//接着，我们需要实现一些方法：
+		// insert(key)，在 tree 中插入一个新的 key。
+		// search(key)，在 tree 中搜索 key，如果存在则返回 true，如果不存在则返回 false
+		// inOrderTraverse，用按序遍历(in-order traverse)的方式访问 tree 中所有的 nodes。
+		// preOrderTraverse，用 preOrderTraverse 的方式访问 tree 中所有的节点
+		// postOrderTraverse，用 postOrderTraverse 的方式访问 tree 中所有的节点
+		// min，返回 tree 中的最小值
+		// max，返回 tree 中的最大值
+		// remove(key)，从 tree 中移除某个 key
+	</script>
+</head>
+<body>
+	<img src="tree3.png" alt="">
+</body>
+</html>

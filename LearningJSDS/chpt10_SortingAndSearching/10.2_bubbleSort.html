@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10.2_bubbleSort</title>
+	<script type="text/javascript">
+		//当人们刚开始学习排序算法的时候，通常都会首先学习冒泡排序算法，因为它是所有排序算法中最简单的。但是从时间效率上来说，它也是最糟糕的算法之一，你会看到为什么这么说的。
+		//冒泡排序会比较每两个相邻的项目，如果前一个大于后一个的话就会 swaps them。之所以采用冒泡这个名字的原因也是因为 item 会像泡泡从水底冒到表面一样，慢慢的从下一直向上移动到正确的位置。
+		// 我们来实现一下冒泡算法：
+		this.bubbleSort = function() {
+			var length = array.length;                     //{1}
+			for (var i = 0; i < length; i++) {             //{2}
+				for (var j = 0; j < length - 1; j++) {     //{3}
+					if (array[j] > array[j+1]) {           //{4}
+						swap(j, j+1);                      //{5}
+					}
+				}
+			}
+		};
+		//首先，我们声明一个 length 变量，用于存储 array 的长度。这一步将会帮助我们在 {2} 和 {3} 行获得 array 的长度，这一步也是可选项。接着，我们会拥有一个外部回路{2}，它会从第一个位置到最后一个位置遍历我们的数组，控制数组中会有多少次循环（数组的每一个项目代表依次循环，因为数组的长度等于循环的次数）。接着，我们会有一个内部回路 {3}，这个回路将会遍历第一个位置到倒数第二个位置的项目，这个回路也是真正比较当前元素和下一个元素的回路{4}。如果项目不是按顺序排列的（即当前项目比后一个项目大），我们就会 swap 他们{5}，意味着 j+1 位置的值会与 j 位置的值进行对调。
+		//现在我们需要声明 swap 函数（私有函数，一个只能被 ArrayList class 内部代码访问的函数）：
+		var swap = function(index1, index2) {
+			var aux = array[index1];
+			array[index1] = array[index2];
+			array[index2] = aux;
+		};
+		// 要实现 swap ，我们需要一个暂时性变量来存储其中的一个项目。我们在其他排序中也会使用到这个方法，这也是为什么我们将 swap 声明成一个函数原因，因为我们可以复用这个函数。
+		//下面的图表展示了冒泡排序算法的行为：<sortingAndSearching1.png>
+		//上图中每一个不同的部分都代表着一次由外部回路创造的过程，每一次相邻项目的比较都是由内部回路执行的。为了测试冒泡排序算法和我们上面的图表展示的结果相同，我们会执行下面的代码：
+		function createNonSortedArray(size) {     //{6}
+			var array = new ArrayList();
+			for (var i = size; i > 0; i--) {
+				array.insert(i);
+			}
+			return array;
+		}
+
+		var array = createNonSortedArray(5);     //{7}
+		console.log(array.toString());           //{8}
+		array.bubbleSort();                      //{9}
+		console.log(array.toString());           //{10}
+		//为了测试本章中你学到的排序算法，...
+		//注意，你可以从支持页面（或者 Github 仓库中）下载的源码中，看到完整的 ArrayList class 和带注释的测试代码。
+		//注意，当外部算法执行第二遍路径的时候（上述图表中的第二部分），数字 4 和 5 已经被排序好了。但是，在后面的比较中，我们依然会比较他们，即使这是不必要的。鉴于此，我们对冒泡排序算法会做一些改进。
+		//improved bubble sort
+		//如果我们减去内部回路的过程的话，我们会避免一些内部回路不必要的比较：
+		this.modifiedBubbleSort = function() {
+			var length = array.length;                     //{1}
+			for (var i = 0; i < length; i++) {             //{2}
+				for (var j = 0; j < length-1-i; j++) {     //{3}
+					if (array[j] > array[j+1]) {           //{4}
+						swap(j, j+1);                      //{5}
+					}
+				}
+			}
+		};
+		// steam comment// 冒泡排序内部的函数没执行一次就会把最大的数字放在最后，也就是说当 i=0 的时候，j 从 0 遍历到 length-1，就会把整个数组中最大的数放到了数组的最后一个位置；接着 i=1 的时候， j 再从 0 遍历到 length-1，会把整个数组中倒数第二大的数放数组最后一位的前一个位置为，也就是倒数第二位。 然后依次类推，i=2 的时候排一遍，直到 i=length-1 的时候，已经剩下一个数字了，就不用排序了。改进后的冒泡排序，只不过是将已经排序好的没有再做比较，所以会算是更好一点。之所以改进，就是因为，第一遍 i=0 的时候已经把最大的数字放到了最后了。所以不需要再把这个数参与到比较中去了。
+		// 下图展示了改进后冒泡排序是如何工作的：<sortingAndSearching2.png>
+		// 注意，我们没有比较已经处于正确位置的数字了。尽管，我们做了一些改进提高了冒泡排序算法的效率，但是，冒泡排序算法依然不是推荐的算法。因为它的时间复杂度是 O(n2)。// steam comment // O(n2) 表示时间复杂度为 平方阶，具体请百度或者google。
+		//下一章节，我们将讨论 big O notation（大 O 符号）。
+	</script>
+</head>
+<body>
+	<img src="sortingAndSearching1.png" alt="">
+	<img src="sortingAndSearching2.png" alt="">
+</body>
+</html>

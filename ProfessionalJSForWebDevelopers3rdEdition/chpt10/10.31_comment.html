@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.31_comment</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.getElementById('myDiv');
+        console.log(div.firstChild);
+
+        var comment = document.createComment("Hello comment");
+        div.appendChild(comment);
+        //comment在实际工作中几乎不会用到
+    }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv">
+        <!--A comment-->
+    </div>
+</body>
+
+</html>

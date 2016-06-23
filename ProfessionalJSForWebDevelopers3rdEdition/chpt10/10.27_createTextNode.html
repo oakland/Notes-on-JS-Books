@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.27_createTextNode</title>
+    <style type="text/css">
+    .message {
+        color: red;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.createElement("div");
+        div.className = "message";
+        var text = document.createTextNode("Hello world");
+
+        div.appendChild(text);
+        document.body.appendChild(div);
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.2_nodeType</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //总共有12种nodeType，常用的是 1 ELEMENT_NODE / 2 ATTRIBUTE_NODE / 3 TEXT_NODE / 11 DOCUMENT_FRAGMENT_NODE
+        var test = document.getElementById('test');
+        console.log(test.nodeType);
+        //12种Node都是继承自Node这个函数，Node是内置的一个函数。但是只是针对IE9及以上才是内置的，IE8及以下没有暴露Node这个内置的构造器
+        console.log(Node); //前面并未声明Node,在这里可以直接打印出来，所以Node是内置的
+        if (test.nodeType == Node.ELEMENT_NODE) {
+            alert('Node is an element.');
+        }
+    };
+    </script>
+</head>
+
+<body>
+    <div id="test">test</div>
+</body>
+
+</html>

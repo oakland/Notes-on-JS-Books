@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>23.3_applicationCache</title>
+	<script type="text/javascript">
+		//HTML5 中的 application cache ，或者简写为 appcache，设计的目的就是用于离线网络应用。 appcache 是一个不同于普通浏览器 cache 的缓存区域。你通过提供一个 manifest file ，这个 manifest file 列出要下载和缓存的资源，来指定指定什么应当被存储在页面的 appcache 中，下面是一个简单的 manifest file 例子：
+		// CACHE MANIFEST
+		// #Comment
+
+		// file.js
+		// file.css
+		//使用最简单的形式，一个 manifest file 列出了要被下载的资源，以便于离线时他们依然可以访问。
+		//通过在 <html> 元素中指定 manifest 属性的路径，来将 manifest file 与一个页面进行关联
+		// <html manifest="/offline.manifest">
+		//上述代码表明 /offline.manifest 包含了一个 manifest file 。要想正确使用，这个文件的 content type 必须设置为 text/cache-manifest
+		//这部分的内容好像在实际中使用不多，暂时先了解到这里。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

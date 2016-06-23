@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14.4_resettingForms</title>
+    <script type="text/javascript">
+    //当用户点击充值按钮让表单进行充值的时候，reset 事件就被触发。这个事件给了你取消充值的机会。例如，下面的代码就会阻止表单被充值：
+    var form = document.getElementById('myForm');
+    EventUtil.addHandler(form, "reset", function(event) {
+        event = EventUtil.getEvent(event);
+        event.preventDefault();
+    });
+    //和表单提交一样，充值也可以通过 JS 代码的 reset() 方法来实现。
+    var form = document.getElementById('myForm');
+    form.reset();
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

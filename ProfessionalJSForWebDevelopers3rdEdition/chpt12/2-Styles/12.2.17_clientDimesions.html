@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>12.2.17_clientDimesions</title>
+    <script type="text/javascript">
+    window.onload = function() {
+            //一个元素的client dimesions由元素的内容(content)和内边距(padding)所组成。和client dimesions相关的属性只有两个：clientWidth 和 clientHeight。
+            //clientWidth是内容的宽度加上左右内边距的宽度
+            //clientHeight是内容的高度加上上下内边距的高度
+            //client dimesions是元素内部的空间数量，所以滚动条的空间并未计算在内。这两个属性的最常见用法就是，确定浏览器视口的大小，第8章中有讨论过。
+            function getViewport() {
+                if (document.compatMode == "BackCompat") {
+                    return {
+                        width: document.body.clientWidth;
+                        height: document.body.clientHeight;
+                    }
+                } else {
+                    return {
+                        width: document.documentElement.clientWidth;
+                        height: document.documentElement.clientHeight;
+                    };
+                }
+            }
+        }
+        //和offset dimesions类似，client dimesions也是只读的，并且每获取一次就会计算一次
+    </script>
+</head>
+
+<body>
+    <img src="img/clientDimesions.png" alt="">
+</body>
+
+</html>

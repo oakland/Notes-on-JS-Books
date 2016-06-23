@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.30_splitText</title>
+    <style type="text/css">
+    .message {
+        color: red;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        var div = document.createElement("div");
+        div.className = "message";
+
+        var text = document.createTextNode("Hello world");
+        div.appendChild(text);
+
+        document.body.appendChild(div);
+
+        var newNode = div.firstChild.splitText(5);
+        console.log(div.firstChild.nodeValue); //Hello
+        console.log(newNode.nodeValue); // world
+        console.log(div.childNodes.length); //2
+
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

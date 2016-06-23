@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>14.10_textSelection</title>
+    <script type="text/javascript">
+    //<input> 和 <textarea> 都支持 select() 方法，调用这个方法会选中文本框中所有的文本内容。当调用 select() 方法的时候，大多数的浏览器都会自动设置文本框焦点，但是 O 不会。select() 方法不接受任何参数，可以在任何时候调用。
+    var textbox = document.forms[0].elements["textbox1"];
+    textbox.select();
+    //当文本框获取焦点时，选中所有文本内容，这个功能非常普遍，尤其是当文本框有默认值的时候。这样的话，用户就无需一个个去删除文本框中的内容了。这个模式可以通过下列代码实现：
+    EventUtil.addHandler(textbox, "focus", function(event) {
+        event = EventUtil.getEvent(event);
+        target = EventUtil.getTarget(event);
+
+        target.select();
+    });
+    //文本框有了上面的代码，就会在获得焦点时自动选中所有文本。
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

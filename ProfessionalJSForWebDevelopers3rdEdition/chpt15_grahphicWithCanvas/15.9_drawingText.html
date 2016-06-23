@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>15.9_drawingText</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //鉴于很多时候文本和图形都是混合的，2D 画布也提供了绘制文本的方法。有两种：fillText() 和 strokeText()，每个方法都接受4个参数：要绘制的字符串，x 坐标，y 坐标，可选的最大像素宽度。两个方法的绘制都基于以下3个属性：
+        //1. font，主要是以 CSS 的方式规定 font size family style 等这些属性，例如 “10px Arial”
+        //2. textAlign，文本对齐方式。有 start / end / left / right / center 这几个值。最好使用 start 和 end，而不是使用 left 和 right。
+        //3. textBaseline，文本基准线。有 top / hanging / middle / alphabetic / ideographic / bottom 这几个值。
+        //这些属性都有默认值，所以你绘制文本的时候不需要每次都自己来设置。 fillText() 方法使用 fillStyle 属性来绘制文本，而 strokeText() 方法使用 strokeStyle 属性。大多数情况下用的都是 fillText() ，因为这个方法模拟了通常网页中的文本。例如，下面的方法就在钟表的顶部渲染了一个 12 。
+        var drawing = document.getElementById('drawing');
+        //make sure <canvas> is completely supported
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+
+            //start the path
+            context.beginPath();
+
+            //draw out circle
+            context.arc(100, 100, 99, 0, 2 * Math.PI, false);
+
+            //draw inner circle
+            context.moveTo(194, 100);
+            context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+
+            //draw minute hand
+            context.moveTo(100, 100);
+            context.lineTo(100, 15);
+
+            //draw hour hand
+            context.moveTo(100, 100);
+            context.lineTo(35, 100);
+
+            //stroke the path
+            context.stroke();
+
+            //normal
+            context.font = "bold 14px Arial";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText("12", 100, 20)
+
+            //start align 
+            context.textAlign = "start";
+            context.fillText("12", 100, 40);
+
+            //end align
+            context.textAlign = "end";
+            context.fillText("12", 100, 60);
+
+            //鉴于绘制文本非常复杂，尤其是当你希望文本渲染到某个指定区域的时候，2D 画布通过 measureText() 方法在决定文本维度的方面提供了那么一点小小的帮助。这个方法接受一个单一的参数，要绘制的文本，返回一个 TextMetrics 对象。返回的这个对象目前只有一个属性， width，但是未来退格会成为共有的方法。measureText() 使用当前的 font / textAlign / textBaseline 来计算给定文本的大小。例如，假设你希望 "Hello world!" 这段文本刚好能放入宽度为 140px 的矩形中。下面的代码从 100 像素的字体大小开始减小，直到符合：
+            var fontSize = 100;
+            context.font = fontSize + "px Arial";
+            while (context.measureText("Hello world!").width > 140) {
+                fontSize--;
+                context.font = fontSize + "px Arial";
+            }
+            context.fillText("Hello world!", 10, 10);
+            context.fillText("Font size is " + fontSize + "px", 10, 50)
+            //上面的关于 hello world 这部分的内容没有被实现
+        }
+    };
+    </script>
+</head>
+
+<body>
+    <canvas id="drawing"></canvas>
+</body>
+
+</html>

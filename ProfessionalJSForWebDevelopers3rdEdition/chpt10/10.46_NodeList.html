@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.46_NodeList</title>
+    <script type="text/javascript">
+    window.onload = function() {
+            //注意，NodeList是动态的，也就是说当文档结构发生变化时，以保持与最新信息的同步
+            //实际上，NodeList对象每一次被获取时，他们都是遍历文档后的查询结果。例如下面的代码就会形成一个无限的循环
+            var divs = document.getElementsByTagName('div'),
+                i,
+                div;
+            for (var i = 0; i < divs.length; i++) {
+                div = document.createElement("div");
+                document.body.appendChild(div);
+                //每次遍历时，i<div.length就会被重新评估，这意味着查询所有div元素这个动作就会执行一次，因为NodeList是动态的（live），所以这个时候的div.length其实是在不断地增长的，所以i永远不会小于divs.length。这样的话就会形成一个无线循环。
+            }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

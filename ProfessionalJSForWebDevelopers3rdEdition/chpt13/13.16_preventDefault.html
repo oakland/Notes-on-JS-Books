@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>13.16_preventDefault</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        //preventDefault()方法用于阻止某一事件的默认行为。例如，链接被点击的时候，默认行为就是导航到href属性指定的URL地址。如果你想阻止导航的发生，一个onclick事件处理器可以取消这个行为，如下：
+        var link = document.getElementById('myLink');
+        link.onclick = function(event) {
+            event.preventDefault();
+        };
+    }
+    </script>
+</head>
+
+<body>
+    <a href="http://www.yunkechina.com" id="myLink">神州云科</a>
+</body>
+
+</html>

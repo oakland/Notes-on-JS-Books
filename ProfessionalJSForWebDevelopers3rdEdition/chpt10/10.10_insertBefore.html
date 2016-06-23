@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10.10_insertBefore</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var parent = document.getElementById('parent');
+        var son1 = document.getElementById('son1');
+        var son2 = document.getElementById('son2');
+        console.log(parent.childNodes);
+        parent.insertBefore(son1,son2);
+        console.log(parent.childNodes);
+        //appendChild会把document中原来的element剪切到新的位置，也就是说原来的位置元素会消失并不能保留
+    }
+    </script>
+</head>
+
+<body>
+    <div id="son1">son1</div>
+    <div id="parent">
+        <div id="son2">son2</div>
+    </div>
+</body>
+
+</html>

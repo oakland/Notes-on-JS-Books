@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>7.2_createADictionary</title>
+    <script type="text/javascript">
+    //和 set 类似，ECMAScript6 也包含一个 Map class，也就是 dictionary。
+    //你可以在下面这个网站了解 ECMAScript6 中 Map class 的详细实现：
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+    //本章中我们要实现的 class 就是基于 ECMAScript6 的 Map 的实现。你会注意到，它和 Set class 非常类似。
+    //下面是 Dictionary class 的框架：
+    function Dictionary() {
+        var items = {};
+    }
+    //和 Set class 类似，我们也将元素储存在 Object 实例中，而不是数组中。
+    //接着，我们需要声明一些 map/dictionary 可以访问的方法：
+    //set(key,value)：向 dictionary 添加一个新的元素
+    //remove(key)：使用 key 来移除 dictionary 中的某个元素
+    //has(key)：如果 key 存在则返回 true，否则返回 false
+    //get(key)：根据 key 值获取 value
+    //clear()：移除 dictionary 的所有元素
+    //size()：返回 dictionary 所拥有的元素数量。
+    //keys()：返回所有的 keys
+    //values()：返回所有的 values
+    //has 和 set 方法
+    //我们要实现的第一个方法是 has()。因为 set() remove() 等其他方法会使用到 has() 方法。
+    this.has = function(key) {
+        return key in items;
+    };
+    // 实现的方法和 Set class 实现的方法完全相同。我们使用 JS 的 in 操作符来判断 key 是否是 items 的属性。下一个是 set()
+    this.set = function(key, value) {
+        items[key] = value;
+    };
+    // 这个方法可以添加一个新的值或者更新一个已有值
+    // remove()
+    // 这个方法和 Set class 的 remove() 方法类似。唯一的区别在于我们首先搜索 key ，而不是 value
+    this.remove = function(key) {
+        if (this.has(key)) {
+            delete items[key];
+            return true;
+        }
+        return false;
+    };
+    //get and values 方法
+    // 如果我们希望在 dictionary 中搜索某个特定的项目，并且获取其 value，我们可以使用下面的方法
+    this.get = function(key) {
+        return this.has(key) ? items[key] : undefined;
+    };
+
+    this.values = function() {
+        var values = [];
+        for (var k in items) {
+            if (items.has(k)) {
+                values.push(items[k]);
+            }
+        }
+        return values;
+    };
+    //注意，我们不能直接用 for-in 语句来遍历 items 的属性，我们必须要使用 has() 方法来验证 items 对象是否拥有这个属性，因为 object's prototype 拥有一些继承自 Object 的额外的属性。
+    //clear size keys 方法和 Set class 完全相同。
+
+    this.getItems = function() {
+    	return items;
+    };
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
