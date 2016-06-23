@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.1.4_functionBinding</title>
+	<script type="text/javascript">
+		//一种越来越流行的高级技巧就是 function binding。function binding 即，创建一个调用其他函数的函数，制定一个特定的 this 值，以及固定的参数。这项技术经常同回调函数以及事件处理器相关联使用，以便于将函数作为变量传入时，能保持代码的执行上下文。例如：
+		var handler = {
+			message: "Event handled",
+			handleClick: function() {
+				alert(this.message);
+			}
+		};
+
+		var btn = document.getElementById('my-btn');
+		EventUtil.addHandler(btn, "click", handler.handleClick);
+		// 本例中，创建了一个 handler 对象。handler.handleClick() 方法被指定为 DOM 按钮的事件处理器。当按钮被点击的时候，函数被调用，弹框会弹出。尽管看起来，似乎应该弹出 "Event handled"，但实际上弹出的是 "undefined"。问题在于 handler.handleClick() 方法的上下文并没有被保存起来，所以在大多数的浏览器中 this 对象指向 DOM 按钮，而不是 handler（在 IE8 中，this 指向 window）。你可以通过使用闭包来解决这个问题，如下所示：
+		var handler = {
+			message: "Event handled",
+			handleClick: function() {
+				alert(this.message);
+			}
+		};
+
+		var btn = document.getElementById('my-btn');
+		EventUtil.addHandler(btn, "click", function(event) {
+			handler.handleClick(event);
+		});
+		// 这个解决方案使用了闭包在 onclick 事件处理器内部调用了 handler.handleClick()。当然，这个具体的解决方案是针对这段具体的代码。创建大量的闭包可以导致难以理解和无法调试的代码。因此，很多 JS 库实现了一个函数绑定了一个函数所专有的上下文。通常这个函数被叫做 bind()。
+		// 一个简单的 bind() 函数以一个函数和一个上下文作为参数，返回一个根据指定的上下文调用指定函数的函数，而且保持所有的参数不受影响。语法如下：
+		function bind(fn, context) {
+			return function() {
+				return fn.apply(contex, arguments);
+			};
+		}
+		// 这个函数看上去简单，但实际上非常有用。在 bind() 内部创建了一个闭包，这个函数调用了通过使用 apply() 调用了传入的函数，参数是 context 对象和 arguments。注意，在这里使用到的 arguments 对象，适用于内部函数的，而不是用于 bind() 。当返回的函数被调用的时候，它会以指定的上下文和所有的参数执行指定的函数。bind() 的用法如下：
+		var handler = {
+			message: "Event handled",
+			handleClick: function() {
+				alert(this.message);
+			}
+		};
+
+		var btn = document.getElementById('my-btn');
+		EventUtil.addHandler(btn, "click", bind(handler.handleClick, handler));
+		// 在这个例子中，bind() 函数用于创建一个函数，这个函数可以被传入 Event.addHandler() ,保持了上下文。event 对象也被传入到了函数中，如下所示：
+		var handler = {
+			message: "Event handled",
+			handleClick: function() {
+				alert(this.message + ":" + event.type);
+			}
+		};
+		var btn = document.getElementById('my-btn');
+		EventUtil.addHandler(btn, "click", bind(handler.handleClick, handler));
+
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

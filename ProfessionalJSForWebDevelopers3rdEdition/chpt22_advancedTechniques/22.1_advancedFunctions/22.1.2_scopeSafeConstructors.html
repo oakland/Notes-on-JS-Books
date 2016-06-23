@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.1.2_scopeSafeConstructors</title>
+	<script type="text/javascript">
+		//第六章中介绍了，用于自定义对象的构造器的定义和使用。我们回忆一下，构造器仅仅是一个使用 new 操作符进行调用的函数。当以这种方式使用的时候，构造器内部的 this 对象指向新创建的对象实例，如下例所示：
+		function Person(name, age, job) {
+			this.name = name;
+			this.age = age;
+			this.age = age;
+			this.job = job;
+		}
+		var person = new Person("Nicholas", 29, "Software Engineer");
+		// 本例中， Person 构造器使用 this 对象指定了三个属性：name, age and job。当使用 new 操作符的时候，一个新的 Person 对象就会被创建，属性会被赋予给新对象。当构造器没有使用 new 操作符的时候，就会出现问题。鉴于 this 对象在函数执行的时候才会确定，如果直接调用 Person() 函数会将 this 定位为全局对象(window)，导致出现错误对象的事故性扩展。例如：
+		var person = Person("Nicholas", 29, "Software Engineer");
+		alert(window.name);	    //"Nicholas"
+		alert(window.age);	    //29
+		alert(window.job);	    //"Software Engineer"
+		// window 对象扩展了本该用于 Person 实例的三个属性，因为构造函数没有使用 new 操作符调用。问题的出现是滞后性绑定 this 对象的结果，鉴于 window 的 name 属性用于辨认 link targets and frames，这样的事故会复写这个属性并导致页面中的其他错误。而问题的解决方案就是 scope-safe constructor。
+		// 作用域安全构造器(scope-safe constructor)在正式应用改变之前会首先判断，以确保 this 对象是某个正确类型的实例。如果不是，那么就会创建一个新的实例并且返回。考虑如下案例：
+		function Person(name, age, job) {
+			if (this instanceof Person) {
+				this.name = name;
+				this.age = age;
+				this.job = job;
+			} else {
+				return new Person(name, age, job)
+			}
+		}
+		var person1 = Person("Nicholas", 29, "Software Engineer");
+		alert(window.name);      //""
+		alert(person1.name);      //"Nicholas"
+
+		var person2 = Person("Shelby", 34, "Ergonomist");
+		alert(person2.name);      //"Shelby"
+		// 本段代码中的 Person 构造器...
+		// 使用作用域安全构造器有个警告。通过使用这种模式，你就把调用构造器时候的上下文锁定了。如果你使用 constructor-stealing of inheritance ，而没有使用 原型链，你的继承会断裂。看下面的例子：
+		function Polygon(sides) {
+			if (this instanceof Polygon) {
+				this.sides = sides;
+				this.getArea = function() {
+					return 0;
+				};
+			} else {
+				return new Polygon(sides);
+			}
+		}
+
+		function Rectangle(width, height) {
+			Polygon.call(this, 2);
+			this.width = width;
+			this.height = height;
+			this.getArea = function() {
+				return this.width * this.height;
+			};
+		}
+		var rect = new Rectangle(5, 10);
+		alert(rect.sides);     //undefined
+		// 本段代码中，Polygon 是作用域安全的，而 Rectangle 构造器不是。当 Rectangle 的新的实例被创建的时候，按道理它应该会通过调用 Polygon.call() 的方法从 Polygon 继承 sides 属性。但是，由于 Polygon 构造器是作用域安全的，所以 this 对象就不是 Polygon 的实例，所以新的 Polygon 对象会被创建并返回。 Rectangle 构造器中的 this 对象没有得到扩展，Polygon.call() 返回的值也没有被使用，所以 Rectangle 实例就没有 sides 属性。
+		// 如果 prototype chaining 或者 parasitic combination 和 constructor stealing 结合使用的话，这个问题就会得到解决。如下例所示：
+		function Polygon(sides) {
+			if (this instanceof Polygon) {
+				this.sides = sides;
+				this.getArea = function() {
+					return 0;
+				};
+			} else {
+				return new Polygon(sides);
+			}
+		}
+
+		function Rectangle(width, height) {
+			Polygon.call(this, 2);
+			this.width = width;
+			this.height = height;
+			this.getArea = function() {
+				return this.width * this.height;
+			};
+		}
+
+		Rectangle.prototype = new Polygon();
+
+		var rect = new Rectangle(5, 10);
+		alert(rect.sides);     //2
+
+		// 在这段重写的代码中，Rectangle 的实例也是 Polygon 的实例，所以 Polygon.call() 会按照本该的行为工作，最终实现给 Rectangle 的实例添加了 sides 属性。
+		//当很多的开发者在同一个页面中书写 JS 代码的环境下，作用域安全构造器非常有用。在这样的情况下，不小心对 global 对象的改变可能会导致很难追踪到的错误。作用域安全构造器作为最佳实践非常推荐使用，除非你正在单独执行基于 constructor stealing 的继承。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
