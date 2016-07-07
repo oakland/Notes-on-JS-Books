@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.3.2_repeatingTimers</title>
+	<style type="text/css">
+		body {
+			position: relative;
+		}
+		#myDiv {
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background: orange;
+		}
+	</style>
+	<script type="text/javascript">
+		//使用 setInterval() 创建的计时器，可以保证定时器代码可以有规律的推送到执行队列中。但是这种方式的问题在于，在代码被再次添加到队列中之前，定时器代码也许永远不会结束运行。结果就是，定时器代码会在一个队列中多次运行，而在两次运行中间一点时间空隙。幸运的是，JS 引擎非常聪明的避免了这个问题。当使用 setInterval() 的时候，只有当队列中不存在其他的定时器代码实例的时候，定时器代码才会被添加到队列中。这保证了两次定时器代码被添加到队列中的最少时间就是指定的间隔。
+		//这种定时器重复的去缺点是翻倍的：(1) 间隔可能会被跳过；(2) 在多次定时器代码运行期间的间隔可能比期望中的短。假设你有这样一种情况，onclick 事件处理器使用 setInterval() 设置了一个间隔 200ms 的定时器。如果事件处理器函数本身就需要超过 300ms 多一点才能完成，而定时器代码占用同样多少的时间，最终的效果就是你会拥有一个跳跃式的间隔以及连续运行的定时器代码，看图 <advancedTimers3.png>
+		//本例中，第一个被添加到队列中的定时器是在 205ms，但是在 300ms 标记的位置之前都没法执行。当定时器代码正在执行的时候，另一个定时器副本在 405ms 的位置又被添加到队列中。下次间隔中，605ms，第一个定时器代码依然在执行中，而队列中依然存在一个定时器代码的实例。结果就是，定时器代码不会在那个时间点被添加到队列中。在 405ms 被添加的定时器代码在定时器代码被添加后的 5ms 之后就会立即被执行。
+		//为了避免使用 setInterval() 重复定时器带来的问题，你可以以下面的方式使用链状 setTimeout() 调用：
+		setTimeout(function() {
+			//processing
+			setTimeout(arguments.callee, interval);
+		}, interval);
+		//这种 setTimeout() 的链式调用模式，在函数每次被调用的时候都会创建一个新的定时器。使用 arguments.callee 获得一个当前执行函数的指针并且在第二次调用 setTimeout()为它设置了另外一个定时器。优点在于，新的定时器代码在前一段定时器代码执行完之前是不会被添加到队列中的，保证了不会出现被抛弃的间隔(dropped intervals)。而且，你可以保证下次定时器代码被执行的时候，最少是按照指定间隔被添加到队列中，而避免了连续的执行。这种模式广泛的用于重复定时器，如下例：
+		setTimeout(function() {
+			var div = document.getElementById('myDiv'),
+				left = parseInt(div.style.left) + 5;
+			div.style.left = left + "px";
+			if (left < 200) {
+				setTimeout(arguments.callee, 50);
+			}
+		}, 50);
+		//这段代码会让一个 <div> 元素在每次定时器代码执行的时候都向右移动，当 left 坐标为 200px 的时候停止。这种模式在 JS 动画中非常普遍。
+		//每一个浏览器窗口(window)，标签页(tab)，或者框架(frame)都拥有自己的代码执行队列。这意味着，跨框架或者跨窗口的 JS 定时器调用可能会导致... 
+	</script>
+</head>
+<body>
+	<img src="advancedTimers3.png" alt="">
+	<div id="myDiv" style="left:0px"></div>
+</body>
+</html>

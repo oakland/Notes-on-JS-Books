@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.3.4_functionThrottling</title>
+	<script type="text/javascript">
+		//在浏览器中，某些计算和进程要比其他的更加昂贵。例如，DOM 操作比非 DOM 互动需要更多的内存和 CPU 时间。试图依次操作太多的 DOM 相关的操作可能导致浏览器挂掉，有时候甚至直接崩溃。当使用 onresize 事件处理器的时候这在 IE 中更容易发生，由于计算变化频率的原因，这个事件在浏览器窗口改变大小的时候不断地被触发。要解决这个问题，你可以通过使用定时器来节流函数。
+		//函数节流背后的基本思路是，一些代码不应当被不间断的重复执行。函数第一次被调用的时候，定时器就被创建，并且经过一定的时间再运行代码。当函数第二次被调用的时候，它会清楚前面的定时器，然后再重新设置一个新的定时器。如果前面的定时器已经被执行了，那么就没有什么后果。但是，如果前面的定时器还没有执行，它非常有必要被一个新的定时器代替。目的是为了....之后执行函数，下面是这种模式的基本表现：
+		var processor = {
+			timeoutId: null,
+
+			//method that actually performs the processing
+			performProcessing: function() {
+				//actual processing code
+			},
+
+			//method that is called to initiate processing
+			process: function() {
+				clearTimeout(this.timeoutId);
+
+				var that = this;
+				this.timeoutId = setTimeout(function() {
+					that.performProcessing();
+				}, 100);
+			}
+		};
+		//try to start processing
+		processor.process();
+
+		//在这段代码中，创建中了一个 processor 的对象。这个对象上有两个方法：...
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

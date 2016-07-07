@@ -52,8 +52,18 @@
 		};
 		var btn = document.getElementById('my-btn');
 		EventUtil.addHandler(btn, "click", bind(handler.handleClick, handler));
-
-		
+		// handler.handleClick() 方法像往常一样被传入了 event 对象，因为都会直接被传入到绑定函数中。
+		//ECMAScript5 在所有的函数中都引入了一个原生的 bind() 方法，以便于使得这个过程更加简单。你可以直接调用函数的 bind() 方法，而不是定义自己的 bind() 函数。例如：
+		var handler = {
+			message: "Event handled",
+			handleClick: function() {
+				alert(this.message + ":" + event.type);
+			}
+		};
+		var btn = document.getElementById('my-btn');
+		EventUtil.addHandler(btn, "click", handler.handleClick.bind(handler));
+		// 原生的 bind() 方法和前面所描写的 bind() 方法类似，你需要在 bind() 方法的参数中传入 this 值的对象。原生的 bind() 方法在 IE9+ FF4+ Chrome 中可以访问。
+		//当函数指针必须作为值传入的时候，而这个函数又需要在特定的上下文中执行的时候，绑定函数非常有效。他们经常被用于事件处理器函数或者和 setTimeout() 和 setInterval() 一起使用。但是，但是绑定函数比普通函数更加耗费——会消耗更多的内存，并且由于多重函数的调用会稍微有些慢——所以只有当必要的时候再这么使用。
 	</script>
 </head>
 <body>

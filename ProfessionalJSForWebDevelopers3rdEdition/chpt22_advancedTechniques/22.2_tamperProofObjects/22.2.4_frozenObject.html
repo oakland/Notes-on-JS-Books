@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.2.4_frozenObject</title>
+	<script type="text/javascript">
+		//防篡改对象最严格的方式就是 frozen object。 frozen object不可扩展也不可被 sealed，同时 data properties 的 [[Writable]] 属性也被设置为 false。 accessor properties 依然可以被写入，但是只有 [[Set]] 函数被定义时。 ECMASript5 定义了 Object.freeze() 方法来冻结对象：
+		var person = {name: "Nicholas"};
+		Object.freeze(person);
+
+		person.age = 29;
+		alert(person.age);        //undefined
+
+		delete person.name;
+		alert(person.name);       //"Nicholas"
+
+		person.name = "Grey";
+		alert(person.name);       //"Nicholas"
+
+		//鉴于拥有阻止扩展和封闭状态，在非严格模式下，在冻结对象上执行不允许的操作的尝试会被忽略，而在严格模式下则会抛出错误。
+		//同样，也有一个 Object.isFrozen() 方法来检测冻结对象。鉴于冻结的对象既被封闭又不可扩展，所以 Object.isExtensible() 会返回 false，而 Object.isSealed() 会返回 true：
+		var person = {name: "Nicholas"};
+		alert(Object.isExtensible(person));    //true
+		alert(Object.isSealed(person));    //false
+		alert(Object.isFrozen(person));    //false
+
+		Objec.freeze(person);
+		alert(Object.isExtensible(person));    //false
+		alert(Object.isSealed(person));    //true
+		alert(Object.isFrozen(person));    //true
+		//冻结对象对于库的作者来说尤其有用。 JS 库的一个非常普遍的问题就是人们会不小心或者蓄意改变主要的库对象，冻结主要的库对象，或者封闭主要的库对象，都可以帮助组织这类错误的发生。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

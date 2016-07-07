@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.3.3_yieldingProcesses</title>
+	<script type="text/javascript">
+		//浏览器中运行的 JS 可配置的资源是有限的。不像桌面应用，他们对于可控制的内存和处理器数量是没有限制的，JS 被严格限制以保证恶意的网页程序员无法破坏用户的一台电脑。限制中的其中一项就是长运行脚本限制 (long-runing script limit)，当一段代码运行的时间超过一定的长度或者超过一定的语句，长运行脚本就会阻止代码的运行。当到达了这个极限之后，一个浏览器错误对话框会呈献给用户，说明脚本采用了太长的时间运行并且询问用户是否希望允许继续进程还是停止进程。保证用户永远无法从浏览器中看到这样一条令人迷惑的对话框是所有 JS 开发者的目标之一。定时器是一个迂回解决限制问题的方式。
+		//长运行脚本的问题通常源于两个问题：又长又深的嵌套函数的调用或者执行很多进程的回路。当然是这两个问题，而后者是一个相对容易解决的问题。长运行回路通常是如下模式：
+		for (var i = 0, leng = data.length; i < len; i++) {
+			process(data[i]);
+		}
+		//这种模式的问题在于要运行的项目数量在运行之前是无法预知的。如果 process() 需要花费 100ms 才能完成，一个只拥有两个项目的数组也许没必要担心太多，但是一个拥有是个项目的数组需要 1s 才能完成。完成回路花费的时间和数组中项目的数量是直接相关的。鉴于 JS 的执行是一个阻塞运行 (blocking operation)，一个脚本运行的时间越长，用户无法与页面进行交互的时间就越长。
+		//在 unrolling the loop 之前，你需要回答下面两个重要的问题：
+		// 1.进程必须同步运行吗？如果这个数据的进程正在阻塞其他进程的结束，那么你最好不要碰他。如果这个问题你的答案是非常明确的 no ，延迟进程是一个不错的备选方案。
+		// 2.数据必须依次执行吗？通常，通常，值的数组是一种非常方便的不按顺序组织和遍历项目的方式。如果项目的顺序没有明确，那么你大可将这些进程向后延迟一段时间。
+		//当你发现一个回路需要花费大量的时间才能完成的时候，上面两个问题的任何一个你都可以回答 no，你可以使用定时器来讲回路进行分割。这就是名为 array chunking 的技术，将数组分隔成小块的进程，通常一次一个。基本思路就是创建一个处理项目的队列，使用定时器将下一个项目推入到进程中，处理它，然后在设置另外一个定时器。基本的模式如下所示：
+		setTimeout(function() {
+			//get next item and process it
+			var item = array.shift();
+			process(item);
+
+			//if there is no more items, set another timeout
+			if (array.length > 0) {
+				setTimeout(arguments.callee, 100);
+			}
+		}, 100); 
+		//在 array chunking 模式中，array 变量本质上是一个要处理进程的 to do list。使用 shift() 方法，你获取到队列中要处理的的下一个项目，将它传入到一个函数中。如果队列中还有项目，那么就再设置一个浏览器，通过 arguments.callee 来调用同一个函数。你可以使用下面的函数，很轻松的就实现 array chunking：
+		function chunk(array, pcocess, context) {
+			setTimeout(function() {
+				var item = array.shift();
+				process.call(context, item);
+
+				if (array.length > 0) {
+					setTimeout(arguments.callee, 100);
+				}
+			}, 100);
+		}
+		//chunk() 方法接受三个参数：要处理的项目数组，用于处理这些项目的函数，函数运行的上下文(可选)。函数内是一个前面所描述的基本模式的副本，process() 函数通过 call() 方法调用，以便于必要的时候设置正确的上下文。定时器的间隔被设置为 100ms，这赋予了 JS 进程在项目运行事件之间一定的空闲时间。这个间隔可以根据你的需求进行改变，尽管 100ms 在大多数的情况下已经足够了。函数的使用方式如下：
+		var data = [12,123,1234,453,436,23,23,5,4123,45,346,5634,2234,345,342];
+		functtion printValue(item) {
+			var div = document.getElementById('myDiv');
+			div.innerHTML += item + "<br>";
+		}
+		chunk(data, printValue);
+		//这个例子通过 printValue() 函数在 <div> 元素中输出 data 数组的每一个值。鉴于函数存在于全局作用域中，没必要给 chunk() 函数传入 context 对象。
+		//我们需要知道的是，传入 chunk() 中的数组当做队列使用，所以数组中的项目随着数据的处理而在发生改变。如果你希望保持数组不变，你应当给 chunk() 传入一个数组的克隆，如下例：
+		chunk(data.concat(), printValue);
+		// 当数组调用 concat() 方法没有传入参数的时候，它会返回一个和原来拥有相同项目的新数组。通过这种方式，你可以保证原来的数组不会被函数所改变。
+		// array chunking 的重要性在于，它会将多个项目的进程在运行队列中分成分割成独立的代码。这样就会在每一个项目被处理之后，就会给其他浏览器进程以运行的机会，你就避免了 long-running script errors。
+		// 当你拥有一个需要花费超过 50ms 的函数，最好尝试一下，你是否可以通过定时器将这项工作分成一系列小的任务。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

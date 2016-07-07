@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			//a b 都为原始 primitive values 的情况
+			var a = 5, 
+				b = a;
+			console.log(a,b);   //5, 5
+			b = 6;
+			console.log(a,b);   //5, 6
+
+			//c d 都为 reference values 的情况
+			var c = {color1: "red"},
+				d = c;
+			console.log(c ,d);  //{color1: "red"}  {color1: "red"}
+			d.color2 = "green";
+			console.log(c ,d);  //{color1: "red", color2: "green"}  {color1: "red", color2: "green"}
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

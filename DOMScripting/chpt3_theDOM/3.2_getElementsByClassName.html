@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3.2_getElementsByClassName</title>
+	<script type="text/javascript">
+		//HTML5 新增了一个非常受欢迎的方法 getElementsByClassName()。这个方法通过 class name 新增了一个获取元素的方法。也就是说，这是一个比较新的 DOM 新增的方法，所以当你打算使用它的时候，你需要非常小心。..
+		// 你也可以通过添加多个 class 来定位那些拥有多个 class 的元素。要想包含多个 class，仅仅需要使用空格来实现。例如：
+		alert(document.getElementsByClassName('important sale').length);
+		// document.getElementsByClassName() 方法非常有用，但是只是被现代所支持。为了弥补这样的支持，程序员需要自己根据现有的 DOM 方法来生成自己的 document.getElementsByClassName() 函数。在多数情况下，函数如下，可以同时在旧的和新的浏览器中被支持：
+		function getElementsByClassName(node, classname) {
+			if (node.getElementsByClassName()) {
+				//Use the existing method
+				return node.getElementsByClassName(classname);
+			} else {
+				var results = new Array();
+				var elems = node.getElementsByTagName('*');
+				for (var i = 0; i < elems.length; i++) {
+					if (elems[i].className.indexOf(classname) != -1) {
+						results[results.length] = elems[i];
+					}
+				}
+				return results;
+			}
+		}
+		// 这个函数接受两个参数。第一个是 node，代表着 DOM 树中搜索开始的点，第二个参数是 classname，代表要搜索的 class。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

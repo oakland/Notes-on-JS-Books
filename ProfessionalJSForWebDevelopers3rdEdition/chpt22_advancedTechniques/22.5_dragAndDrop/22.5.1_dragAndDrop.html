@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.5.1_dragAndDrop</title>
+	<script type="text/javascript">
+		//拖动是电脑的一种非常普遍的用户交互模式。想法很简单：在一个项目上点击并按住鼠标按钮，移动鼠标到一个区域，释放鼠标按钮以便于将项目放置到那里。拖动交互方式的流行扩展到了 web，拖动已经成为了一种流行的传统配置接口的替代品。
+		// 拖动的道理很简单：创建一个可以被鼠标移动的绝对定位元素。这项技术拥有其原型，经典的网页把戏中叫做 cursor trail。 cursor trail 是在页面中鼠标指针运动时留下一个一张图片或者多张图片的阴影。单一项目的 cursor trail 的基本代码牵涉到在 document 上设置一个 onmousemove 事件处理器，这个事件处理器总是将一个指定的图片移动到指针的位置，如下例：
+		EventUtil.addHandler(document, "mousemove", function(event) {
+			var div = document.getElementById('myDiv');
+			div.style.left = event.clientX + "px";
+			div.style.top = event.clientY + "px";
+		});
+		// ...
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

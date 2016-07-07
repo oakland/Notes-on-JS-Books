@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.2.2_NonextensibleObject</title>
+	<script type="text/javascript">
+		//默认情况下，所有的 JS 对象都是可扩展的，以为你可以在任何时候给一个对象添加额外的属性和方法。例如，我可以定义一个对象，定义完之后再决定是否添加另外一个属性：
+		var person = {name: "Nicholas"};
+		person.age = 29;
+		//尽管 person 对象已经在第一行已经被完全定义了，第二行代码依然能够添加一个额外的属性。Object.preventExtensions() 方法可以改变这个行为，以使得新的属性和方法不能被添加到对象上。例如：
+		var person = {name: "Nicholas"};
+		Object.preventExtensions(person);
+
+		person.age = 29;
+		alert(person.age);  //undefined
+		//在 Object.preventExtensions() 函数被调用之后，person 对象就不能再添加新的属性和方法了。在非严格模式，尝试去添加一个新的对象成员会被忽略，所以 person.age 的结果是 undefined。在严格模式下，尝试给一个不可扩展的对象添加一个新成员会导致错误的抛出。
+		//尽管对象不能添加新的成员，但是所有已经存在的成员会保持不受影响。你依然可以修改或者删除一个已经存在的成员。通过使用 Object.isExtensible() 方法，来判断一个对象不能被扩展也是可能的：
+		var person = {name: "Nicholas"};
+		alert(Object.isExtensible(person));    //true
+		Object.preventExtensions(person);
+		alert(Object.isExtensible(person));    //false
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

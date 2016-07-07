@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3.1_objectLiterals</title>
+	<script type="text/javascript">
+		//对象字面量
+		// 对象字面量提供了一种非常方便的字面量用于创建新的对象值。
+
+		//reflection
+		// 通过获取属性并检测获取到的值，我们可以很容易检查一个对象并判断它拥有什么属性。在检测属性类型方面，typeof 操作符非常有用：
+		typeof flight.number;  //"number"
+		typeof flight.status;  //"string"
+		typeof flight.arrival;  //"object"
+		typeof flight.manifest;  //"undefined"
+		//必须要注意一下，有些在原型链上的属性也也可以产出一个值：
+		typeof flight.toString;  //"function"
+		typeof flight.constructor;  //"function"
+		// 要想处理这些不想得到的属性，我们可以使用两种方法。第一种是...
+		// 另外一种方法是使用 hasOwnProperty() 方法，如果对象拥有某个具体的属性就会返回 true。hasOwnProperty() 方法不会查看原型链上的属性：
+		flight.hasOwnProperty("number");   //true
+		flight.hasOwnProperty("constructor");   //false
+
+		// enumeration 枚举
+		// for-in 语句可以遍历对象的所有属性名。枚举将会包含所有的属性——包括函数和你所不感兴趣的原型链属性——所以过滤你不想要的值是有必要的。最常用的过滤器就是 hasOwnProperty() 方法，并使用 typeof 除去函数：
+		var name;
+		for(name in another_stooge) {
+			if (typeof another_stooge[name] !== "function") {
+				document.write(name + ":" + another_stooge[name]);
+			}
+		}
+		// names 的顺序没法保证，所以准备好接收 names 以不同的顺序出现。如果你想保证属性以某种固定的顺序排列，最好完全不用 for-in 语句，而是生成一个以正确顺序包含属性名的数组：
+		var i;
+		var properties = [
+			'first-name',
+			'middle-name',
+			'last-name',
+			'profession'
+		];
+		for (var i = 0; i < properties.length; i += 1) {
+			document.writeln(properties[i] + ":" + another_stooge[properties[i]]);
+		}
+		// 通过使用 for 而不是 for-in 语句，我们能够获得我们想要的属性，而不用担心那些从原型链上的被挖出来的属性，并且以正确的顺序获得这些属性。
+
+		//delete 
+		// delete 操作符可以用于从对象上移除属性。如果对象拥有这个属性，就会移除这个属性。这个操作符不会原型链上的的任何对象。
+		// 从对象上移除属性也许会允许原型链上的的属性穿透：
+		another_stooge.nickname       //"Moe"
+
+		// 从 another_stooge 上移除 nickname，呈现出原型自己本来的 nickname
+		delete another_stooge.nickname;
+		another_stooge.nickname;       // "Curly"
+
+
+		//global abatement
+		//在 JS 中定义全局变量非常容易。但是，但是全局变量削弱了程序的伸缩性，应当尽量避免。
+		// 一种减少全局变量使用的方法就是为你的应用创建一个单一的全局变量：
+		var MYAPP = {};
+		// 这个变量成为了你应用的容器：
+		MYAPP.stooge = {
+			"first-name": "Joe",
+			"last-name": "Howard"
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

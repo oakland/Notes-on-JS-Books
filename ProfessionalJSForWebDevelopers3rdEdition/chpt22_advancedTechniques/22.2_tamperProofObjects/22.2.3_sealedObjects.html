@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22.2.3_sealedObjects</title>
+	<script type="text/javascript">
+		//在 ECMAScript5 中对对象的下一个层次的保护就是封闭式对象(sealed object)。sealed object 是不可扩展的，而已有的对象成员的 [[Configurable]] 属性都被设置为了 false。这意味属性和方法不能被删除，data properties 不能通过 Object.defineProperty() 方法被修改为 accessor properties，反之亦然。但是属性值依然可以改变。
+		//你可以使用 Object.seal() 方法来封闭一个对象：
+		var person = {name: "Nicholas"};
+		Object.seal(person);
+
+		person.age = 29;
+		alert(person.age);      //undefined
+
+		delete person.name;
+		alert(person.name);     //"Nicholas"
+
+		//本例中，添加一个 age 属性的尝试被忽略了。删除 name 属性的尝试也被忽略了，所以值依然保持不变。这是非严格模式下的行为。在严格模式下，任何添加或者删除对象成员的尝试都会抛出错误。
+		//你可以通过 Object.isSealed() 方法来判断一个对象是否被 sealed 了。因为一个 sealed object 也不能扩展，Object.isExtensible() 方法判断一个 sealed object 也会返回 false：
+		var person = {name: "Nicholas"};
+		alert(Object.isExtensible(person));    //true
+		alert(Object.isSealed(person));    //false
+
+		Objec.seal(person);
+		alert(Object.isExtensible(person));    //false
+		alert(Object.isSealed(person));    //true
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
