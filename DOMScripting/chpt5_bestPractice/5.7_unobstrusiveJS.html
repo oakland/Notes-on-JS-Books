@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.7_unobstrusiveJS</title>
+	<script type="text/javascript">
+		//...问题在于，我们应当识别出哪个元素应当拥有时间处理器。这个元素就是 hooks like class and id come in handy。
+		var links = document.getElementsByTagName('a');
+		for (var i = 0; i < links.length; i++) {
+			if(links[i].getAttribute('class') == 'popup') {
+				links[i].onclick = function() {
+					popUp(this.getAttribute('href'));
+					return false;
+				};
+			}
+		}
+		// ...第六章中你将会看到当文档载入的时候更优雅的事件处理方式。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

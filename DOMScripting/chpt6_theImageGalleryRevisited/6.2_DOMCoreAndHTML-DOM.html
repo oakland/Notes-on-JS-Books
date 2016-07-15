@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.2_DOMCoreAndHTML-DOM</title>
+	<script type="text/javascript">
+		//到目前为止，我是用了很少的一部分方法来实现我希望实现的效果，包括 getElementById getElementByTagName getAttribute setAttribute。
+		// 这些方法都是 DOM Core 的一部分。他们对于 JS 而言是具体的，而它们也可以被使用到任何支持 DOM 的编程语言中。他们也不仅仅适用于网页。这些方法可以被用于任何使用标记语言书写的文档中(例如，XML)。
+		// 当你使用 JS 和 HTML文件的 DOM 时，你可以使用更多其他的属性。例如，我实际上也运用过这些属性中的一种，onclick，在图片展示中用于事件管理。这些属性属于 HTML-DOM，which has been around longer than the DOM Core。
+		// 例如，HTML-DOM 提供了一个 fomrs 对象。这意味着，你不需要书写 document.getElementByTagName("form")，而只需要写成 document.forms。
+		// 同样，HTML-DOM 提供了可以代表元素 attributes 的 properties。例如，图片拥有 src 属性。你不需要写 element.getAttribute("src")，而只需要写成 element.src。
+		// 这些属性和方法是可以互换的。不论你决定是只使用 DOM Core 或者是只是用 HTML-DOM，都没有关系。如你所见，HTML-DOM 更加简短一些。但是，你需要记住，HTML-DOM 只是网页文档特有的，所以你需要注意你是不是在其他类型的文档中使用 DOM。
+		// 如果我要使用 HTML-DOM，我可以简化几行 showPic 函数的代码。
+		// 这行代码使用 DOM Core 来获取 whichpic 元素的 href 属性，并且将它的值赋给 source 变量。
+		// var source = whichpic.getAttribute("href");
+		// 下面是使用 HTML-DOM 的方式：
+		// var source = whichpic.href;
+		//...
+		// 即使你决定只使用 DOM Core 的方法，你也应当意识到 HTML-DOM。因为你可能需要阅读其他人的代码，所以你最好能够知道这些方法。
+		// 但是，我依然坚持只是用 DOM Core。但是你不必须这么做，可能的情况下，我会向你指出可以使用 HTML-DOM 简化代码的地方。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

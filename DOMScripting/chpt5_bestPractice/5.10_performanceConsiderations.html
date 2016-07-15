@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.10_performanceConsiderations</title>
+	<script type="text/javascript">
+		//很多 DOM 脚本的书写者容易忽略的一点是，脚本对于整个网页应用性能的影响。为了让网页顺畅运行，在文档中书写和应用脚本时，你有许多事情需要考虑。
+		//Minimizing DOM access and markup 减少 DOM 的获取和标记
+		// 操作 DOM 时你选择的方式，对于你脚本的整体性能有着巨大的影响。思考如下代码：
+		if (document.getElementsByTagName('a').length > 0) {
+			var links = document.getElementsByTagName('a');
+			for (var i = 0; i < links.length; i++) {
+				// do something to each link.
+			}
+		}
+		// 如果你仔细思考一下，你就发现很明显的问题。首先，代码获取了所有的 <a> 元素并判断长度是否大于 0；接着，如果大于 0 的话，代码会再次获取所有的 <a> 元素并应用同样的逻辑遍历他们。
+		// 上例会如我们所预期的一样进行运行，但是它并没有进行很好的优化。不论何时，当你 DOM 来寻找元素的时候，浏览器必须遍历整个 DOM 树来查找任何符合的元素。上面这段烂代码使用了两次 getElementByTagname() 方法，使得必要的工作量翻倍了。更好的解决方式就是，指定初始结果给一个变量，而在遍历中重复使用相同的结果，如下：
+		var links = document.getElementByTagname('a');
+		if (links.length > 0) {
+			for (var i = 0; i < links.length; i++) {
+				// do something to each link.
+			}
+		}
+		// 优化后的代码和优化前的代码有相同的效果，但是却只搜索了一次 DOM 树。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.4_inlineEventHandler</title>
+	<script type="text/javascript">
+		//你可以在行内使用事件处理器，此时 href 属性似乎就没有意义了。毕竟，链接应当被引导到哪里的重要信息已经包含在了 onclick 属性中。这就是为什么你会经常看到如下的链接：
+		// <a href="#" onclick="popUp('http://www.example.com/'); return false;">Example</a>
+		// 上面所述的这个技术和 javascript: pseudo-protocol 的技术一样，都很糟糕。It doesn't degrade gracefully. 如果 JS 被禁用，那么链接就会失效。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

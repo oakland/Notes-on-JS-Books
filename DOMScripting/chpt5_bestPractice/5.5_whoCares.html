@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.5_whoCares</title>
+	<script type="text/javascript">
+		//你也许会好奇禁用浏览器 JS 的理论情况用户到底是谁？真的有必要保证你的网站对这类用户也正常运转吗？
+		// 想象这样一个用户，浏览网页时同时禁用图片和 JS。你也许会认为这类用户的数量非常少，也许你说的是对的。但是这类访问者很重要。
+		// 你刚才想想的用户就是一个搜索机器人(searchbot)。searchbot 是一个自动运行的程序，采集网络信息为了能够向搜索引擎排序中添加页面。所有的主流搜索引擎都拥有这样的程序。目前，只有很少的 searchbot 可以理解 JS。所以，如果你的 JS 不能 degrade gracefully，你的搜索引擎排名就会受到严重影响。
+		// 在 popUp() 函数的例子中，让 JS degrade gracefully 相对来说还比较容易。只要在 href 属性中有 URL，链接就会被跟踪。
+		// <a href="http://www.example.com/" onclick="popUp('http://www.example.com/'); return false;">Example</a>
+		// 上面的方式 URL 出现了两次，非常冗余。幸运的是，JS 中有一种快捷方式，this 可以用于指向当前的元素(current element)。结合使用 this 和 getAttribute() 函数，你可以提取出 href 属性的值：
+		// <a href="http://www.example.com/" onclick="popUp(this.getAttribute('href')); return false;">Example</a>
+		// 实际上，这并没有节约太多的空间。通过使用标准 DOM 属性，有一种更快捷的引用当前链接 href 的方式，this.href：
+		// <a href="http://www.example.com/" onclick="popUp(this.href); return false;">Example</a>
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

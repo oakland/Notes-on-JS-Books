@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.2_gracefulDegradation</title>
+	<script type="text/javascript">
+		//If you use JavaScript correctly, your site will still be navigable by users who don't have JavaScript. This is called graceful degradation.
+		// JavaScript 使用 window 对象的 open() 方法来创建一个新的浏览器窗口。这个方法接收三个参数：
+		// window.open(URL, name, features)
+		// 所有的参数都是可选项：
+		//1. ...
+		//2. 第二个参数是新创建窗口的名字。你可以在代码中使用这个名字与你新创建的窗口进行交流。
+		//3. 第三个参数是你想要新窗口拥有的由逗号分隔的特点列表。...
+		// 这个方法是使用 BOM 的一个很好例子。这个方法的任何功能都没有影响到文档(document)，文档是 DOM 的代表。这个方法只单纯的牵扯到浏览器环境(本例中，就是 window 对象)。
+		// 下面是使用 window.open() 方法的典型例子：
+		function popUp(winURL) {
+			window.open(winURL, "popup", "width=320, height=480");
+		}
+		// 调用 popUp 函数的一种方式就是使用 pseudo-protocol。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

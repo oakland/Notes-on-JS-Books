@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.1_bewareOfOnkeypress</title>
+	<script type="text/javascript">
+		//如上所述，我根本没打算添加 onkeypress 事件处理器。这个事件处理器会造成一些问题。一旦键被按下，事件就会触发。在一些浏览器中，这个键包括 Tab 键！这意味着，使用键盘导航的用户永远无法切换链接(tab past a link)，如果一个和 onkeypress 相关联的函数返回的是 false。图片相册(image gallery)所发生的正式这种情况。showPic 函数，如果成功运行的话，将会返回 false。
+		// 那么，你将这些使用键盘导航的用户置于何地？
+		// 幸运的是，onclick 事件比它的名字听起来要更聪明一些。onclick 这个名字，让人感觉像是和鼠标点击事件相关。实际上，在几乎所有的浏览器中，在链接之间切换的时候，如果你按下回车键，也会触发 onclick 事件处理器，如果 onclick 被命名为 onactivate 可能会更加准确一些。
+		// onclick 和 onkeypress 之间会有很多迷惑，考虑到它们两个之间的术语，这一点也不惊奇。有些导则推荐你使用 onkeypress ，当你使用 onclick 的时候。实际上，这样可能弊大于利。
+		// 不要使用 onkeypress。onclick 事件处理器就足够了。尽管名字叫 onclick ，但是它可以完美地支持键盘访问。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
