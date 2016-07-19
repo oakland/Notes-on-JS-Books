@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>7.2_createElement</title>
+	<script type="text/javascript">
+		//var para = document.createElement("p");
+		// para 变量包含了一个你刚创建的 p 元素的引用。现在，这个新创建的 p 元素游荡在 JS 中。这个元素存在，但是它并不是 DOM 树的一部分。这被称为 document fragment。它并未展示在浏览器中。但是，它去拥有和其他节点一样的 DOM 属性。
+		// 现在还没有归属的 p 元素拥有 nodeType 和 nodeName 值。通过在 example.js 中放入他们来进行测试：
+		window.onload = function() {
+			var para = document.createElement("p");
+			var info = "nodeName: ";
+			info += para.nodeName;
+			info += " nodeType: ";
+			info += para.nodeType;
+			alert(info);
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

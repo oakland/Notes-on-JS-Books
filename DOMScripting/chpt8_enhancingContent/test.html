@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var dl = document.createElement("dl");
+
+        //获取所有 abbr 对象
+        var abbrs = document.getElementsByTagName('abbr');
+        for (var i = 0; i < abbrs.length; i++) {
+            var dt = document.createElement("dt"),
+                dd = document.createElement("dd");
+            var dtText = document.createTextNode(abbrs[i].innerHTML),
+                ddText = document.createTextNode(abbrs[i].title);
+            // console.log(dtText);
+            // console.log(ddText);
+            dt.appendChild(dtText);
+            dd.appendChild(ddText);
+            dl.appendChild(dt);
+            dl.appendChild(dd);
+        }
+        document.body.appendChild(dl);
+    };
+    </script>
+</head>
+
+<body>
+    <abbr title="World Wide Web Consortium">W3C</abbr>
+    <abbr title="Document Object Model">DOM</abbr>
+</body>
+
+</html>
