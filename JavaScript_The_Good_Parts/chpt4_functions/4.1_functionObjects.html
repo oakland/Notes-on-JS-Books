@@ -5,7 +5,9 @@
 	<title>4.1_functionObjects</title>
 	<script type="text/javascript">
 		//在 JS 中，函数是对象。对象是与原型对象(prototype object)隐形相关的一组名值对集合。由对象字面量创建的对象与 Object.prototype 相关联。Function objects are linked to Function.prototype(which itself linked to Object.prototype)。每个函数创建的时候也会拥有两个隐藏属性：函数上下文和执行函数行为的代码(function's context and the code that implements the function's behavior)。
-		// 每个函数对象都会拥有一个 prototype 属性。这个 prototype 值是一个对象，这个对象的 constructor 属性是这个函数。
+		// 每个函数对象都会拥有一个 prototype 属性。这个 prototype 值是一个对象，这个对象的 constructor 属性是这个函数。这与 Function.prototype 的隐形链接是不同的。这种盘根错节的构造关系的意义将会在下一章节中进行阐述。
+		// 因为函数也是对象，所以函数也可以像其他值一样被使用。函数可以被存储在变量中、对象中和数组中。函数可以被当做参数传入函数中，也可以从其他函数返回一个函数。而且，鉴于函数也是对象，所以函数也有方法。
+		// 函数特殊的地方在于函数可以被调用。
 	</script>
 </head>
 <body>
