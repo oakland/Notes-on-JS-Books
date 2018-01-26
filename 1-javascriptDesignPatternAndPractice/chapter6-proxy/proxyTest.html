@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>proxy test</title>
+</head>
+<body>
+	<button id="myBtn">Click me</button>
+	<script>
+		const handleClick = (function() {
+			let n = 0,
+				timer;
+			return function() {
+				n++;
+				if(timer) {
+					return;
+				}
+				timer = setTimeout(function() {
+					print(n);
+				}, 2000);
+			}
+		})();
+
+		function print(para) {
+			console.log(para);
+		}
+
+		const btn = document.querySelector("#myBtn");
+		btn.addEventListener("click", handleClick);
+	</script>
+</body>
+</html>

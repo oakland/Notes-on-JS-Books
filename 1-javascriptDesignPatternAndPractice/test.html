@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Class Test</title>
+	<style>
+		body {
+			position: relative;
+		}
+
+		.circle {
+			position: absolute;
+			left: 0;
+			top: 30px;
+
+			transition: all 4s cubic-bezier(0.85, -0.26, 0, 1.65);
+
+			width: 100px;
+			height: 100px;
+			background-color: tomato;
+		}
+	</style>
+</head>
+<body>
+	<div class="circle"></div>
+	<button class="btn">move</button>
+	<script>
+		function Circle(selector) {
+			this.el = document.querySelector(selector);
+			this.init();
+		}
+
+		Circle.prototype.init = function() {
+			this.el.style.left = "500px";
+			this.el.style.top = "200px";
+			this.el.style.opacity = 0.7;
+			this.end();
+		};
+
+		Circle.prototype.end = function() {
+			while(this.el.style.left !== "500px") {
+				this.end();
+			}
+			this.el.style.display = 'none';
+		};
+
+		const btn = document.querySelector(".btn");
+		btn.onclick = function(e) {
+			new Circle(".circle");
+		};
+	</script>
+</body>
+</html>

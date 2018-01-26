@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>patterns</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="300"></canvas>
+	<script>
+		const canvas = document.querySelector('canvas');
+		const context = canvas.getContext('2d');
+
+		// create pattern
+		let img = new Image();
+		img.src = './heartForPattern.png';
+
+		// draw pattern
+		img.onload = function() {
+			var pattern = context.createPattern(img, 'repeat');
+			context.fillStyle = pattern;
+			context.fillRect(0, 0, canvas.width, canvas.height);
+		};
+
+		// blow does not work for img pattern, don't know why
+		// var pattern = context.createPattern(img, 'repeat');
+		// context.fillStyle = pattern;
+		// context.fillRect(0, 0, canvas.width, canvas.height);		
+	</script>
+</body>
+</html>

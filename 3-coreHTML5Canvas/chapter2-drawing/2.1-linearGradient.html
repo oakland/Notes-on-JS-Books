@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gradient canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="300">...</canvas>
+	<script>
+		const canvas = document.querySelector("#canvas");
+		const context = canvas.getContext('2d');
+
+		// create a gradient
+		let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+		// add color stops to gradient
+		gradient.addColorStop(0, 'red');
+		gradient.addColorStop(0.25, 'orange');
+		gradient.addColorStop(0.5, 'yellow');
+		gradient.addColorStop(0.75, 'green');
+		gradient.addColorStop(1, 'purple');
+
+		// specify the gradient to fillStyle
+		context.fillStyle = gradient;
+
+		// draw a full rect to canvas
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		// --fill context with another gradient, overlap the former gradient--
+		let gradient2 = context.createLinearGradient(0, 0, canvas.width, 0);
+		gradient2.addColorStop(0, '#08f196');
+		gradient2.addColorStop(1, '#045234');
+
+		context.fillStyle = gradient2;
+		context.fillRect(0, 0, canvas.width, canvas.height);
+	</script>
+</body>
+</html>

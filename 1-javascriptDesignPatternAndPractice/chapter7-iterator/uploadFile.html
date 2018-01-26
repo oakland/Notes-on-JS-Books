@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var n = 3;
+
+		// 要迭代的单个函数
+		function a() {
+			if(n === 1) {
+				console.log(n);
+				return n;
+			};
+
+			return false; // 方便迭代器验证
+		}
+
+		function b() {
+			if(n === 2) {
+				console.log(n);
+				return n;
+			}
+
+			return false; // 方便迭代器验证
+		}
+
+		function c() {
+			if(n === 3) {
+				console.log(n);
+				return n;
+			}
+
+			return false; // 方便迭代器验证
+		}
+
+		// 迭代器实现方式一
+		const iteratorN = function() {
+			for (let i = 0, len = arguments.length; i < len; i++) {
+				let res = arguments[i]();
+				if(res) {
+					console.log('ok');
+					return res;
+				};
+			}
+		}
+
+		iteratorN(a, b, c);
+
+		// 迭代器实现方式二，下面这种方式也不错
+		// Array.prototype.forEach.call([a, b, c], function(itm, idx, ary) {
+		// 	let res = itm();
+		// 	if(res) {
+		// 		console.log('ok');
+		// 	}
+		// });
+	</script>
+</body>
+</html>

@@ -87,6 +87,18 @@
     }
     var curriedAdd = curry(add, 1);//也可以是 var curriedAdd = curry(add, 1, 2);反正就是只要两次传入的参数个数等于 fn 自己的参数个数就可以了
     console.log(curriedAdd(5, 2));//如果上面是 var curriedAdd = curry(add, 1, 2); 那么这里就应该是 console.log(curriedAdd(5)); 最后输出的结果是一样的
+
+
+    // steam comment//
+    //其实柯里化其实就相当于是分开两次传入参数的过程，第一次传入的参数是定值，第二次传入的参数才是变量。两次传入的参数数量之和为柯里化函数的参数总数。就是说 fn() 假如有 10 个参数，那么 curriedFn() 可以是已经有 1-9 中任意个参数为定值的版本，调用 curriedFn() 时，只需要将剩下的参数数量补全即可，例如
+    function add(num1, num2, num3) {
+        return num1+num2+num3
+    }
+    var curriedAdd$1 = curry(add, 1, 2);
+    console.log(curriedAdd$1, 3); // -> 6，其实这个过程就相当于 add(1, 2, 3)，只不过参数 1,2 是第一次传入的，参数 3 是第二次传入的。另外一个版本就是第一次传入一个参数，第二次才传入剩下的两个参数
+    var curriedAdd$2 = curry(add, 1);
+    console.log(curriedAdd$2(2, 3)); // -> 6，总而言之整个的过程就是 fn() 调用的多个参数的过程，只不过将 fn 默认的参数分成两份分开传入调用，两次的参数之和一定是 fn() 函数本来的参数数量
+    // steam comment//
     </script>
 </head>
 

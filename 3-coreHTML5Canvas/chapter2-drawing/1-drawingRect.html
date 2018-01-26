@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>draw rectangles</title>
+	<style>
+		/*make canvas different from background*/
+		#canvas {
+			background-color: #eee;
+			border: 1px solid tomato;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="300">Your browser does not support canvas element.</canvas>
+	<script>
+		const canvas = document.querySelector('#canvas');
+		const context = canvas.getContext('2d');
+
+		// draw a rect with 10px border
+		context.lineJoin = 'round';
+		context.lineWidth = 10;
+		// if you do not specify strokeStyle || fillStyle, it will be the default, that means the black color
+		context.strokeRect(50, 50, 50, 50);
+
+		// draw a rect with solid black
+		context.fillRect(100, 100, 50, 50);
+
+		// put instruction text on canvas
+		context.font = '14px Arial';
+		context.fillStyle = 'purple';
+		context.fillText("click anywhere on canvas to clear things on canvas.", 200, 200);
+
+		// clear all things on canvas when click canvas
+		canvas.onclick = function() {
+			context.clearRect(0, 0, canvas.width, canvas.height);
+		}
+
+		context.fillStyle = 'pruple';
+		context.strokeStyle = 'tomato';
+		context.lineJoin = 'round';
+		context.lineWidth = 5;
+
+		context.strokeRect(150, 150, 50, 50);
+		context.fillRect(200, 200, 50, 50);
+	</script>
+</body>
+</html>

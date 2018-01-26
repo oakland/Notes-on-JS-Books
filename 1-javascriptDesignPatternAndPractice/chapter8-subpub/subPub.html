@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function SubPub() {
+			this.contacts = [];
+		}
+		SubPub.prototype.subscribe = function(name) {
+			this.contacts.push(name);
+		}
+		SubPub.prototype.publish = function() {
+			this.contacts.forEach(function(itm, idx, ary) {
+				console.log(`Hello, ${itm}, I have a new house to sell.`);
+			});
+		}
+
+		const sale = new SubPub();
+
+		sale.subscribe("xiaoming");
+		sale.subscribe("xiaohong");
+		sale.subscribe("xiaobai");
+
+		sale.publish()
+	</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>radial gredient</title>
+</head>
+<body>	
+	<canvas id="canvas" width="600" height="300"></canvas>
+	<script>
+		const canvas = document.querySelector('#canvas');
+		const context = canvas.getContext('2d');
+
+		// create radial gradient
+		const radialGradient = context.createRadialGradient(canvas.width/2, canvas.height, 10, canvas.width/2, 0, 100);
+		radialGradient.addColorStop(0, 'red');
+		radialGradient.addColorStop(0.25, 'orange');
+		radialGradient.addColorStop(0.5, 'yellow');
+		radialGradient.addColorStop(0.75, 'green');
+		radialGradient.addColorStop(1, 'purple');
+
+		context.fillStyle = radialGradient;
+		context.fillRect(0, 0, canvas.width, canvas.height);
+	</script>
+</body>
+</html>
