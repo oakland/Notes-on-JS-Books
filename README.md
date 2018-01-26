@@ -22,3 +22,8 @@ Notes and demos on JS books
 ## Some very very classical books for selftaught learners
 1. The Elements of Computing Systems(Noam Nisan / Shimon Schochen), 豆瓣评分 9.6，教你如果自己造一个计算机，豆瓣的评论对这本书说的很神，绝对值得一读！
 
+
+这个网站罗列出来的书都是神书
+https://teachyourselfcs.com/
+还有这个仓库
+https://github.com/ossu/computer-science
